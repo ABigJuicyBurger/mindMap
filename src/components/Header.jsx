@@ -11,4 +11,10 @@ export function Header() {
 const StyledHeader = styled.header`
   padding: 2rem;
   width: 100%;
+
+  .title {
+    color: papayawhip;
+  }
 `;
+
+// import styled then styled.elementName then backtick `` and isolate CSS

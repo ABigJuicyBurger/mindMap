@@ -8,6 +8,8 @@ import { Header } from "./components/Header";
 
 const topics = ["Coding", "Finance", "Life"];
 
+// make app small and tidy and easy to read and less scroll
+
 function App() {
   console.log("App render");
 
@@ -85,3 +87,8 @@ function App() {
 }
 
 export default App;
+
+function Aside()
+
+
+function MainSection()
