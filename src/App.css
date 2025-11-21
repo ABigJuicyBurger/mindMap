@@ -55,11 +55,6 @@ body {
   align-items: center;
 }
 
-.headerTitle {
-  padding: 2rem;
-  width: 100%;
-}
-
 section {
   display: flex;
   flex: 1;

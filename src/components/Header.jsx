@@ -1,7 +1,14 @@
+import styled from "styled-components";
+
 export function Header() {
   return (
-    <header>
-      <h1 className="headerTitle">MindMap</h1>
-    </header>
+    <StyledHeader>
+      <h1 className="title">MindMap</h1>
+    </StyledHeader>
   );
 }
+
+const StyledHeader = styled.header`
+  padding: 2rem;
+  width: 100%;
+`;
