@@ -1,4 +1,10 @@
-export function NewLessonForm({ inputValues, setInputValues }) {
+export function NewLessonForm({
+  inputValues,
+  setInputValues,
+  addNewLessonEntry,
+  setAddNewLessonEntry,
+  handleNewLesson,
+}) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     console.log("Input changed:", value);
@@ -30,6 +36,20 @@ export function NewLessonForm({ inputValues, setInputValues }) {
           onChange={handleInputChange}
         />
       </label>
+      <button
+        className="addLessonButton"
+        onClick={() => {
+          console.log(inputValues);
+          handleNewLesson(inputValues);
+          setInputValues({
+            lessonTitle: "",
+            lessonDescription: "",
+          });
+          setAddNewLessonEntry(!addNewLessonEntry);
+        }}
+      >
+        Add Lesson
+      </button>
     </section>
   );
 }

@@ -5,6 +5,8 @@ import { NewLessonForm } from "./components/NewLessonForm";
 
 import "./App.css";
 import { Header } from "./components/Header";
+import { MainSection } from "./components/MainSection";
+import { Footer } from "./components/Footer";
 
 const topics = ["Coding", "Finance", "Life"];
 
@@ -40,8 +42,11 @@ function App() {
                 <NewLessonForm
                   inputValues={inputValues}
                   setInputValues={setInputValues}
+                  addNewLessonEntry={addNewLessonEntry}
+                  setAddNewLessonEntry={setAddNewLessonEntry}
+                  handleNewLesson={handleNewLesson}
                 />
-                <button
+                {/* <button
                   className="addLessonButton"
                   onClick={() => {
                     console.log(inputValues);
@@ -54,7 +59,7 @@ function App() {
                   }}
                 >
                   Add Lesson
-                </button>
+                </button> */}
               </>
             )}
           </section>
@@ -63,32 +68,11 @@ function App() {
             <TopicsList topics={topics} />
           </section>
         </aside>
-        <main>
-          <section className="lessonsSection">
-            <h2>Lessons so far...</h2>
-            <br />
-            {lessonEntries.map((lesson) => (
-              <article key={lesson.id}>
-                <header>
-                  <h3>{lesson.title}</h3>
-                </header>
-                <p>{lesson.lesson}</p>
-              </article>
-            ))}
-            <br />
-          </section>
-        </main>
+        <MainSection lessonEntries={lessonEntries} />
       </section>
-      <footer className="footer">
-        Made by <a href="https://github.com/ABigJuicyBurger">Bader Muhssin</a>
-      </footer>
+      <Footer />
     </div>
   );
 }
 
 export default App;
-
-function Aside()
-
-
-function MainSection()
