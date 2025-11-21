@@ -1,0 +1,99 @@
+/* preferred way to target the document's root for things like defining global CSS variables*/
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #242424;
+  background-color: #9b9cc9;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button {
+  background: transparent;
+  width: 5rem;
+  /* margin: 2rem; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh; /* full viewport */
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerTitle {
+  padding: 2rem;
+  width: 100%;
+}
+
+section {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+}
+
+.addLessonSection > *,
+.categoriesSection > *,
+main {
+  margin: 2rem;
+}
+
+.addLessonSection,
+.categoriesSection,
+.newLessonSection,
+.lessonsSection {
+  flex-direction: column;
+}
+
+.addLessonSection {
+  height: 40vh;
+}
+
+.newLessonSection {
+  /* // margin for distance beteen contents, padding for distance between content and border */
+  width: 50%;
+}
+
+main {
+  flex: 1;
+}
