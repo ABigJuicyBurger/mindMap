@@ -7,6 +7,7 @@ import "./App.css";
 import { Header } from "./components/Header";
 import { MainSection } from "./components/MainSection";
 import { Footer } from "./components/Footer";
+import { AddLessonSection } from "./components/AddLessonSection";
 
 const topics = ["Coding", "Finance", "Life"];
 
@@ -19,7 +20,6 @@ function App() {
     lessonTitle: "",
     lessonDescription: "",
   });
-  const [addNewLessonEntry, setAddNewLessonEntry] = useState(false);
   const { lessonEntries, handleNewLesson } = useAddLesson();
 
   return (
@@ -27,42 +27,17 @@ function App() {
       <Header />
       <section className="mainContent">
         <aside>
-          <section className="addLessonSection">
-            <button
-              className="addNewLessonButton"
-              onClick={() => {
-                setAddNewLessonEntry(!addNewLessonEntry);
-                // show me a div
-              }}
-            >
-              Add New Lesson
-            </button>
+          <AddLessonSection>
             {addNewLessonEntry && (
               <>
                 <NewLessonForm
                   inputValues={inputValues}
                   setInputValues={setInputValues}
-                  addNewLessonEntry={addNewLessonEntry}
-                  setAddNewLessonEntry={setAddNewLessonEntry}
                   handleNewLesson={handleNewLesson}
                 />
-                {/* <button
-                  className="addLessonButton"
-                  onClick={() => {
-                    console.log(inputValues);
-                    handleNewLesson(inputValues);
-                    setInputValues({
-                      lessonTitle: "",
-                      lessonDescription: "",
-                    });
-                    setAddNewLessonEntry(!addNewLessonEntry);
-                  }}
-                >
-                  Add Lesson
-                </button> */}
               </>
             )}
-          </section>
+          </AddLessonSection>
           <section className="categoriesSection">
             <h2>Categories</h2>
             <TopicsList topics={topics} />
