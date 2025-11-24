@@ -15,25 +15,31 @@ const topics = ["Coding", "Finance", "Life"];
 
 function App() {
   console.log("App render");
+  const [addNewLessonEntry, setAddNewLessonEntry] = useState(false);
+  const { lessonEntries, handleNewLesson } = useAddLesson();
 
   const [inputValues, setInputValues] = useState({
     lessonTitle: "",
     lessonDescription: "",
   });
-  const { lessonEntries, handleNewLesson } = useAddLesson();
 
   return (
     <div className="app">
       <Header />
       <section className="mainContent">
         <aside>
-          <AddLessonSection>
+          <AddLessonSection
+            addNewLessonEntry={addNewLessonEntry}
+            setAddNewLessonEntry={setAddNewLessonEntry}
+          >
             {addNewLessonEntry && (
               <>
                 <NewLessonForm
                   inputValues={inputValues}
                   setInputValues={setInputValues}
                   handleNewLesson={handleNewLesson}
+                  setAddNewLessonEntry={setAddNewLessonEntry}
+                  addNewLessonEntry={addNewLessonEntry}
                 />
               </>
             )}

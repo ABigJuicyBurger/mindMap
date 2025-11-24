@@ -1,19 +1,24 @@
-import { useState } from "react";
-
-export function AddLessonSection() {
-  const [addNewLessonEntry, setAddNewLessonEntry] = useState(false);
+export function AddLessonSection({
+  addNewLessonEntry,
+  setAddNewLessonEntry,
+  children,
+}) {
+  function changeCardVisibility() {
+    setAddNewLessonEntry(!addNewLessonEntry);
+  }
 
   return (
     <section className="addLessonSection">
       <button
         className="addNewLessonButton"
         onClick={() => {
-          setAddNewLessonEntry(!addNewLessonEntry);
+          changeCardVisibility();
           // show me a div
         }}
       >
         Add New Lesson
       </button>
+      {children}
     </section>
   );
 }

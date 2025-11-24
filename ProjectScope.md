@@ -14,8 +14,9 @@ For users who learn better visually because they forget the words. It's quizlet 
 
 ## Features
 
-- Add new lesson
-- View and categorize learning cards
+- As a guest, I want to add a new lesson so that I can log what I've learned
+- As a guest, I want to view and categorize learning cards as well as delete cards
+- AS a guest, I want to input my own categories and remove categories up to a limit of 5 per user
 
   # Stretch Goal
 
@@ -25,3 +26,16 @@ For users who learn better visually because they forget the words. It's quizlet 
 
 - No server backend
 - No database
+
+## Implementation
+
+- React
+- Styled-Components
+
+## Api's
+
+- None
+
+## Sitemap
+
+- SPA
