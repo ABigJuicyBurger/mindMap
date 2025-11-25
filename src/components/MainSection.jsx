@@ -4,10 +4,12 @@ import styled from "styled-components";
 export function MainSection({ lessonEntries }) {
   return (
     <StyledMain>
-      <h1 className="lessonsSectionTitle">Lessons so far...</h1>
-
+      <Header>
+        <h1 className="lessonsSectionTitle">Lessons so far...</h1>
+        <img src="singleCardLogo.png" alt="singleCard" />
+        <img src="gridLogo" alt="gridCard" />
+      </Header>
       <StyledSection>
-        <br />
         {lessonEntries.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
             <header>
@@ -22,6 +24,17 @@ export function MainSection({ lessonEntries }) {
   );
 }
 
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  h1 {
+    flex: 1;
+  }
+  img {
+    margin: 0 1rem;
+  }
+`;
+
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
@@ -31,12 +44,14 @@ const StyledMain = styled.main`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  // so what happens if i have more than six cards...? and how can that be resolve?
 
   .lessonCard {
     border: 1px solid black;
     padding: 1rem;
-    margin: 1rem;
-    width: 10rem;
-    height: 10rem;
+    margin: 1rem 0;
+    width: 90%;
+    height: 90%;
   }
 `;
