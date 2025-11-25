@@ -3,7 +3,6 @@ export function NewLessonForm({
   setInputValues,
   handleNewLesson,
   setAddNewLessonEntry,
-  addNewLessonEntry,
 }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -1,10 +1,6 @@
-export function AddLessonSection({
-  addNewLessonEntry,
-  setAddNewLessonEntry,
-  children,
-}) {
+export function AddLessonSection({ setAddNewLessonEntry, children }) {
   function changeCardVisibility() {
-    setAddNewLessonEntry(!addNewLessonEntry);
+    setAddNewLessonEntry(true);
   }
 
   return (
