@@ -1,7 +1,20 @@
+import styled from "styled-components";
+
 export function Footer() {
   return (
-    <footer className="footer">
+    <StyledFooter>
       Made by <a href="https://github.com/ABigJuicyBurger">Bader Muhssin</a>
-    </footer>
+    </StyledFooter>
   );
 }
+
+const StyledFooter = styled.footer`
+  display: flex;
+  padding: 2rem;
+  width: 100%;
+  border-top: 1px solid salmon;
+
+  a {
+    margin: 0 0.5rem;
+  }
+`;
