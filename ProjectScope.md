@@ -39,3 +39,7 @@ For users who learn better visually because they forget the words. It's quizlet 
 ## Sitemap
 
 - SPA
+
+Homepage
+
+![](sitemap.png)
