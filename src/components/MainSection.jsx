@@ -1,20 +1,42 @@
 // function Aside()
+import styled from "styled-components";
+
 export function MainSection({ lessonEntries }) {
   return (
-    <main className="mainSection">
-      <section className="lessonsSection">
-        <h2 className="lessonsSectionTitle">Lessons so far...</h2>
+    <StyledMain>
+      <h1 className="lessonsSectionTitle">Lessons so far...</h1>
+
+      <StyledSection>
         <br />
         {lessonEntries.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
             <header>
-              <h3 className="lessonCardTitle">{lesson.title}</h3>
+              <h2 className="lessonCardTitle">{lesson.title}</h2>
             </header>
             <p className="lessonCardDescription">{lesson.description}</p>
           </article>
         ))}
         <br />
-      </section>
-    </main>
+      </StyledSection>
+    </StyledMain>
   );
 }
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
+const StyledSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .lessonCard {
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+  }
+`;
