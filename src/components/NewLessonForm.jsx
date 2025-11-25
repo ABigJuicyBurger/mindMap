@@ -17,11 +17,11 @@ export function NewLessonForm({
       <h2>New Lesson:</h2>
       <label htmlFor="lessonTitle">
         <input
-          type="text"
-          id="lessonTitle"
-          placeholder="Title"
-          name="lessonTitle"
-          value={inputValues.lessonTitle}
+          type="text" // what is being inputted
+          id="lessonTitle" // styling
+          placeholder="Title" // placeholder
+          name="lessonTitle" // html attribute
+          value={inputValues.lessonTitle} // what is inputted
           onChange={handleInputChange}
         />
       </label>

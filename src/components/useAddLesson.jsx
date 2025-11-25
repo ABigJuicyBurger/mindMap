@@ -17,7 +17,7 @@ export function useAddLesson() {
       {
         id: uuidv4(),
         title: inputValue.lessonTitle,
-        lesson: inputValue.lessonDescription,
+        description: inputValue.lessonDescription,
       },
     ];
     setLesson(nextState);

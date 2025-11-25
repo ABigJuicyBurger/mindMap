@@ -1,16 +1,16 @@
 // function Aside()
 export function MainSection({ lessonEntries }) {
   return (
-    <main>
+    <main className="mainSection">
       <section className="lessonsSection">
-        <h2>Lessons so far...</h2>
+        <h2 className="lessonsSectionTitle">Lessons so far...</h2>
         <br />
         {lessonEntries.map((lesson) => (
-          <article key={lesson.id}>
+          <article className="lessonCard" key={lesson.id}>
             <header>
-              <h3>{lesson.title}</h3>
+              <h3 className="lessonCardTitle">{lesson.title}</h3>
             </header>
-            <p>{lesson.lesson}</p>
+            <p className="lessonCardDescription">{lesson.description}</p>
           </article>
         ))}
         <br />

@@ -1,4 +1,5 @@
 export function TopicsList(props) {
+  // can also destructure topics for easier readibility
   return (
     <>
       {!props.topics ? (
