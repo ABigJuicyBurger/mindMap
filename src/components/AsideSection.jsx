@@ -14,7 +14,10 @@ export function AsideSection({
 }) {
   return (
     <aside>
-      <AddLessonSection setAddNewLessonEntry={setAddNewLessonEntry}>
+      <AddLessonSection
+        setAddNewLessonEntry={setAddNewLessonEntry}
+        addNewLessonEntry={addNewLessonEntry}
+      >
         {addNewLessonEntry && (
           <>
             <NewLessonForm

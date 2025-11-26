@@ -43,15 +43,29 @@ const StyledMain = styled.main`
 
 const StyledSection = styled.section`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-rows: repeat(2, 29vh);
+  gap: 1rem;
   // so what happens if i have more than six cards...? and how can that be resolve?
 
   .lessonCard {
     border: 1px solid black;
     padding: 1rem;
     margin: 1rem 0;
-    width: 90%;
-    height: 90%;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      display: flex;
+      justify-content: center;
+    }
+
+    p {
+      /* width: fit-content; */
+      word-wrap: break-word;
+      flex-grow: 1;
+      max-height: calc(100% - 2rem);
+      overflow-y: auto;
+    }
   }
 `;
