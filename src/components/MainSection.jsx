@@ -1,13 +1,23 @@
 // function Aside()
 import styled from "styled-components";
+<<<<<<< HEAD
+=======
+import squareLogo from "../assets/singleCardLogo.png";
+// import gridLogo from "../assets/gridLogo.png";
+>>>>>>> b5a20e7 (fresh start after git corruption)
 
 export function MainSection({ lessonEntries }) {
   return (
     <StyledMain>
       <Header>
         <h1 className="lessonsSectionTitle">Lessons so far...</h1>
+<<<<<<< HEAD
         <img src="singleCardLogo.png" alt="singleCard" />
         <img src="gridLogo" alt="gridCard" />
+=======
+        <img src={squareLogo} alt="singleCard" />
+        {/* <img src={gridLogo} alt="gridCard" /> */}
+>>>>>>> b5a20e7 (fresh start after git corruption)
       </Header>
       <StyledSection>
         {lessonEntries.map((lesson) => (
@@ -58,6 +68,11 @@ const StyledSection = styled.section`
     header {
       display: flex;
       justify-content: center;
+<<<<<<< HEAD
+=======
+      max-height: 2rem;
+      overflow-y: auto;
+>>>>>>> b5a20e7 (fresh start after git corruption)
     }
 
     p {
