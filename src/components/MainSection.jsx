@@ -1,23 +1,15 @@
 // function Aside()
 import styled from "styled-components";
-<<<<<<< HEAD
-=======
 import squareLogo from "../assets/singleCardLogo.png";
-// import gridLogo from "../assets/gridLogo.png";
->>>>>>> b5a20e7 (fresh start after git corruption)
+import gridLogo from "../assets/gridLogo.png";
 
 export function MainSection({ lessonEntries }) {
   return (
     <StyledMain>
       <Header>
         <h1 className="lessonsSectionTitle">Lessons so far...</h1>
-<<<<<<< HEAD
-        <img src="singleCardLogo.png" alt="singleCard" />
-        <img src="gridLogo" alt="gridCard" />
-=======
         <img src={squareLogo} alt="singleCard" />
-        {/* <img src={gridLogo} alt="gridCard" /> */}
->>>>>>> b5a20e7 (fresh start after git corruption)
+        <img src={gridLogo} alt="gridCard" />
       </Header>
       <StyledSection>
         {lessonEntries.map((lesson) => (
@@ -41,7 +33,12 @@ const Header = styled.header`
     flex: 1;
   }
   img {
+    height: 36px;
+    width: 36px;
     margin: 0 1rem;
+  }
+  img:hover {
+    background-color: gray;
   }
 `;
 
@@ -59,27 +56,24 @@ const StyledSection = styled.section`
   // so what happens if i have more than six cards...? and how can that be resolve?
 
   .lessonCard {
-    border: 1px solid black;
-    padding: 1rem;
+    border: 1px dotted papayawhip;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
     margin: 1rem 0;
     display: flex;
     flex-direction: column;
 
     header {
       display: flex;
-      justify-content: center;
-<<<<<<< HEAD
-=======
-      max-height: 2rem;
+      max-height: 2.5rem;
       overflow-y: auto;
->>>>>>> b5a20e7 (fresh start after git corruption)
     }
 
     p {
       /* width: fit-content; */
       word-wrap: break-word;
       flex-grow: 1;
-      max-height: calc(100% - 2rem);
+      max-height: calc(100% - 2.5rem);
       overflow-y: auto;
     }
   }

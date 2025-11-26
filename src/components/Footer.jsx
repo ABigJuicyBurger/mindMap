@@ -12,7 +12,7 @@ const StyledFooter = styled.footer`
   display: flex;
   padding: 2rem;
   width: 100%;
-  border-top: 1px solid salmon;
+  border-top: 1px dotted papayawhip;
 
   a {
     margin: 0 0.5rem;
