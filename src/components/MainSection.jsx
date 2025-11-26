@@ -14,10 +14,15 @@ export function MainSection({ lessonEntries }) {
       <StyledSection>
         {lessonEntries.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
-            <header>
-              <h2 className="lessonCardTitle">{lesson.title}</h2>
-            </header>
-            <p className="lessonCardDescription">{lesson.description}</p>
+            <button className="deleteButton">
+              <img src="trashBinLogo" alt="delete" />
+            </button>
+            <div className="lessonContent">
+              <header>
+                <h2 className="lessonCardTitle">{lesson.title}</h2>
+              </header>
+              <p className="lessonCardDescription">{lesson.description}</p>
+            </div>
           </article>
         ))}
         <br />
@@ -58,10 +63,15 @@ const StyledSection = styled.section`
   .lessonCard {
     border: 1px dotted papayawhip;
     border-radius: 2rem;
-    padding: 1rem 3rem;
+    padding: 1rem 0;
     margin: 1rem 0;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: olumn; */
+
+    .lessonContent {
+      display: flex;
+      flex-direction: column;
+    }
 
     header {
       display: flex;
