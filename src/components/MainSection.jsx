@@ -1,5 +1,6 @@
 // function Aside()
 import styled from "styled-components";
+import trashBin from "../assets/trashBin.png";
 import squareLogo from "../assets/singleCardLogo.png";
 import gridLogo from "../assets/gridLogo.png";
 
@@ -15,7 +16,7 @@ export function MainSection({ lessonEntries }) {
         {lessonEntries.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
             <button className="deleteButton">
-              <img src="trashBinLogo" alt="delete" />
+              <img src={trashBin} alt="delete" />
             </button>
             <div className="lessonContent">
               <header>
@@ -76,7 +77,15 @@ const StyledSection = styled.section`
     padding: 1rem 0;
     margin: 1rem 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+
+    button {
+      img {
+        width: 24px;
+        mix-blend-mode: darken;
+      }
+    }
 
     .lessonContent {
       display: flex;
@@ -95,12 +104,6 @@ const StyledSection = styled.section`
       flex-grow: 1;
       max-height: calc(100% - 2.5rem);
       overflow-y: auto;
-    }
-
-    @media (min-width: 768px) {
-      .lessonCard {
-        flex-direction: row; /* on tablet+ let card use row layout */
-      }
     }
   }
 `;

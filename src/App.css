@@ -21,9 +21,16 @@
 }
 
 button {
-  background: transparent;
-  width: 5rem;
-  /* margin: 2rem; */
+  width: fit-content;
+  padding: 0.25rem;
+
+  background: rgb(191, 192, 248);
+  color: #9b9cc9;
+  border: 1px solid #555;
+  box-shadow: 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+
+  cursor: pointer;
 }
 
 h1,
