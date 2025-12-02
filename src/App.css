@@ -92,3 +92,55 @@ main {
 main {
   flex: 1;
 }
+
+/* Existing global styles above... */
+
+/* Mobile-first: up to 768px */
+@media (max-width: 768px) {
+  .app {
+    align-items: stretch; /* let content use full width */
+  }
+
+  /* Your main layout section */
+  .mainContent {
+    flex-direction: column; /* stack Aside + Main */
+  }
+
+  aside {
+    flex-basis: 100%;
+  }
+
+  main {
+    margin: 1rem; /* slightly tighter margins on small screens */
+  }
+}
+
+/* Tablet: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mainContent {
+    flex-direction: row; /* side-by-side */
+  }
+
+  aside {
+    flex-basis: 40%;
+  }
+
+  main {
+    margin: 1.5rem;
+  }
+}
+
+/* Laptop and up: 1025px+ */
+@media (min-width: 1025px) {
+  .mainContent {
+    flex-direction: row;
+  }
+
+  aside {
+    flex-basis: 35%; /* your original intent */
+  }
+
+  main {
+    margin: 2rem;
+  }
+}

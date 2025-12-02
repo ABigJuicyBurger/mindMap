@@ -55,10 +55,20 @@ const StyledMain = styled.main`
 
 const StyledSection = styled.section`
   display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 29vh);
   gap: 1rem;
   // so what happens if i have more than six cards...? and how can that be resolve?
+
+  @media (min-width: 600px) {
+    /* small tablets: 2 columns */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    /* laptops/desktops: 3 columns */
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
 
   .lessonCard {
     border: 1px dotted papayawhip;
@@ -66,7 +76,7 @@ const StyledSection = styled.section`
     padding: 1rem 0;
     margin: 1rem 0;
     display: flex;
-    /* flex-direction: olumn; */
+    flex-direction: column;
 
     .lessonContent {
       display: flex;
@@ -85,6 +95,12 @@ const StyledSection = styled.section`
       flex-grow: 1;
       max-height: calc(100% - 2.5rem);
       overflow-y: auto;
+    }
+
+    @media (min-width: 768px) {
+      .lessonCard {
+        flex-direction: row; /* on tablet+ let card use row layout */
+      }
     }
   }
 `;
