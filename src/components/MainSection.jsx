@@ -60,7 +60,7 @@ const StyledMain = styled.main`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 29vh);
+  grid-template-rows: repeat(3, 29vh);
   gap: 1rem;
   // so what happens if i have more than six cards...? and how can that be resolve?
 
@@ -71,19 +71,20 @@ const StyledSection = styled.section`
 
   @media (min-width: 1024px) {
     /* laptops/desktops: 3 columns */
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
   }
 
   .lessonCard {
     border: 1px dotted papayawhip;
     border-radius: 2rem;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
     margin: 1rem 0;
     display: flex;
     flex-direction: row;
     align-items: baseline;
 
     button {
+      margin: 0.5rem;
       img {
         width: 24px;
         mix-blend-mode: darken;

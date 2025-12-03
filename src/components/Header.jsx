@@ -11,6 +11,7 @@ export function Header() {
 const StyledHeader = styled.header`
   padding: 2rem;
   width: 100%;
+  border-bottom: 1px dotted lightsteelblue;
 
   .title {
     color: papayawhip;
