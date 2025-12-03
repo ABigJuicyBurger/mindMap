@@ -46,6 +46,9 @@ const Header = styled.header`
   img:hover {
     background-color: gray;
   }
+  img:active {
+    background-color: grey;
+  }
 `;
 
 const StyledMain = styled.main`

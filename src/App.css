@@ -25,12 +25,14 @@ button {
   padding: 0.25rem;
 
   background: rgb(191, 192, 248);
-  color: #9b9cc9;
+  color: black;
   border: 1px solid #555;
   box-shadow: 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
+}
 
-  cursor: pointer;
+button:active {
+  background: papayawhip;
 }
 
 h1,

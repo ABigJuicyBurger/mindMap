@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export function NewLessonForm({
   inputValues,
   setInputValues,
@@ -15,7 +17,7 @@ export function NewLessonForm({
   return (
     <section className="newLessonSection">
       <h2>New Lesson:</h2>
-      <label htmlFor="lessonTitle">
+      <StyledLabel htmlFor="lessonTitle">
         <input
           type="text" // what is being inputted
           id="lessonTitle" // styling
@@ -24,8 +26,8 @@ export function NewLessonForm({
           value={inputValues.lessonTitle} // what is inputted
           onChange={handleInputChange}
         />
-      </label>
-      <label htmlFor="lessonDescription">
+      </StyledLabel>
+      <StyledLabel htmlFor="lessonDescription">
         <input
           type="text"
           id="lessonDescription"
@@ -34,7 +36,7 @@ export function NewLessonForm({
           value={inputValues.lessonDescription}
           onChange={handleInputChange}
         />
-      </label>
+      </StyledLabel>
       <button
         className="addLessonButton"
         onClick={() => {
@@ -52,3 +54,20 @@ export function NewLessonForm({
     </section>
   );
 }
+
+const StyledLabel = styled.label`
+  ::placeholder {
+    color: papayawhip;
+  }
+
+  input {
+    background: none;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 1rem;
+  }
+
+  input:focus {
+    background-color: lightsteelblue;
+  }
+`;
