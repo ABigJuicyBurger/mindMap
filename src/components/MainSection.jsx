@@ -60,7 +60,7 @@ const StyledMain = styled.main`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 29vh);
+  grid-template-rows: repeat(2, minmax(26vh, auto));
   gap: 1rem;
   // so what happens if i have more than six cards...? and how can that be resolve?
 
@@ -78,7 +78,7 @@ const StyledSection = styled.section`
     border: 1px dotted papayawhip;
     border-radius: 2rem;
     /* padding: 1rem 0; */
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     display: flex;
     flex-direction: row;
     align-items: baseline;

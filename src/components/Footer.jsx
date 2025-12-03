@@ -9,12 +9,20 @@ export function Footer() {
 }
 
 const StyledFooter = styled.footer`
+  color: papayawhip;
   display: flex;
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
-  border-top: 1px dotted lightsteelblue;
+  /* border-top: 1px dotted lightsteelblue; */
 
   a {
+    text-decoration: none;
+    color: inherit;
     margin: 0 0.5rem;
+  }
+
+  a:hover {
+    color: lightsteelblue;
+    text-decoration: underline;
   }
 `;

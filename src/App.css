@@ -23,7 +23,7 @@
 button {
   width: fit-content;
   padding: 0.5rem;
-
+  margin: 0.5rem 0;
   background: lightsteelblue;
   color: black;
   border: 1px dotted #555;
@@ -79,7 +79,7 @@ aside {
 .addLessonSection > *,
 .categoriesSection > *,
 main {
-  margin: 2rem;
+  margin: 1.5rem;
 }
 
 .addLessonSection,
@@ -135,7 +135,7 @@ main {
   }
 
   main {
-    margin: 1.5rem;
+    margin: 1rem;
   }
 }
 
@@ -150,6 +150,6 @@ main {
   }
 
   main {
-    margin: 2rem;
+    margin: 1rem;
   }
 }

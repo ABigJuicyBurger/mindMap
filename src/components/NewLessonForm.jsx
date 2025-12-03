@@ -64,7 +64,7 @@ const StyledLabel = styled.label`
     background: none;
     border: none;
     border-radius: 0.25rem;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.1rem;
   }
 
   input:focus {
