@@ -6,8 +6,8 @@ import { TopicsList } from "../TopicsList";
 const topics = ["Coding", "Finance", "Life"];
 
 export function AsideSection({
-  addNewLessonEntry,
-  setAddNewLessonEntry,
+  shouldShowPopup,
+  setShowPopup,
   inputValues,
   setInputValues,
   handleNewLesson,
@@ -15,16 +15,16 @@ export function AsideSection({
   return (
     <aside>
       <AddLessonSection
-        setAddNewLessonEntry={setAddNewLessonEntry}
-        addNewLessonEntry={addNewLessonEntry}
+        setShowPopup={setShowPopup}
+        shouldShowPopup={shouldShowPopup}
       >
-        {addNewLessonEntry && (
+        {shouldShowPopup && (
           <>
             <NewLessonForm
               inputValues={inputValues}
               setInputValues={setInputValues}
               handleNewLesson={handleNewLesson}
-              setAddNewLessonEntry={setAddNewLessonEntry}
+              setShowPopup={setShowPopup}
             />
           </>
         )}

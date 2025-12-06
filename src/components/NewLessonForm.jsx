@@ -4,7 +4,7 @@ export function NewLessonForm({
   inputValues,
   setInputValues,
   handleNewLesson,
-  setAddNewLessonEntry,
+  setShowPopup,
 }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +46,7 @@ export function NewLessonForm({
             lessonTitle: "",
             lessonDescription: "",
           });
-          setAddNewLessonEntry(false);
+          setShowPopup(false);
         }}
       >
         Add Lesson

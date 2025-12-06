@@ -1,5 +1,11 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { atom, useAtom } from "jotai";
+import { useCallback } from "react";
+
+const lessonsAtom = atom([]);
+
+// lesson type:
+// type Lesson = {id: string, title: string , ...}
 
 //rules of hooks
 // can only be used in rct component
@@ -7,25 +13,40 @@ import { v4 as uuidv4 } from "uuid";
 // cannot be called conditionally
 // diff hooks diff purposes
 // common is useState and useEffect (or useRef)
-export function useAddLesson() {
+export function useLessons() {
   // may need to abstract away but for now...
-  const [lessonEntries, setLesson] = useState([]);
+  const [lessonEntries, setLessonEntries] = useAtom(lessonsAtom);
 
-  function addLesson(inputValue) {
-    const nextState = [
-      ...lessonEntries,
-      {
-        id: uuidv4(),
-        title: inputValue.lessonTitle,
-        description: inputValue.lessonDescription,
-      },
-    ];
-    setLesson(nextState);
-  }
+  // put in useCallback
+  const addLesson = useCallback(
+    (inputValue) => {
+      const nextState = [
+        ...lessonEntries,
+        {
+          id: uuidv4(),
+          title: inputValue.lessonTitle,
+          description: inputValue.lessonDescription,
+        },
+      ];
+      setLessonEntries(nextState);
+    },
+    [lessonEntries]
+  );
 
-  const handleNewLesson = (inputValue) => {
-    addLesson(inputValue);
-  };
+  const handleNewLesson = useCallback(
+    (inputValue) => {
+      addLesson(inputValue);
+    },
+    [addLesson]
+  );
 
-  return { lessonEntries, handleNewLesson };
+  const handleRemoveLesson = useCallback(
+    (id) => {
+      const nextState = lessonEntries.filter((lesson) => lesson.id !== id);
+      setLessonEntries(nextState);
+    },
+    [lessonEntries]
+  );
+
+  return { lessonEntries, handleNewLesson, handleRemoveLesson };
 }

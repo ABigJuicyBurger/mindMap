@@ -15,7 +15,10 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
       <StyledSection>
         {lessonEntries.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
-            <button onClick={handleRemoveLesson} className="deleteButton">
+            <button
+              onClick={() => handleRemoveLesson(lesson.id)}
+              className="deleteButton"
+            >
               <img src={trashBin} alt="delete" />
             </button>
             <div className="lessonContent">
