@@ -1,0 +1,155 @@
+/* preferred way to target the document's root for things like defining global CSS variables*/
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #242424;
+  background-color: #9b9cc9;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button {
+  width: fit-content;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background: lightsteelblue;
+  color: black;
+  border: 1px dotted #555;
+  box-shadow: 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+}
+
+button:active {
+  background: papayawhip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh; /* full viewport */
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+}
+
+.addLessonSection > *,
+.categoriesSection > *,
+main {
+  margin: 1.5rem;
+}
+
+.addLessonSection,
+.categoriesSection,
+.newLessonSection,
+.lessonsSection {
+  flex-direction: column;
+}
+
+.addLessonSection {
+  height: 40vh;
+}
+
+.newLessonSection {
+  /* // margin for distance beteen contents, padding for distance between content and border */
+  width: 50%;
+}
+
+main {
+  flex: 1;
+}
+
+/* Existing global styles above... */
+
+/* Mobile-first: up to 768px */
+@media (max-width: 768px) {
+  .app {
+    align-items: stretch; /* let content use full width */
+  }
+
+  /* Your main layout section */
+  .mainContent {
+    flex-direction: column; /* stack Aside + Main */
+  }
+
+  aside {
+    flex-basis: 100%;
+  }
+
+  main {
+    margin: 1rem; /* slightly tighter margins on small screens */
+  }
+}
+
+/* Tablet: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mainContent {
+    flex-direction: row; /* side-by-side */
+  }
+
+  aside {
+    flex-basis: 40%;
+  }
+
+  main {
+    margin: 1rem;
+  }
+}
+
+/* Laptop and up: 1025px+ */
+@media (min-width: 1025px) {
+  .mainContent {
+    flex-direction: row;
+  }
+
+  aside {
+    flex-basis: 35%; /* your original intent */
+  }
+
+  main {
+    margin: 1rem;
+  }
+}
