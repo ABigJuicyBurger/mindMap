@@ -5,6 +5,21 @@ import squareLogo from "../assets/singleCardLogo.png";
 import gridLogo from "../assets/gridLogo.png";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {
+  const buttons = document.querySelectorAll(".carousel__button");
+  console.log(buttons);
+  buttons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+      // items.forEach((item) =>
+      //   item.classList.remove("carousel__item--selected")
+      // );
+      buttons.forEach((button) =>
+        button.classList.remove("carousel__button--selected")
+      );
+      // items[i].classList.add("carousel__item--selected");
+      buttons[i].classList.add("carousel__button--selected");
+    });
+  });
+
   return (
     <StyledMain>
       <Header>
@@ -32,13 +47,14 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         <br />
         {/* <StyledDiv> */}
         {/* <div className="carousel__item"></div> */}
-        <StyledDiv>
-          <span className="carousel__button"></span>
-          <span className="carousel__button"></span>
-          <span className="carousel__button"></span>
-        </StyledDiv>
+
         {/* </StyledDiv> */}
       </StyledSection>
+      <StyledDiv>
+        <span className="carousel__button "></span>
+        <span className="carousel__button"></span>
+        <span className="carousel__button"></span>
+      </StyledDiv>
     </StyledMain>
   );
 }
@@ -82,7 +98,7 @@ const StyledSection = styled.section`
 
   @media (min-width: 1024px) {
     /* laptops/desktops: 3 columns */
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(12.5rem, 1fr));
   }
 
   .lessonCard {
@@ -135,6 +151,11 @@ const StyledDiv = styled.div`
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    margin: 0 0.3125rem;
+    margin: 0 0.625rem;
+    cursor: pointer;
+  }
+
+  .carousel__button--selected {
+    background-color: rgba(255, 255, 255, 0.5);
   }
 `;
