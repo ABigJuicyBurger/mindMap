@@ -3,22 +3,18 @@ import styled from "styled-components";
 import trashBin from "../assets/trashBin.png";
 import squareLogo from "../assets/singleCardLogo.png";
 import gridLogo from "../assets/gridLogo.png";
+import { useState } from "react";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {
-  const buttons = document.querySelectorAll(".carousel__button");
-  console.log(buttons);
-  buttons.forEach((button, i) => {
-    button.addEventListener("click", () => {
-      // items.forEach((item) =>
-      //   item.classList.remove("carousel__item--selected")
-      // );
-      buttons.forEach((button) =>
-        button.classList.remove("carousel__button--selected")
-      );
-      // items[i].classList.add("carousel__item--selected");
-      buttons[i].classList.add("carousel__button--selected");
-    });
-  });
+  const [currentPage, setCurrentPage] = useState(0);
+  const CARDS_PER_PAGE = 6;
+  const totalPages = Math.ceil(lessonEntries.length / CARDS_PER_PAGE);
+
+  const start = currentPage * CARDS_PER_PAGE;
+  const end = start + CARDS_PER_PAGE;
+  const visibleLessons = lessonEntries.slice(start, end);
+
+  const maxPages = 2;
 
   return (
     <StyledMain>
@@ -27,8 +23,9 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         <img src={squareLogo} alt="singleCard" />
         <img src={gridLogo} alt="gridCard" />
       </Header>
+      {/* if section has more than 6 entries make a new section up to 3 max (18 cards max) */}
       <StyledSection>
-        {lessonEntries.map((lesson) => (
+        {visibleLessons.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>
             <button
               onClick={() => handleRemoveLesson(lesson.id)}
@@ -51,9 +48,17 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         {/* </StyledDiv> */}
       </StyledSection>
       <StyledDiv>
-        <span className="carousel__button "></span>
-        <span className="carousel__button"></span>
-        <span className="carousel__button"></span>
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <span
+            key={index}
+            className={
+              index === currentPage
+                ? "carousel__button carousel__button--selected"
+                : "carousel__button"
+            }
+            onClick={() => setCurrentPage(index)}
+          />
+        ))}
       </StyledDiv>
     </StyledMain>
   );
@@ -89,7 +94,6 @@ const StyledSection = styled.section`
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, minmax(26vh, auto));
   gap: 1rem;
-  // so what happens if i have more than six cards...? and how can that be resolve?
 
   @media (min-width: 600px) {
     /* small tablets: 2 columns */
