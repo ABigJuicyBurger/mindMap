@@ -30,6 +30,14 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
           </article>
         ))}
         <br />
+        {/* <StyledDiv> */}
+        {/* <div className="carousel__item"></div> */}
+        <StyledDiv>
+          <span className="carousel__button"></span>
+          <span className="carousel__button"></span>
+          <span className="carousel__button"></span>
+        </StyledDiv>
+        {/* </StyledDiv> */}
       </StyledSection>
     </StyledMain>
   );
@@ -112,5 +120,21 @@ const StyledSection = styled.section`
       max-height: calc(100% - 2.5rem);
       overflow-y: auto;
     }
+  }
+`;
+
+const StyledDiv = styled.div`
+  width: 100%;
+  padding: 1.25rem 0;
+  /* background-colsor: red; */
+  text-align: center;
+
+  .carousel__button {
+    width: 0.625rem;
+    height: 0.625rem;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    margin: 0 0.3125rem;
   }
 `;
