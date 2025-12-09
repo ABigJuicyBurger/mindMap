@@ -86,13 +86,12 @@ const Header = styled.header`
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
-  flex: 1;
 `;
 
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, minmax(26vh, auto));
+  grid-template-rows: repeat(6, minmax(25%, auto));
   gap: 1rem;
 
   @media (min-width: 600px) {
@@ -103,6 +102,7 @@ const StyledSection = styled.section`
   @media (min-width: 1024px) {
     /* laptops/desktops: 3 columns */
     grid-template-columns: repeat(3, minmax(12.5rem, 1fr));
+    grid-template-rows: repeat(2, minmax(50%, auto));
   }
 
   .lessonCard {

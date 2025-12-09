@@ -15,7 +15,7 @@ export function NewLessonForm({
     }));
   };
   return (
-    <section className="newLessonSection">
+    <StyledSection>
       <h2>New Lesson:</h2>
       <StyledLabel htmlFor="lessonTitle">
         <input
@@ -51,13 +51,19 @@ export function NewLessonForm({
       >
         Add Lesson
       </button>
-    </section>
+    </StyledSection>
   );
 }
 
+const StyledSection = styled.section`
+  color: papayawhip;
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledLabel = styled.label`
   ::placeholder {
-    color: papayawhip;
+    color: black;
   }
 
   input {

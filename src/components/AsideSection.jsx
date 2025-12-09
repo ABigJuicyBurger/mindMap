@@ -1,9 +1,6 @@
-// import { topics } from "./App";
 import { AddLessonSection } from "./AddLessonSection";
 import { NewLessonForm } from "./NewLessonForm";
-import { TopicsList } from "../TopicsList";
-
-const topics = ["Coding", "Finance", "Life"];
+import { CategoriesSection } from "./CategoriesSection";
 
 export function AsideSection({
   shouldShowPopup,
@@ -29,10 +26,7 @@ export function AsideSection({
           </>
         )}
       </AddLessonSection>
-      <section className="categoriesSection">
-        <h2>Categories</h2>
-        <TopicsList topics={topics} />
-      </section>
+      <CategoriesSection />
     </aside>
   );
 }
