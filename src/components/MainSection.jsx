@@ -1,9 +1,9 @@
 // function Aside()
 import styled from "styled-components";
 import trashBin from "../assets/trashBin.png";
-import squareLogo from "../assets/singleCardLogo.png";
-import gridLogo from "../assets/gridLogo.png";
+
 import { useState } from "react";
+import { MainSectionHeader } from "./MainSectionHeader";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -18,11 +18,7 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
 
   return (
     <StyledMain>
-      <Header>
-        <h1 className="lessonsSectionTitle">Lessons so far...</h1>
-        <img src={squareLogo} alt="singleCard" />
-        <img src={gridLogo} alt="gridCard" />
-      </Header>
+      <MainSectionHeader />
       {/* if section has more than 6 entries make a new section up to 3 max (18 cards max) */}
       <StyledSection>
         {visibleLessons.map((lesson) => (
@@ -64,25 +60,6 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
   );
 }
 
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  h1 {
-    flex: 1;
-  }
-  img {
-    height: 36px;
-    width: 36px;
-    margin: 0 1rem;
-  }
-  img:hover {
-    background-color: gray;
-  }
-  img:active {
-    background-color: grey;
-  }
-`;
-
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
@@ -91,7 +68,7 @@ const StyledMain = styled.main`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, minmax(25%, auto));
+  /* grid-template-rows: repeat(6, minmax(25%, auto)); */
   gap: 1rem;
 
   @media (min-width: 600px) {
@@ -108,11 +85,21 @@ const StyledSection = styled.section`
   .lessonCard {
     border: 1px dotted papayawhip;
     border-radius: 2rem;
-    /* padding: 1rem 0; */
     margin: 0.5rem 0;
+    padding: 0 0.25rem;
+
     display: flex;
     flex-direction: row;
     align-items: baseline;
+
+    overflow-y: hidden;
+    max-height: 50vh;
+    min-height: 0;
+    height: 20vh;
+
+    @media (min-width: 600px) {
+      height: auto;
+    }
 
     button {
       margin: 0.5rem;
@@ -125,20 +112,42 @@ const StyledSection = styled.section`
     .lessonContent {
       display: flex;
       flex-direction: column;
+      flex: 1;
+      min-height: 0;
     }
 
     header {
       display: flex;
       max-height: 2.5rem;
-      overflow-y: auto;
+      overflow-y: hidden;
+      padding: 0 0.75rem;
     }
 
     p {
-      /* width: fit-content; */
-      word-wrap: break-word;
       flex-grow: 1;
-      max-height: calc(100% - 2.5rem);
-      overflow-y: auto;
+      min-height: 0;
+      overflow-y: scroll;
+      word-wrap: break-word;
+      max-height: 100vh;
+
+      padding: 0 1rem 0 0.75rem;
+
+      @media (min-width: 1024px) {
+        /* Chrome / Edge / Safari */
+        &::-webkit-scrollbar {
+          width: 0.5rem;
+          // push scrollbar away from box
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #9b9cc9;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: lightsteelblue;
+          border-radius: 1rem;
+        }
+      }
     }
   }
 `;
