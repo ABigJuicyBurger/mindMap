@@ -1,14 +1,11 @@
 import { AddLessonSection } from "./AddLessonSection";
 import { NewLessonForm } from "./NewLessonForm";
 import { CategoriesSection } from "./CategoriesSection";
+import { useState } from "react";
 
-export function AsideSection({
-  shouldShowPopup,
-  setShowPopup,
-  inputValues,
-  setInputValues,
-  handleNewLesson,
-}) {
+export function AsideSection({ handleNewLesson }) {
+  const [shouldShowPopup, setShowPopup] = useState(false);
+
   return (
     <aside>
       <AddLessonSection
@@ -18,8 +15,6 @@ export function AsideSection({
         {shouldShowPopup && (
           <>
             <NewLessonForm
-              inputValues={inputValues}
-              setInputValues={setInputValues}
               handleNewLesson={handleNewLesson}
               setShowPopup={setShowPopup}
             />

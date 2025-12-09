@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export function NewLessonForm({
-  inputValues,
-  setInputValues,
-  handleNewLesson,
-  setShowPopup,
-}) {
+export function NewLessonForm({ handleNewLesson, setShowPopup }) {
+  const [inputValues, setInputValues] = useState({
+    lessonTitle: "",
+    lessonDescription: "",
+  });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     console.log("Input changed:", value);
