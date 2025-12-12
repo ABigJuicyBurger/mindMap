@@ -59,6 +59,7 @@ const StyledSection = styled.section`
   color: papayawhip;
   display: flex;
   flex-direction: column;
+  margin: 0 1rem;
 `;
 
 const StyledLabel = styled.label`

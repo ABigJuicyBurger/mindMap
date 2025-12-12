@@ -13,7 +13,6 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const start = currentPage * CARDS_PER_PAGE;
   const end = start + CARDS_PER_PAGE;
   const visibleLessons = lessonEntries.slice(start, end);
-
   const maxPages = 2;
 
   return (
@@ -68,18 +67,21 @@ const StyledMain = styled.main`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  /* grid-template-rows: repeat(6, minmax(25%, auto)); */
+  grid-template-rows: repeat(6, 1fr);
   gap: 1rem;
 
   @media (min-width: 600px) {
     /* small tablets: 2 columns */
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-rows: repeat(3, 1fr);
+
   }
 
   @media (min-width: 1024px) {
     /* laptops/desktops: 3 columns */
     grid-template-columns: repeat(3, minmax(12.5rem, 1fr));
-    grid-template-rows: repeat(2, minmax(50%, auto));
+    grid-template-rows: repeat(2, 1fr);
   }
 
   .lessonCard {
