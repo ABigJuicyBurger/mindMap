@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export function AddLessonSection({ setShowPopup, shouldShowPopup, children }) {
   function changeCardVisibility() {
     setShowPopup(!shouldShowPopup);
@@ -5,7 +7,7 @@ export function AddLessonSection({ setShowPopup, shouldShowPopup, children }) {
 
   return (
     <section className="addLessonSection">
-      <button
+      <StyledButton
         className="addNewLessonButton"
         onClick={() => {
           changeCardVisibility();
@@ -13,8 +15,12 @@ export function AddLessonSection({ setShowPopup, shouldShowPopup, children }) {
         }}
       >
         Add New Lesson
-      </button>
+      </StyledButton>
       {children}
     </section>
   );
 }
+
+const StyledButton = styled.button `
+  margin: 1.5rem
+`    ;

@@ -1,14 +1,17 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export function TopicsList(props) {
+
+export function TopicsList({topicsList, setTopicsList}) {
   // can also destructure topics for easier readibility
+  const [newTopic, setNewTopic] = useState("");
+
   return (
+    // return state variables too
     <>
-      {!props.topics ? (
-        <div>Loading</div>
-      ) : props.topics.length > 0 ? (
+      {topicsList.length > 0 ? (
         <StyledTopicsList>
-          {props.topics.map((topic, index) => {
+          {topicsList.map((topic, index) => {
             return <li key={index}><button>{topic}</button></li>;
           })}
         </StyledTopicsList>
@@ -16,20 +19,17 @@ export function TopicsList(props) {
         <div>No topics</div>
       )}
     </>
+
   );
 }
 
 const StyledTopicsList = styled.ul`
   display: flex;
-  flex-wrap: wrap;
-
-  gap: 1rem;
+  flex-direction: column;
   list-style-type: none;
   padding: 0;
 
   li {
-    margin: 0.5rem 0;
-
     button {
     min-width: 5rem;
     }

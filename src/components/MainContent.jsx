@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLessons } from "./useAddLesson";
 import { AsideSection } from "./AsideSection";
 import { MainSection } from "./MainSection";
