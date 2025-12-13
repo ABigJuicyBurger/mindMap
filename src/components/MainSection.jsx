@@ -37,7 +37,6 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
           </article>
         ))}
         <br />
-    
       </StyledSection>
       <StyledDiv>
         {Array.from({ length: totalPages }).map((_, index) => (
@@ -72,7 +71,6 @@ const StyledSection = styled.section`
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     grid-template-rows: repeat(3, 1fr);
-
   }
 
   @media (min-width: 1024px) {
