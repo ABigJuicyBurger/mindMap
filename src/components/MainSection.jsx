@@ -37,10 +37,7 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
           </article>
         ))}
         <br />
-        {/* <StyledDiv> */}
-        {/* <div className="carousel__item"></div> */}
-
-        {/* </StyledDiv> */}
+    
       </StyledSection>
       <StyledDiv>
         {Array.from({ length: totalPages }).map((_, index) => (

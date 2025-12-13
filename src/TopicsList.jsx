@@ -2,17 +2,20 @@ import styled from "styled-components";
 import { useState } from "react";
 
 
-export function TopicsList({topicsList, setTopicsList}) {
+export function TopicsList({topicsList, setTopicsList, maxTopics}) {
   // can also destructure topics for easier readibility
   const [newTopic, setNewTopic] = useState("");
+  const [buttonClicked, setButtonClicked] = useState("");
 
   return (
-    // return state variables too
+    
     <>
       {topicsList.length > 0 ? (
         <StyledTopicsList>
           {topicsList.map((topic, index) => {
-            return <li key={index}><button>{topic}</button></li>;
+            return <li key={index}>
+              <button className={buttonClicked === index ? "clicked" : ""} onClick={() => setButtonClicked(index)}>{topic}</button>
+              </li>;
           })}
         </StyledTopicsList>
       ) : (
@@ -32,7 +35,19 @@ const StyledTopicsList = styled.ul`
   li {
     button {
     min-width: 5rem;
+      cursor: pointer;
+      
+      &.clicked {
+        background-color: papayawhip;
+        color: #333;
+        font-weight: bold;
+        border: 2px solid lightsteelblue;
+      }
+    
     }
 
+    
   }
+
+     
 `;

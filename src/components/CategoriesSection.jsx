@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 
 export function CategoriesSection() {
-    const maxTopics = 5;
-   const [topicsList, setTopicsList] = useState([
+  const maxTopics = 5;
+  const [topicsList, setTopicsList] = useState([
     "Coding", 
     "Finance", 
     "Life", 
@@ -18,7 +18,7 @@ export function CategoriesSection() {
     <StyledSection>
       <section className="categoriesSection">
         <h2>Categories {topicsList.length}/{maxTopics}</h2>
-        <TopicsList topicsList={topicsList} setTopicsList={setTopicsList}/>
+        <TopicsList topicsList={topicsList} setTopicsList={setTopicsList} maxTopics={maxTopics}/>
       </section>
     </StyledSection>
   );
