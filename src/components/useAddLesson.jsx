@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { atom, useAtom } from "jotai";
 import { useCallback } from "react";
 import { atomWithStorage } from "jotai/utils";
+import { selectedCategoryAtom } from "../store";
 
 const lessonsAtom = atomWithStorage("lessons", []);
 
@@ -17,6 +18,7 @@ const lessonsAtom = atomWithStorage("lessons", []);
 export function useLessons() {
   // may need to abstract away but for now...
   const [lessonEntries, setLessonEntries] = useAtom(lessonsAtom);
+  const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
 
   // put in useCallback
   const addLesson = useCallback(
@@ -27,6 +29,7 @@ export function useLessons() {
           id: uuidv4(),
           title: inputValue.lessonTitle,
           description: inputValue.lessonDescription,
+          category: selectedCategory,
         },
       ];
       setLessonEntries(nextState);

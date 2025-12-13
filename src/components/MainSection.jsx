@@ -4,6 +4,8 @@ import trashBin from "../assets/trashBin.png";
 
 import { useState } from "react";
 import { MainSectionHeader } from "./MainSectionHeader";
+import { selectedCategoryAtom } from "../store";
+import { useAtom } from "jotai";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -12,8 +14,19 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
 
   const start = currentPage * CARDS_PER_PAGE;
   const end = start + CARDS_PER_PAGE;
-  const visibleLessons = lessonEntries.slice(start, end);
+
   const maxPages = 2;
+  // for the selected category, show lessons in that category
+
+  const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
+
+  // 1. filter by category
+  const lessonsInSelectedCategory = lessonEntries.filter(
+    (lesson) => lesson.category === selectedCategory
+  );
+
+  // 2. paginate
+  const visibleLessons = lessonsInSelectedCategory.slice(start, end);
 
   return (
     <StyledMain>

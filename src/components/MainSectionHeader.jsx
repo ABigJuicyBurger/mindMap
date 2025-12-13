@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import squareLogo from "../assets/singleCardLogo.png";
 import gridLogo from "../assets/gridLogo.png";
+import { useAtom } from "jotai";
+import { selectedCategoryAtom } from "../store";
 
 export function MainSectionHeader() {
+  const [selectedCategory] = useAtom(selectedCategoryAtom);
   return (
     <Header>
-      <h1 className="lessonsSectionTitle">Lessons so far...</h1>
+      <h1 className="lessonsSectionTitle">
+        {selectedCategory || "All"} lessons so far...
+      </h1>
       <img src={squareLogo} alt="singleCard" />
       <img src={gridLogo} alt="gridCard" />
     </Header>

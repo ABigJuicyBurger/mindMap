@@ -21,6 +21,6 @@ export function AddLessonSection({ setShowPopup, shouldShowPopup, children }) {
   );
 }
 
-const StyledButton = styled.button `
-  margin: 1.5rem 1rem
-`    ;
+const StyledButton = styled.button`
+  margin: 1.5rem 1rem;
+`;
