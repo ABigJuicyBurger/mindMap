@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 import { atom, useAtom } from "jotai";
 import { useCallback } from "react";
+import { atomWithStorage } from "jotai/utils";
 
-const lessonsAtom = atom([]);
+const lessonsAtom = atomWithStorage("lessons", []);
 
 // lesson type:
 // type Lesson = {id: string, title: string , ...}
