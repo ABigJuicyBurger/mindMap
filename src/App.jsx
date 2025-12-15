@@ -1,6 +1,6 @@
 import "./App.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
 import { MainContent } from "./components/MainContent";
 
 // make app small and tidy and easy to read and less scroll

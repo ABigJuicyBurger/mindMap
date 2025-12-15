@@ -9,7 +9,7 @@ export function Header() {
 }
 
 const StyledHeader = styled.header`
-  padding: 1.5rem;
+  padding: 1rem;
   width: 100%;
   /* border-bottom: 1px dotted lightsteelblue; */
 

@@ -1,5 +1,5 @@
 import { useLessons } from "./useAddLesson";
-import { AsideSection } from "./AsideSection";
+import { AsideSection } from "./layout/AsideSection";
 import { MainSection } from "./MainSection";
 
 export function MainContent() {

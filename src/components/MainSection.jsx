@@ -31,7 +31,6 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
   return (
     <StyledMain>
       <MainSectionHeader />
-      {/* if section has more than 6 entries make a new section up to 3 max (18 cards max) */}
       <StyledSection>
         {visibleLessons.map((lesson) => (
           <article className="lessonCard" key={lesson.id}>

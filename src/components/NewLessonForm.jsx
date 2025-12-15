@@ -56,6 +56,7 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
 }
 
 const StyledSection = styled.section`
+  width: 15rem;
   color: papayawhip;
   display: flex;
   flex-direction: column;
@@ -63,11 +64,13 @@ const StyledSection = styled.section`
 `;
 
 const StyledLabel = styled.label`
+  width: 100%;
   ::placeholder {
     color: black;
   }
 
   input {
+    width: 100%;
     background: none;
     border: none;
     border-radius: 0.25rem;
