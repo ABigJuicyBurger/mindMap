@@ -1,4 +1,4 @@
-import { TopicsList } from "../TopicsList";
+import { TopicsList } from "./TopicsList/TopicsList";
 import { useState } from "react";
 
 import styled from "styled-components";

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import squareLogo from "../assets/singleCardLogo.png";
-import gridLogo from "../assets/gridLogo.png";
+import squareLogo from "../../../assets/singleCardLogo.png";
+import gridLogo from "../../../assets/gridLogo.png";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "../store";
+import { selectedCategoryAtom } from "../../../store";
 
 export function MainSectionHeader() {
   const [selectedCategory] = useAtom(selectedCategoryAtom);

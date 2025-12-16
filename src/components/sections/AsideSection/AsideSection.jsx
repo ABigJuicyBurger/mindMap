@@ -1,6 +1,6 @@
-import { AddLessonSection } from "../AddLessonSection";
-import { NewLessonForm } from "../NewLessonForm";
-import { CategoriesSection } from "../CategoriesSection";
+import { AddLessonSection } from "./AddLessonSection/AddLessonSection";
+import { NewLessonForm } from "./AddLessonSection/NewLessonForm/NewLessonForm";
+import { CategoriesSection } from "./Categories/CategoriesSection";
 import { useState } from "react";
 
 export function AsideSection({ handleNewLesson }) {

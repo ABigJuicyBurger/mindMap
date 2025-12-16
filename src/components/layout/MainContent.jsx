@@ -1,6 +1,6 @@
-import { useLessons } from "./useAddLesson";
-import { AsideSection } from "./layout/AsideSection";
-import { MainSection } from "./MainSection";
+import { useLessons } from "../hooks/useAddLesson";
+import { AsideSection } from "../sections/AsideSection/AsideSection";
+import { MainSection } from "../sections/MainSection/MainSection";
 
 export function MainContent() {
   console.log("App render");

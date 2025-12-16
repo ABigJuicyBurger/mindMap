@@ -1,10 +1,10 @@
 // function Aside()
 import styled from "styled-components";
-import trashBin from "../assets/trashBin.png";
+import trashBin from "../../../assets/trashBin.png";
 
 import { useState } from "react";
 import { MainSectionHeader } from "./MainSectionHeader";
-import { selectedCategoryAtom } from "../store";
+import { selectedCategoryAtom } from "../../../store";
 import { useAtom } from "jotai";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {

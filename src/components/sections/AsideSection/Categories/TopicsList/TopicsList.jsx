@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import trashBin from "./assets/trashBin.png";
+import trashBin from "../../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "./store";
+import { selectedCategoryAtom } from "../../../../../store";
 
 export function TopicsList({ topicsList, setTopicsList, maxTopics }) {
   // can also destructure topics for easier readibility
