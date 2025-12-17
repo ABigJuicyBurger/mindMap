@@ -52,5 +52,22 @@ export function useLessons() {
     [lessonEntries]
   );
 
-  return { lessonEntries, handleNewLesson, handleRemoveLesson };
+  // add new category later
+
+  const handleRemoveCategory = useCallback(
+    (category) => {
+      const nextState = lessonEntries.filter(
+        (lesson) => lesson.category !== category
+      );
+      setLessonEntries(nextState);
+    },
+    [lessonEntries]
+  );
+
+  return {
+    lessonEntries,
+    handleNewLesson,
+    handleRemoveLesson,
+    handleRemoveCategory,
+  };
 }

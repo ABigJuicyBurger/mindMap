@@ -14,12 +14,16 @@ export function CategoriesSection({
   shouldShowCategoriesPopup,
   setShowCategoriesPopup,
 }) {
-  console.log(shouldShowCategoriesPopup);
   function changeCardVisibility() {
     setShowCategoriesPopup(!shouldShowCategoriesPopup);
   }
   const maxTopics = 5;
   const [topicsList, setTopicsList] = useState(INITIAL_TOPICS);
+
+  function removeTopic(topicToRemove) {
+    const nextState = topicsList.filter((topic) => topic !== topicToRemove);
+    setTopicsList(nextState);
+  }
 
   return (
     <StyledSection>
@@ -44,6 +48,7 @@ export function CategoriesSection({
             topicsList={topicsList}
             setTopicsList={setTopicsList}
             maxTopics={maxTopics}
+            removeTopic={removeTopic}
           />
         )}
       </CategoriesContainer>

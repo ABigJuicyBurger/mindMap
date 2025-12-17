@@ -4,7 +4,12 @@ import trashBin from "../../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
 import { selectedCategoryAtom } from "../../../../../store";
 
-export function TopicsList({ topicsList, setTopicsList, maxTopics }) {
+export function TopicsList({
+  topicsList,
+  setTopicsList,
+  maxTopics,
+  removeTopic,
+}) {
   // can also destructure topics for easier readibility
   const [newTopic, setNewTopic] = useState("");
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
@@ -30,7 +35,7 @@ export function TopicsList({ topicsList, setTopicsList, maxTopics }) {
                   {topic}
                 </button>
                 <button
-                  onClick={() => console.log("remove topic", topic)}
+                  onClick={() => removeTopic(topic)}
                   className="deleteButton"
                 >
                   <img src={trashBin} alt="delete" />

@@ -4,7 +4,7 @@ import { CategoriesSection } from "./Categories/CategoriesSection";
 import { useState } from "react";
 import styled from "styled-components";
 
-export function AsideSection({ handleNewLesson }) {
+export function AsideSection({ handleNewLesson, handleRemoveCategory }) {
   const [shouldShowPopup, setShowPopup] = useState(false);
   const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
 
@@ -26,6 +26,7 @@ export function AsideSection({ handleNewLesson }) {
       <CategoriesSection
         setShowCategoriesPopup={setShowCategoriesPopup}
         shouldShowCategoriesPopup={shouldShowCategoriesPopup}
+        handleRemoveCategory={handleRemoveCategory}
       />
     </StyledAside>
   );
