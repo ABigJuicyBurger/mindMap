@@ -8,7 +8,6 @@ export function AddLessonSection({ setShowPopup, shouldShowPopup, children }) {
   return (
     <section className="addLessonSection">
       <StyledButton
-        className="addNewLessonButton"
         onClick={() => {
           changeCardVisibility();
           // show me a div

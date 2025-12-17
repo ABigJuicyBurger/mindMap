@@ -37,8 +37,7 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
           onChange={handleInputChange}
         />
       </StyledLabel>
-      <button
-        className="addLessonButton"
+      <StyledButton
         onClick={() => {
           console.log(inputValues);
           handleNewLesson(inputValues);
@@ -50,7 +49,7 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
         }}
       >
         Add Lesson
-      </button>
+      </StyledButton>
     </StyledSection>
   );
 }
@@ -80,4 +79,8 @@ const StyledLabel = styled.label`
   input:focus {
     background-color: lightsteelblue;
   }
+`;
+
+const StyledButton = styled.button`
+  margin: 1rem 0;
 `;

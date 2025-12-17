@@ -2,12 +2,14 @@ import { AddLessonSection } from "./AddLessonSection/AddLessonSection";
 import { NewLessonForm } from "./AddLessonSection/NewLessonForm/NewLessonForm";
 import { CategoriesSection } from "./Categories/CategoriesSection";
 import { useState } from "react";
+import styled from "styled-components";
 
 export function AsideSection({ handleNewLesson }) {
   const [shouldShowPopup, setShowPopup] = useState(false);
+  const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
 
   return (
-    <aside>
+    <StyledAside>
       <AddLessonSection
         setShowPopup={setShowPopup}
         shouldShowPopup={shouldShowPopup}
@@ -21,7 +23,16 @@ export function AsideSection({ handleNewLesson }) {
           </>
         )}
       </AddLessonSection>
-      <CategoriesSection />
-    </aside>
+      <CategoriesSection
+        setShowCategoriesPopup={setShowCategoriesPopup}
+        shouldShowCategoriesPopup={shouldShowCategoriesPopup}
+      />
+    </StyledAside>
   );
 }
+
+const StyledAside = styled.aside`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
