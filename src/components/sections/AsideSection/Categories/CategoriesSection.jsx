@@ -1,6 +1,9 @@
 import { TopicsList } from "./TopicsList/TopicsList";
-import { useState } from "react";
 import { NewCategoryForm } from "./NewCategoryForm/NewCategoryForm";
+import { CategoriesHeader } from "./CategoriesHeader/CategoriesHeader";
+
+import { useState } from "react";
+
 import styled from "styled-components";
 
 const INITIAL_TOPICS = [
@@ -14,41 +17,25 @@ export function CategoriesSection({
   shouldShowCategoriesPopup,
   setShowCategoriesPopup,
 }) {
-  function changeCardVisibility() {
-    setShowCategoriesPopup(!shouldShowCategoriesPopup);
-  }
   const maxTopics = 5;
   const [topicsList, setTopicsList] = useState(INITIAL_TOPICS);
-
-  function removeTopic(topicToRemove) {
-    const nextState = topicsList.filter((topic) => topic !== topicToRemove);
-    setTopicsList(nextState);
-  }
 
   return (
     <StyledSection>
       <CategoriesContainer>
-        <CategoriesHeader>
-          <h2>
-            Categories {topicsList.length}/{maxTopics}
-          </h2>
-        </CategoriesHeader>
-        <StyledButton
-          onClick={() => {
-            changeCardVisibility();
-            // show me a div
-          }}
-        >
-          Add New Category
-        </StyledButton>
+        <CategoriesHeader
+          topicsList={topicsList}
+          maxTopics={maxTopics}
+          setShowCategoriesPopup={setShowCategoriesPopup}
+          shouldShowCategoriesPopup={shouldShowCategoriesPopup}
+        />
         {shouldShowCategoriesPopup ? (
           <NewCategoryForm setShowCategoriesPopup={setShowCategoriesPopup} />
         ) : (
           <TopicsList
             topicsList={topicsList}
-            setTopicsList={setTopicsList}
             maxTopics={maxTopics}
-            removeTopic={removeTopic}
+            setTopicsList={setTopicsList}
           />
         )}
       </CategoriesContainer>
@@ -66,18 +53,9 @@ const StyledSection = styled.section`
   }
 `;
 
-const StyledButton = styled.button`
-  margin: 1.5rem 0;
-`;
-
 const CategoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   margin: 0 1rem;
-`;
-
-const CategoriesHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;

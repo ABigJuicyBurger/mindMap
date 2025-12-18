@@ -4,15 +4,13 @@ import trashBin from "../../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
 import { selectedCategoryAtom } from "../../../../../store";
 
-export function TopicsList({
-  topicsList,
-  setTopicsList,
-  maxTopics,
-  removeTopic,
-}) {
-  // can also destructure topics for easier readibility
-  const [newTopic, setNewTopic] = useState("");
+export function TopicsList({ topicsList, maxTopics, setTopicsList }) {
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
+
+  function removeTopic(topicToRemove) {
+    const nextState = topicsList.filter((topic) => topic !== topicToRemove);
+    setTopicsList(nextState);
+  }
 
   // on mount, if there's no selected cateogyr, set it to the first one
   useEffect(() => {
