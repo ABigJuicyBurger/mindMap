@@ -1,54 +1,49 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export function NewLessonForm({ handleNewLesson, setShowPopup }) {
+export function newTopicForm({
+  topicsList,
+  setTopicsList,
+  setShowCategoriesPopup,
+}) {
   const [inputValues, setInputValues] = useState({
-    lessonTitle: "",
-    lessonDescription: "",
+    topicName: "",
   });
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log("Input changed:", value);
     setInputValues((prev) => ({
       ...prev,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
   };
+
+  const addTopic = (topicName) => {
+    setTopicsList([...topicsList, topicName]);
+  };
+
   return (
     <StyledSection>
-      <h2>New Lesson:</h2>
-      <StyledLabel htmlFor="lessonTitle">
+      <h1> New Topic:</h1>
+      <StyledLabel htmlFor="topicName">
         <input
           type="text" // what is being inputted
-          id="lessonTitle" // styling
-          placeholder="Title" // placeholder
-          name="lessonTitle" // html attribute
-          value={inputValues.lessonTitle} // what is inputted
-          onChange={handleInputChange}
-        />
-      </StyledLabel>
-      <StyledLabel htmlFor="lessonDescription">
-        <input
-          type="text"
-          id="lessonDescription"
-          placeholder="What did you learn today?"
-          name="lessonDescription"
-          value={inputValues.lessonDescription}
+          id="topicName" // styling
+          placeholder="Title (max 50 characters)" // placeholder
+          name="topicName" // html attribute
+          value={inputValues.topicName} // what is inputted
           onChange={handleInputChange}
         />
       </StyledLabel>
       <StyledButton
         onClick={() => {
           console.log(inputValues);
-          handleNewLesson(inputValues);
+          addTopic(inputValues.topicName);
           setInputValues({
-            lessonTitle: "",
-            lessonDescription: "",
+            topicName: "",
           });
-          setShowPopup(false);
+          setShowCategoriesPopup(false);
         }}
       >
-        Add Lesson
+        Add Topic
       </StyledButton>
     </StyledSection>
   );

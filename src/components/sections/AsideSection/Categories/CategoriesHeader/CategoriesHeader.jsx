@@ -22,13 +22,14 @@ export function CategoriesHeader({
           // show me a div
         }}
       >
-        Add New Category
+        {shouldShowCategoriesPopup ? "Close" : "Add New Category"}
       </StyledButton>
     </>
   );
 }
 
 const StyledButton = styled.button`
+  width: 9rem;
   margin: 1.5rem 0;
 `;
 

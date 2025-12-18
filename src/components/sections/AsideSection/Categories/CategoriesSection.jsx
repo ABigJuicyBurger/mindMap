@@ -1,5 +1,5 @@
 import { TopicsList } from "./TopicsList/TopicsList";
-import { NewCategoryForm } from "./NewCategoryForm/NewCategoryForm";
+import { NewTopicForm } from "./NewCategoryForm/NewTopicForm";
 import { CategoriesHeader } from "./CategoriesHeader/CategoriesHeader";
 
 import { useState } from "react";
@@ -30,7 +30,11 @@ export function CategoriesSection({
           shouldShowCategoriesPopup={shouldShowCategoriesPopup}
         />
         {shouldShowCategoriesPopup ? (
-          <NewCategoryForm setShowCategoriesPopup={setShowCategoriesPopup} />
+          <NewTopicForm
+            topicsList={topicsList}
+            setTopicsList={setTopicsList}
+            setShowCategoriesPopup={setShowCategoriesPopup}
+          />
         ) : (
           <TopicsList
             topicsList={topicsList}
