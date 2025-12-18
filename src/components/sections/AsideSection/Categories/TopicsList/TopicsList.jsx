@@ -55,6 +55,7 @@ const StyledTopicsList = styled.ul`
   list-style-type: none;
   padding: 0;
   width: 15rem;
+  margin: 0;
 
   li {
     display: flex;

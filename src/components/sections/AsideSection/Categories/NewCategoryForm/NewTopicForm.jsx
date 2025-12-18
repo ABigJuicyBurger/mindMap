@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export function newTopicForm({
+export function NewTopicForm({
   topicsList,
   setTopicsList,
   setShowCategoriesPopup,
+  maxTopics,
 }) {
+  const [isFormValid, setIsFormValid] = useState(true);
+  const maxChar = 50;
   const [inputValues, setInputValues] = useState({
     topicName: "",
   });
@@ -14,15 +17,27 @@ export function newTopicForm({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    isFormValid
+      ? setIsFormValid(e.target.value.length <= maxChar)
+      : alert("Max character limit reached!") &&
+        e.preventDefault() &&
+        setIsFormValid(false);
   };
 
   const addTopic = (topicName) => {
-    setTopicsList([...topicsList, topicName]);
+    if (topicsList.length < maxTopics) {
+      setTopicsList([...topicsList, topicName]);
+    } else {
+      alert("Max topics reached");
+    }
   };
 
   return (
     <StyledSection>
-      <h1> New Topic:</h1>
+      <h1>
+        New Topic {maxChar - inputValues.topicName.length} / {maxChar}{" "}
+        {isFormValid ? "✅" : "❌"}:
+      </h1>
       <StyledLabel htmlFor="topicName">
         <input
           type="text" // what is being inputted
@@ -35,7 +50,6 @@ export function newTopicForm({
       </StyledLabel>
       <StyledButton
         onClick={() => {
-          console.log(inputValues);
           addTopic(inputValues.topicName);
           setInputValues({
             topicName: "",
@@ -54,7 +68,7 @@ const StyledSection = styled.section`
   color: papayawhip;
   display: flex;
   flex-direction: column;
-  margin: 0 1rem;
+  width: 100%;
 `;
 
 const StyledLabel = styled.label`

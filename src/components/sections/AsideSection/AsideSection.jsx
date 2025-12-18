@@ -35,5 +35,5 @@ export function AsideSection({ handleNewLesson, handleRemoveCategory }) {
 const StyledAside = styled.aside`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  margin: 0 1rem;
 `;
