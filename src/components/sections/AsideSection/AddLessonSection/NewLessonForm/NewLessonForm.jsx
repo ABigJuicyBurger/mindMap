@@ -17,49 +17,61 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
   return (
     <StyledSection>
       <h2>New Lesson:</h2>
-      <StyledLabel htmlFor="lessonTitle">
-        <input
-          type="text" // what is being inputted
-          id="lessonTitle" // styling
-          placeholder="Title" // placeholder
-          name="lessonTitle" // html attribute
-          value={inputValues.lessonTitle} // what is inputted
-          onChange={handleInputChange}
-        />
-      </StyledLabel>
-      <StyledLabel htmlFor="lessonDescription">
-        <input
-          type="text"
-          id="lessonDescription"
-          placeholder="What did you learn today?"
-          name="lessonDescription"
-          value={inputValues.lessonDescription}
-          onChange={handleInputChange}
-        />
-      </StyledLabel>
-      <StyledButton
-        onClick={() => {
-          console.log(inputValues);
-          handleNewLesson(inputValues);
-          setInputValues({
-            lessonTitle: "",
-            lessonDescription: "",
-          });
-          setShowPopup(false);
-        }}
-      >
-        Add Lesson
-      </StyledButton>
+      <StyledForm>
+        <StyledLabel htmlFor="lessonTitle">
+          <input
+            type="text" // what is being inputted
+            id="lessonTitle" // styling
+            placeholder="Title" // placeholder
+            name="lessonTitle" // html attribute
+            value={inputValues.lessonTitle} // what is inputted
+            onChange={handleInputChange}
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="lessonDescription">
+          <input
+            type="text"
+            id="lessonDescription"
+            placeholder="What did you learn today?"
+            name="lessonDescription"
+            value={inputValues.lessonDescription}
+            onChange={handleInputChange}
+          />
+        </StyledLabel>
+        <StyledButton
+          onClick={() => {
+            console.log(inputValues);
+            handleNewLesson(inputValues);
+            setInputValues({
+              lessonTitle: "",
+              lessonDescription: "",
+            });
+            setShowPopup(false);
+          }}
+        >
+          Add Lesson
+        </StyledButton>
+      </StyledForm>
     </StyledSection>
   );
 }
 
 const StyledSection = styled.section`
+  flex-grow: unset;
+
   width: 15rem;
   color: papayawhip;
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
+`;
+
+const StyledForm = styled.form`
+  border: 1px dotted papayawhip;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 `;
 
 const StyledLabel = styled.label`

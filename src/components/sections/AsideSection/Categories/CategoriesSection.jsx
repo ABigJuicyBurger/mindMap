@@ -1,10 +1,10 @@
-import { TopicsList } from "./TopicsList/TopicsList";
-import { NewTopicForm } from "./NewCategoryForm/NewTopicForm";
-import { CategoriesHeader } from "./CategoriesHeader/CategoriesHeader";
+import { NewTopicForm } from "./NewTopicForm";
 
 import { useState } from "react";
 
 import styled from "styled-components";
+import { CategoriesHeader } from "./CategoriesHeader";
+import { TopicsList } from "./TopicsList";
 
 const INITIAL_TOPICS = [
   "Coding",
@@ -34,6 +34,7 @@ export function CategoriesSection({
             topicsList={topicsList}
             setTopicsList={setTopicsList}
             setShowCategoriesPopup={setShowCategoriesPopup}
+            maxTopics={maxTopics}
           />
         ) : (
           <TopicsList

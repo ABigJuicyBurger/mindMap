@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import trashBin from "../../../../../assets/trashBin.png";
+import { useEffect } from "react";
+import trashBin from "../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "../../../../../store";
+import { selectedCategoryAtom } from "../../../../store";
 
 export function TopicsList({ topicsList, maxTopics, setTopicsList }) {
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
