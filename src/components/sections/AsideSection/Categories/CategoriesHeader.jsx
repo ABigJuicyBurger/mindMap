@@ -1,13 +1,25 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 export function CategoriesHeader({
   topicsList,
   maxTopics,
   setShowCategoriesPopup,
   shouldShowCategoriesPopup,
+  isSpaceAvailable,
 }) {
+  const [tempMessage, setTempMessage] = useState(null);
+
   function changeCardVisibility() {
-    setShowCategoriesPopup(!shouldShowCategoriesPopup);
+    if (isSpaceAvailable) {
+      setShowCategoriesPopup(!shouldShowCategoriesPopup);
+    } else {
+      // return a temporary div
+      setTempMessage(
+        "Maximum categories reached - please remove some categories first"
+      );
+      setTimeout(() => setTempMessage(null), 3000);
+    }
   }
   return (
     <>
@@ -24,6 +36,11 @@ export function CategoriesHeader({
       >
         {shouldShowCategoriesPopup ? "Close" : "Add New Category"}
       </StyledButton>
+      {tempMessage && (
+        <div style={{ color: "red", margin: "0.5rem 0", fontSize: "0.9rem" }}>
+          {tempMessage}
+        </div>
+      )}
     </>
   );
 }

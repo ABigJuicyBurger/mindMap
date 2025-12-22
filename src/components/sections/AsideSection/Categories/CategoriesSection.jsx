@@ -13,12 +13,13 @@ const INITIAL_TOPICS = [
   "Mental Health",
   "Physical Health",
 ];
-export function CategoriesSection({
-  shouldShowCategoriesPopup,
-  setShowCategoriesPopup,
-}) {
+export function CategoriesSection({}) {
   const maxTopics = 5;
   const [topicsList, setTopicsList] = useState(INITIAL_TOPICS);
+  const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
+  const isSpaceAvailable = topicsList.length <= maxTopics - 1;
+
+  // when categories
 
   return (
     <StyledSection>
@@ -28,13 +29,14 @@ export function CategoriesSection({
           maxTopics={maxTopics}
           setShowCategoriesPopup={setShowCategoriesPopup}
           shouldShowCategoriesPopup={shouldShowCategoriesPopup}
+          isSpaceAvailable={isSpaceAvailable}
         />
         {shouldShowCategoriesPopup ? (
           <NewTopicForm
             topicsList={topicsList}
             setTopicsList={setTopicsList}
             setShowCategoriesPopup={setShowCategoriesPopup}
-            maxTopics={maxTopics}
+            isSpaceAvailable={isSpaceAvailable}
           />
         ) : (
           <TopicsList

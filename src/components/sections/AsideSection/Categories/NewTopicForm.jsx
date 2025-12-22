@@ -5,7 +5,7 @@ export function NewTopicForm({
   topicsList,
   setTopicsList,
   setShowCategoriesPopup,
-  maxTopics,
+  isSpaceAvailable,
 }) {
   const maxChar = 50;
   const [inputValues, setInputValues] = useState({
@@ -24,7 +24,6 @@ export function NewTopicForm({
   };
 
   function handleAddTopic() {
-    const isSpaceAvailable = topicsList.length <= maxTopics;
     if (isSpaceAvailable) {
       console.log("🚀 ~ addTopic ~ topicsList:", topicsList);
       setTopicsList([...topicsList, inputValues.topicName]);
@@ -53,18 +52,22 @@ export function NewTopicForm({
         New Topic {maxChar - inputValues.topicName.length} / {maxChar}{" "}
         {isTopicNameValid ? "✅" : "❌"}:
       </h1>
-      <StyledLabel htmlFor="topicName">
-        <input
-          type="text" // what is being inputted
-          id="topicName" // styling
-          placeholder="Title (max 50 characters)" // placeholder
-          name="topicName" // html attribute
-          value={inputValues.topicName} // what is inputted
-          onChange={handleInputChange}
-        />
-      </StyledLabel>
-      <StyledButton onClick={handleAddTopic}>Add Topic</StyledButton>
-      {validationText ? <p style={{ color: "red" }}>{validationText}</p> : null}
+      <StyledForm>
+        <StyledLabel htmlFor="topicName">
+          <input
+            type="text" // what is being inputted
+            id="topicName" // styling
+            placeholder="Title (max 50 characters)" // placeholder
+            name="topicName" // html attribute
+            value={inputValues.topicName} // what is inputted
+            onChange={handleInputChange}
+          />
+        </StyledLabel>
+        <StyledButton onClick={handleAddTopic}>Add Topic</StyledButton>
+        {validationText ? (
+          <p style={{ color: "red" }}>{validationText}</p>
+        ) : null}
+      </StyledForm>
     </StyledSection>
   );
 }
@@ -75,6 +78,14 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const StyledForm = styled.form`
+  border: 1px dotted papayawhip;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 15rem;
 `;
 
 const StyledLabel = styled.label`

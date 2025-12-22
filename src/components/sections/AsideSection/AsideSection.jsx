@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 export function AsideSection({ handleNewLesson, handleRemoveCategory }) {
   const [shouldShowPopup, setShowPopup] = useState(false);
-  const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
 
   return (
     <StyledAside>
@@ -23,11 +22,7 @@ export function AsideSection({ handleNewLesson, handleRemoveCategory }) {
           </>
         )}
       </AddLessonSection>
-      <CategoriesSection
-        setShowCategoriesPopup={setShowCategoriesPopup}
-        shouldShowCategoriesPopup={shouldShowCategoriesPopup}
-        handleRemoveCategory={handleRemoveCategory}
-      />
+      <CategoriesSection handleRemoveCategory={handleRemoveCategory} />
     </StyledAside>
   );
 }
