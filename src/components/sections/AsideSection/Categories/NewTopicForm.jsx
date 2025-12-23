@@ -11,7 +11,7 @@ export function NewTopicForm({
     topicName: "",
   });
   const [validationText, setValidationText] = useState("");
-  const [changeValidationText, setChangeValidationText] = useState(false);
+  const [changeTextAnimation, setChangeTextAnimation] = useState(false);
   const isTopicNameValid = inputValues.topicName.length <= maxChar;
 
   const handleInputChange = (e) => {
@@ -31,10 +31,10 @@ export function NewTopicForm({
     if (inputValues.topicName.length === 0) {
       setValidationText("Topic name is required");
       setTimeout(() => setValidationText(null), 3000);
-    } else if (inputValues.topicName.length >= maxChar) {
+    } else if (inputValues.topicName.length > maxChar) {
       // make validation text shake
-      setChangeValidationText(true);
-      setTimeout(() => setChangeValidationText(false), 3000);
+      setChangeTextAnimation(true);
+      setTimeout(() => setChangeTextAnimation(false), 3000);
     } else {
       setTopicsList([...topicsList, inputValues.topicName]);
       setValidationText("");
@@ -71,9 +71,7 @@ export function NewTopicForm({
         </StyledButton>
         {validationText ? (
           <p
-            className={
-              changeValidationText === true ? "validationText" : "none"
-            }
+            className={changeTextAnimation === true ? "validationText" : "none"}
             style={{ color: "red" }}
           >
             {validationText}
