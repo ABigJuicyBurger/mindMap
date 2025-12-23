@@ -6,19 +6,20 @@ export function NewTopicForm({
   setTopicsList,
   setShowCategoriesPopup,
 }) {
-  const maxChar = 50;
+  const maxChar = 30;
   const [inputValues, setInputValues] = useState({
     topicName: "",
   });
   const [validationText, setValidationText] = useState("");
-  const isTopicNameValid = inputValues.topicName.length < maxChar;
+  const [changeValidationText, setChangeValidationText] = useState(false);
+  const isTopicNameValid = inputValues.topicName.length <= maxChar;
 
   const handleInputChange = (e) => {
     setInputValues((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    if (e.target.value.length >= maxChar) {
+    if (e.target.value.length > maxChar) {
       setValidationText("Topic name is too long");
     } else {
       setValidationText("");
@@ -30,6 +31,10 @@ export function NewTopicForm({
     if (inputValues.topicName.length === 0) {
       setValidationText("Topic name is required");
       setTimeout(() => setValidationText(null), 3000);
+    } else if (inputValues.topicName.length >= maxChar) {
+      // make validation text shake
+      setChangeValidationText(true);
+      setTimeout(() => setChangeValidationText(false), 3000);
     } else {
       setTopicsList([...topicsList, inputValues.topicName]);
       setValidationText("");
@@ -55,7 +60,7 @@ export function NewTopicForm({
           <input
             type="text" // what is being inputted
             id="topicName" // styling
-            placeholder="Title (max 50 characters)" // placeholder
+            placeholder={`Title (max ${maxChar} characters)`} // placeholder
             name="topicName" // html attribute
             value={inputValues.topicName} // what is inputted
             onChange={handleInputChange}
@@ -65,7 +70,14 @@ export function NewTopicForm({
           Add Topic
         </StyledButton>
         {validationText ? (
-          <p style={{ color: "red" }}>{validationText}</p>
+          <p
+            className={
+              changeValidationText === true ? "validationText" : "none"
+            }
+            style={{ color: "red" }}
+          >
+            {validationText}
+          </p>
         ) : null}
       </StyledForm>
     </StyledSection>
@@ -86,6 +98,31 @@ const StyledForm = styled.form`
   flex-direction: column;
   padding: 1rem;
   width: 15rem;
+
+  .validationText {
+    // make text shake to alert user
+
+    @keyframes shake {
+      from,
+      to {
+        transform: translate(0, 0);
+      }
+      20% {
+        transform: translate(2px, 0);
+      }
+      40% {
+        transform: translate(0, 2px);
+      }
+      60% {
+        transform: translate(-2px, 0);
+      }
+      80% {
+        transform: translate(0, -2px);
+      }
+    }
+
+    animation: shake 0.5s infinite alternate;
+  }
 `;
 
 const StyledLabel = styled.label`
