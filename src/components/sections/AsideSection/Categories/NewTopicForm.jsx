@@ -5,41 +5,39 @@ export function NewTopicForm({
   topicsList,
   setTopicsList,
   setShowCategoriesPopup,
-  isSpaceAvailable,
 }) {
   const maxChar = 50;
   const [inputValues, setInputValues] = useState({
     topicName: "",
   });
   const [validationText, setValidationText] = useState("");
-  console.log("🚀 ~ NewTopicForm ~ validationText:", validationText);
-
-  const isTopicNameValid = inputValues.topicName.length <= maxChar;
+  const isTopicNameValid = inputValues.topicName.length < maxChar;
 
   const handleInputChange = (e) => {
     setInputValues((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    if (e.target.value.length >= maxChar) {
+      setValidationText("Topic name is too long");
+    } else {
+      setValidationText("");
+    }
   };
 
-  function handleAddTopic() {
-    if (isSpaceAvailable) {
-      console.log("🚀 ~ addTopic ~ topicsList:", topicsList);
+  function handleAddTopic(event) {
+    event.preventDefault();
+    if (inputValues.topicName.length === 0) {
+      setValidationText("Topic name is required");
+      setTimeout(() => setValidationText(null), 3000);
+    } else {
       setTopicsList([...topicsList, inputValues.topicName]);
       setValidationText("");
-    } else {
-      console.log("🚀 ~ addTopic ~ topicName:", inputValues.topicName);
-      setValidationText("Max topics reached");
+      handleResetInputs();
     }
-
-    // TODO: UX bug -- the validation text is showing up AFTER the topic input form appears
-
-    handleResetInputs();
   }
 
   function handleResetInputs() {
-    // reset inputs
     setInputValues({
       topicName: "",
     });
@@ -63,7 +61,9 @@ export function NewTopicForm({
             onChange={handleInputChange}
           />
         </StyledLabel>
-        <StyledButton onClick={handleAddTopic}>Add Topic</StyledButton>
+        <StyledButton onClick={(event) => handleAddTopic(event)}>
+          Add Topic
+        </StyledButton>
         {validationText ? (
           <p style={{ color: "red" }}>{validationText}</p>
         ) : null}

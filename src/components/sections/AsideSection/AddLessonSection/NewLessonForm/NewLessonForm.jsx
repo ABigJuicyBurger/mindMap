@@ -68,6 +68,7 @@ const StyledSection = styled.section`
 
 const StyledForm = styled.form`
   border: 1px dotted papayawhip;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
