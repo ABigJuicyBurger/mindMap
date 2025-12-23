@@ -37,7 +37,9 @@ export function CategoriesHeader({
         {shouldShowCategoriesPopup ? "Close" : "Add New Category"}
       </StyledButton>
       {tempMessage && (
-        <div style={{ color: "red", margin: "0.5rem 0", fontSize: "0.9rem" }}>
+        <div
+          style={{ color: "red", margin: "0 0 0.5rem 0", fontSize: "0.9rem" }}
+        >
           {tempMessage}
         </div>
       )}

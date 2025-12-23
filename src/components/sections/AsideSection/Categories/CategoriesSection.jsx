@@ -1,21 +1,16 @@
 import { NewTopicForm } from "./NewTopicForm";
-
 import { useState } from "react";
 
-import styled from "styled-components";
 import { CategoriesHeader } from "./CategoriesHeader";
-import { TopicsList } from "./TopicsList";
+import { ListOfTopics } from "./ListOfTopics";
+import { useAtom } from "jotai";
+import { topicListAtom } from "../../../../store";
 
-const INITIAL_TOPICS = [
-  "Coding",
-  "Finance",
-  "Life",
-  "Mental Health",
-  "Physical Health",
-];
+import styled from "styled-components";
+
 export function CategoriesSection({}) {
   const maxTopics = 5;
-  const [topicsList, setTopicsList] = useState(INITIAL_TOPICS);
+  const [topicsList, setTopicsList] = useAtom(topicListAtom);
   const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
   const isSpaceAvailable = topicsList.length <= maxTopics - 1;
 
@@ -36,14 +31,9 @@ export function CategoriesSection({}) {
             topicsList={topicsList}
             setTopicsList={setTopicsList}
             setShowCategoriesPopup={setShowCategoriesPopup}
-            isSpaceAvailable={isSpaceAvailable}
           />
         ) : (
-          <TopicsList
-            topicsList={topicsList}
-            maxTopics={maxTopics}
-            setTopicsList={setTopicsList}
-          />
+          <ListOfTopics />
         )}
       </CategoriesContainer>
     </StyledSection>

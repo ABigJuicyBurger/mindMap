@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import trashBin from "../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "../../../../store";
+import { selectedCategoryAtom, topicListAtom } from "../../../../store";
 
-export function TopicsList({ topicsList, maxTopics, setTopicsList }) {
+export function ListOfTopics() {
+  const [topicsList, setTopicsList] = useAtom(topicListAtom);
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
 
   function removeTopic(topicToRemove) {
