@@ -6,19 +6,11 @@ export function MainContent() {
   console.log("App render");
   // state that controls add-new-lesson popup visibility
 
-  const {
-    lessonEntries,
-    handleNewLesson,
-    handleRemoveLesson,
-    handleRemoveCategory,
-  } = useLessons();
+  const { lessonEntries, handleRemoveLesson } = useLessons();
 
   return (
     <section className="mainContent">
-      <AsideSection
-        handleNewLesson={handleNewLesson}
-        handleRemoveCategory={handleRemoveCategory}
-      />
+      <AsideSection />
       <MainSection
         lessonEntries={lessonEntries}
         handleRemoveLesson={handleRemoveLesson}

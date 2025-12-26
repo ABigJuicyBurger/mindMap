@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { maxCharAtom } from "../../../../store";
+import { useAtom } from "jotai";
 
 export function NewTopicForm({
   topicsList,
   setTopicsList,
   setShowCategoriesPopup,
 }) {
-  const maxChar = 30;
+  const maxChar = useAtom(maxCharAtom)[0];
   const [inputValues, setInputValues] = useState({
     topicName: "",
   });
-  const [validationText, setValidationText] = useState("");
+  const [topicFormValidationText, setTopicFormValidationText] = useState("");
   const [changeTextAnimation, setChangeTextAnimation] = useState(false);
   const isTopicNameValid = inputValues.topicName.length <= maxChar;
 
@@ -20,24 +22,28 @@ export function NewTopicForm({
       [e.target.name]: e.target.value,
     }));
     if (e.target.value.length > maxChar) {
-      setValidationText("Topic name is too long");
+      setTopicFormValidationText("Topic name is too long");
     } else {
-      setValidationText("");
+      setTopicFormValidationText("");
     }
   };
 
   function handleAddTopic(event) {
     event.preventDefault();
+    validateInput();
+  }
+
+  function validateInput() {
     if (inputValues.topicName.length === 0) {
-      setValidationText("Topic name is required");
-      setTimeout(() => setValidationText(null), 3000);
+      setTopicFormValidationText("Topic name is required");
+      setTimeout(() => setTopicFormValidationText(null), 3000);
     } else if (inputValues.topicName.length > maxChar) {
       // make validation text shake
       setChangeTextAnimation(true);
       setTimeout(() => setChangeTextAnimation(false), 3000);
     } else {
       setTopicsList([...topicsList, inputValues.topicName]);
-      setValidationText("");
+      setTopicFormValidationText("");
       handleResetInputs();
     }
   }
@@ -51,10 +57,10 @@ export function NewTopicForm({
 
   return (
     <StyledSection>
-      <h1>
+      <StyledHeader>
         New Topic {maxChar - inputValues.topicName.length} / {maxChar}{" "}
         {isTopicNameValid ? "✅" : "❌"}:
-      </h1>
+      </StyledHeader>
       <StyledForm>
         <StyledLabel htmlFor="topicName">
           <input
@@ -69,12 +75,12 @@ export function NewTopicForm({
         <StyledButton onClick={(event) => handleAddTopic(event)}>
           Add Topic
         </StyledButton>
-        {validationText ? (
+        {topicFormValidationText ? (
           <p
             className={changeTextAnimation === true ? "validationText" : "none"}
             style={{ color: "red" }}
           >
-            {validationText}
+            {topicFormValidationText}
           </p>
         ) : null}
       </StyledForm>
@@ -88,6 +94,11 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const StyledHeader = styled.h1`
+  color: papayawhip;
+  font-size: 1.5rem;
 `;
 
 const StyledForm = styled.form`

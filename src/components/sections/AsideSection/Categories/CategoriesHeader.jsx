@@ -3,12 +3,13 @@ import { useState } from "react";
 
 export function CategoriesHeader({
   topicsList,
-  maxTopics,
   setShowCategoriesPopup,
   shouldShowCategoriesPopup,
-  isSpaceAvailable,
 }) {
   const [tempMessage, setTempMessage] = useState(null);
+
+  const maxTopics = 5;
+  const isSpaceAvailable = topicsList.length <= maxTopics - 1;
 
   function changeCardVisibility() {
     if (isSpaceAvailable) {

@@ -3,8 +3,10 @@ import { NewLessonForm } from "./AddLessonSection/NewLessonForm/NewLessonForm";
 import { CategoriesSection } from "./Categories/CategoriesSection";
 import { useState } from "react";
 import styled from "styled-components";
+import { useLessons } from "../../hooks/useAddLesson";
 
-export function AsideSection({ handleNewLesson, handleRemoveCategory }) {
+export function AsideSection() {
+  const { lessonEntries, handleNewLesson, handleRemoveCategory } = useLessons();
   const [shouldShowPopup, setShowPopup] = useState(false);
 
   return (

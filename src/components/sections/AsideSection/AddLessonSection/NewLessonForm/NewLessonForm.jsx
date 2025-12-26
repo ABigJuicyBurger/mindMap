@@ -1,19 +1,32 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { maxCharAtom } from "../../../../../store";
 
 export function NewLessonForm({ handleNewLesson, setShowPopup }) {
+  const maxChar = useAtom(maxCharAtom)[0];
+
   const [inputValues, setInputValues] = useState({
     lessonTitle: "",
     lessonDescription: "",
   });
+
+  const [lessonValidationText, setLessonValidationText] = useState("");
+  const isLessonTitleValid = inputValues.lessonTitle.length <= maxChar;
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log("Input changed:", value);
     setInputValues((prev) => ({
       ...prev,
       [name]: value,
     }));
+    if (isLessonTitleValid) {
+      setLessonValidationText("");
+    } else {
+      setLessonValidationText("Lesson title is too long");
+    }
   };
+
   return (
     <StyledSection>
       <h2>New Lesson:</h2>
@@ -40,7 +53,6 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
         </StyledLabel>
         <StyledButton
           onClick={() => {
-            console.log(inputValues);
             handleNewLesson(inputValues);
             setInputValues({
               lessonTitle: "",
@@ -51,6 +63,14 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
         >
           Add Lesson
         </StyledButton>
+        {lessonValidationText ? (
+          <p
+            className={changeTextAnimation === true ? "validationText" : "none"}
+            style={{ color: "red" }}
+          >
+            {lessonValidationText}
+          </p>
+        ) : null}
       </StyledForm>
     </StyledSection>
   );

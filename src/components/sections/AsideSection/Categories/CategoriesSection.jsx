@@ -9,10 +9,8 @@ import { topicListAtom } from "../../../../store";
 import styled from "styled-components";
 
 export function CategoriesSection({}) {
-  const maxTopics = 5;
   const [topicsList, setTopicsList] = useAtom(topicListAtom);
   const [shouldShowCategoriesPopup, setShowCategoriesPopup] = useState(false);
-  const isSpaceAvailable = topicsList.length <= maxTopics - 1;
 
   // when categories
 
@@ -21,10 +19,8 @@ export function CategoriesSection({}) {
       <CategoriesContainer>
         <CategoriesHeader
           topicsList={topicsList}
-          maxTopics={maxTopics}
           setShowCategoriesPopup={setShowCategoriesPopup}
           shouldShowCategoriesPopup={shouldShowCategoriesPopup}
-          isSpaceAvailable={isSpaceAvailable}
         />
         {shouldShowCategoriesPopup ? (
           <NewTopicForm
