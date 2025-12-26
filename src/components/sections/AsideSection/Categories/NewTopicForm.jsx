@@ -21,11 +21,6 @@ export function NewTopicForm({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    if (e.target.value.length > maxChar) {
-      setTopicFormValidationText("Topic name is too long");
-    } else {
-      setTopicFormValidationText("");
-    }
   };
 
   function handleAddTopic(event) {
@@ -59,7 +54,6 @@ export function NewTopicForm({
     <StyledSection>
       <StyledHeader>
         New Topic {maxChar - inputValues.topicName.length} / {maxChar}{" "}
-        {isTopicNameValid ? "✅" : "❌"}:
       </StyledHeader>
       <StyledForm>
         <StyledLabel htmlFor="topicName">
@@ -70,6 +64,7 @@ export function NewTopicForm({
             name="topicName" // html attribute
             value={inputValues.topicName} // what is inputted
             onChange={handleInputChange}
+            maxLength={maxChar}
           />
         </StyledLabel>
         <StyledButton onClick={(event) => handleAddTopic(event)}>

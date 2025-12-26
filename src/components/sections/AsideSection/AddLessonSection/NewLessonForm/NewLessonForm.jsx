@@ -27,19 +27,43 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
     }
   };
 
+  function handleAddTopic(event) {
+    event.preventDefault();
+    validateInput();
+  }
+
+  function validateInput() {
+    if (inputValues.topicName.length === 0) {
+      setTopicFormValidationText("Topic name is required");
+      setTimeout(() => setTopicFormValidationText(null), 3000);
+    } else if (inputValues.topicName.length > maxChar) {
+      // make validation text shake
+      setChangeTextAnimation(true);
+      setTimeout(() => setChangeTextAnimation(false), 3000);
+    } else {
+      setTopicsList([...topicsList, inputValues.topicName]);
+      setTopicFormValidationText("");
+      handleResetInputs();
+    }
+  }
+
   return (
     <StyledSection>
       <h2>New Lesson:</h2>
       <StyledForm>
         <StyledLabel htmlFor="lessonTitle">
           <input
-            type="text" // what is being inputted
-            id="lessonTitle" // styling
-            placeholder="Title" // placeholder
-            name="lessonTitle" // html attribute
-            value={inputValues.lessonTitle} // what is inputted
+            type="text"
+            id="lessonTitle"
+            placeholder="Title"
+            name="lessonTitle"
+            value={inputValues.lessonTitle}
             onChange={handleInputChange}
+            maxLength={maxChar}
           />
+          <div>
+            <span>{maxChar - inputValues.lessonTitle.length}</span>/{maxChar}
+          </div>
         </StyledLabel>
         <StyledLabel htmlFor="lessonDescription">
           <input
@@ -65,7 +89,7 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
         </StyledButton>
         {lessonValidationText ? (
           <p
-            className={changeTextAnimation === true ? "validationText" : "none"}
+            // className={changeTextAnimation === true ? "validationText" : "none"}
             style={{ color: "red" }}
           >
             {lessonValidationText}
