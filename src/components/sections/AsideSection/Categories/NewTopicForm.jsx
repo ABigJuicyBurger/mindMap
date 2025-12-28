@@ -14,7 +14,6 @@ export function NewTopicForm({
   });
   const [topicFormValidationText, setTopicFormValidationText] = useState("");
   const [changeTextAnimation, setChangeTextAnimation] = useState(false);
-  const isTopicNameValid = inputValues.topicName.length <= maxChar;
 
   const handleInputChange = (e) => {
     setInputValues((prev) => ({

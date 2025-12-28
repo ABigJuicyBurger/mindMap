@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { maxCharAtom } from "../../../../../store";
+import { maxCharAtom, lessonValidationTextAtom } from "../../../../../store";
 
 export function NewLessonForm({ handleNewLesson, setShowPopup }) {
   const maxChar = useAtom(maxCharAtom)[0];
+  const [lessonValidationText, setLessonValidationText] = useAtom(
+    lessonValidationTextAtom
+  );
 
   const [inputValues, setInputValues] = useState({
     lessonTitle: "",
     lessonDescription: "",
   });
-
-  const [lessonValidationText, setLessonValidationText] = useState("");
-  const isLessonTitleValid = inputValues.lessonTitle.length <= maxChar;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,32 +20,7 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
       ...prev,
       [name]: value,
     }));
-    if (isLessonTitleValid) {
-      setLessonValidationText("");
-    } else {
-      setLessonValidationText("Lesson title is too long");
-    }
   };
-
-  function handleAddTopic(event) {
-    event.preventDefault();
-    validateInput();
-  }
-
-  function validateInput() {
-    if (inputValues.topicName.length === 0) {
-      setTopicFormValidationText("Topic name is required");
-      setTimeout(() => setTopicFormValidationText(null), 3000);
-    } else if (inputValues.topicName.length > maxChar) {
-      // make validation text shake
-      setChangeTextAnimation(true);
-      setTimeout(() => setChangeTextAnimation(false), 3000);
-    } else {
-      setTopicsList([...topicsList, inputValues.topicName]);
-      setTopicFormValidationText("");
-      handleResetInputs();
-    }
-  }
 
   return (
     <StyledSection>
@@ -76,25 +51,23 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
           />
         </StyledLabel>
         <StyledButton
-          onClick={() => {
-            handleNewLesson(inputValues);
+          onClick={(e) => {
+            e.preventDefault();
+            const success = handleNewLesson(inputValues);
+            if (success) {
+              setShowPopup(false);
+            }
             setInputValues({
               lessonTitle: "",
               lessonDescription: "",
             });
-            setShowPopup(false);
           }}
         >
           Add Lesson
+          {lessonValidationText ? (
+            <p style={{ color: "red" }}>{lessonValidationText}</p>
+          ) : null}
         </StyledButton>
-        {lessonValidationText ? (
-          <p
-            // className={changeTextAnimation === true ? "validationText" : "none"}
-            style={{ color: "red" }}
-          >
-            {lessonValidationText}
-          </p>
-        ) : null}
       </StyledForm>
     </StyledSection>
   );

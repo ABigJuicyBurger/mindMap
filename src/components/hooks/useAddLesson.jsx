@@ -2,7 +2,11 @@ import { v4 as uuidv4 } from "uuid";
 import { atom, useAtom } from "jotai";
 import { useCallback } from "react";
 import { atomWithStorage } from "jotai/utils";
-import { selectedCategoryAtom } from "../../store";
+import {
+  selectedCategoryAtom,
+  lessonValidationTextAtom,
+  maxCharAtom,
+} from "../../store";
 
 const lessonsAtom = atomWithStorage("lessons", []);
 
@@ -19,6 +23,9 @@ export function useLessons() {
   // may need to abstract away but for now...
   const [lessonEntries, setLessonEntries] = useAtom(lessonsAtom);
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
+  const [lessonValidationText, setLessonValidationText] = useAtom(
+    lessonValidationTextAtom
+  );
 
   // put in useCallback
   const addLesson = useCallback(
@@ -39,7 +46,14 @@ export function useLessons() {
 
   const handleNewLesson = useCallback(
     (inputValue) => {
-      addLesson(inputValue);
+      if (!inputValue.lessonTitle || inputValue.lessonTitle.length === 0) {
+        setLessonValidationText("Lesson name is required");
+        setTimeout(() => setLessonValidationText(null), 3000);
+        return false;
+      } else {
+        addLesson(inputValue);
+        return true;
+      }
     },
     [addLesson]
   );
@@ -69,5 +83,6 @@ export function useLessons() {
     handleNewLesson,
     handleRemoveLesson,
     handleRemoveCategory,
+    lessonValidationText,
   };
 }

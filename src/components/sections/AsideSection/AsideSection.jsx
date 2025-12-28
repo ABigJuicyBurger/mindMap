@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useLessons } from "../../hooks/useAddLesson";
 
 export function AsideSection() {
-  const { lessonEntries, handleNewLesson, handleRemoveCategory } = useLessons();
+  const { handleNewLesson, handleRemoveCategory } = useLessons();
   const [shouldShowPopup, setShowPopup] = useState(false);
 
   return (
