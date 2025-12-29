@@ -22,7 +22,7 @@ export function LessonCards({
     <>
       {singleCardView ? (
         <StyledSingleCardView>
-          <article className="lessonCard" key={filteredLessons[0].id}>
+          <article className="singlelessonCard" key={filteredLessons[0].id}>
             <button
               onClick={() => handleRemoveLesson(filteredLessons[0].id)}
               className="deleteButton"
@@ -65,14 +65,83 @@ export function LessonCards({
 }
 
 const StyledSingleCardView = styled.div`
-  .lessonCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+
+  .singlelessonCard {
+    border: 1px dotted papayawhip;
+    border-radius: 2rem;
+    margin: 0.5rem 0;
+    padding: 0 0.25rem;
+
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex: 1;
+    flex-direction: row;
+    align-items: baseline;
+
+    overflow-y: hidden;
+    max-height: 50vh;
     min-height: 0;
-    max-height: 100vh;
-    overflow-y: scroll;
+
+    height: auto;
+    flex: 1;
+
+    @media (min-width: 600px) {
+    }
+
+    @media (min-width: 1024px) {
+      height: auto;
+    }
+
+    button {
+      margin: 0.5rem;
+      img {
+        width: 24px;
+        mix-blend-mode: darken;
+      }
+    }
+
+    .lessonContent {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    header {
+      display: flex;
+      max-height: 2.5rem;
+      overflow-y: hidden;
+      padding: 0 0.75rem;
+    }
+
+    p {
+      flex-grow: 1;
+      min-height: 0;
+      overflow-y: scroll;
+      word-wrap: break-word;
+      max-height: 100vh;
+
+      padding: 0 1rem 0 0.75rem;
+
+      @media (min-width: 1024px) {
+        /* Chrome / Edge / Safari */
+        &::-webkit-scrollbar {
+          width: 0.5rem;
+          // push scrollbar away from box
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #9b9cc9;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: lightsteelblue;
+          border-radius: 1rem;
+        }
+      }
+    }
   }
 `;
 

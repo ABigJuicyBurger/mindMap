@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 import { MainSectionHeader } from "./MainSectionHeader";
 import { LessonCards } from "./LessonCards/LessonCards";
 import { CarouselSection } from "./CarouselSection/CarouselSection";
+import { SingleCardButtons } from "./SingleCardButtons";
 
 export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -35,7 +36,9 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         CARDS_PER_PAGE={CARDS_PER_PAGE}
         handleRemoveLesson={handleRemoveLesson}
       />
-      {!singleCardView && (
+      {singleCardView ? (
+        <SingleCardButtons />
+      ) : (
         <CarouselSection
           totalPages={totalPages}
           currentPage={currentPage}
