@@ -6,11 +6,14 @@ export function LessonCards({
   handleRemoveLesson,
   currentPage,
   CARDS_PER_PAGE,
+  singleCardView,
 }) {
   const start = currentPage * CARDS_PER_PAGE;
   const end = start + CARDS_PER_PAGE;
 
   const visibleLessons = filteredLessons.slice(start, end);
+
+  console.log({ singleCardView });
   return (
     <StyledSection>
       {visibleLessons.map((lesson) => (

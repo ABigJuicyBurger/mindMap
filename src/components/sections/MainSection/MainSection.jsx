@@ -14,17 +14,22 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const CARDS_PER_PAGE = 6;
 
   const [selectedCategory] = useAtom(selectedCategoryAtom);
-
   const filteredLessons = lessonEntries.filter(
     (lesson) => lesson.category === selectedCategory
   );
 
   const totalPages = Math.ceil(filteredLessons.length / CARDS_PER_PAGE);
 
+  const [singleCardView, setSingleCardView] = useState(false);
+
   return (
     <StyledMain>
-      <MainSectionHeader />
+      <MainSectionHeader
+        setSingleCardView={setSingleCardView}
+        singleCardView={singleCardView}
+      />
       <LessonCards
+        singleCardView={singleCardView}
         filteredLessons={filteredLessons}
         currentPage={currentPage}
         CARDS_PER_PAGE={CARDS_PER_PAGE}

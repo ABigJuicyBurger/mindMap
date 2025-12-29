@@ -4,15 +4,27 @@ import gridLogo from "../../../assets/gridLogo.png";
 import { useAtom } from "jotai";
 import { selectedCategoryAtom } from "../../../store";
 
-export function MainSectionHeader() {
+export function MainSectionHeader({ setSingleCardView, singleCardView }) {
   const [selectedCategory] = useAtom(selectedCategoryAtom);
   return (
     <Header>
       <h1 className="lessonsSectionTitle">
         {selectedCategory || "All"} lessons so far...
       </h1>
-      <img src={squareLogo} alt="singleCard" />
-      <img src={gridLogo} alt="gridCard" />
+      <img
+        src={squareLogo}
+        alt="singleCard"
+        onClick={() => {
+          setSingleCardView(true);
+        }}
+        className={singleCardView === true ? "active" : ""}
+      />
+      <img
+        src={gridLogo}
+        alt="gridCard"
+        onClick={() => setSingleCardView(false)}
+        className={singleCardView === false ? "active" : ""}
+      />
     </Header>
   );
 }
@@ -31,7 +43,7 @@ const Header = styled.header`
   img:hover {
     background-color: gray;
   }
-  img:active {
-    background-color: grey;
+  img.active {
+    background-color: lightsteelblue;
   }
 `;
