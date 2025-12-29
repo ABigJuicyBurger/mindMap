@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import trashBin from "../../../../assets/trashBin.png";
+import { useState } from "react";
 
 export function LessonCards({
   filteredLessons,
@@ -13,29 +14,67 @@ export function LessonCards({
 
   const visibleLessons = filteredLessons.slice(start, end);
 
-  console.log({ singleCardView });
+  const [singleCardIndex, setSingleCardIndex] = useState(0);
+
+  console.log(filteredLessons[0]);
+
   return (
-    <StyledSection>
-      {visibleLessons.map((lesson) => (
-        <article className="lessonCard" key={lesson.id}>
-          <button
-            onClick={() => handleRemoveLesson(lesson.id)}
-            className="deleteButton"
-          >
-            <img src={trashBin} alt="delete" />
-          </button>
-          <div className="lessonContent">
-            <header>
-              <h2 className="lessonCardTitle">{lesson.title}</h2>
-            </header>
-            <p className="lessonCardDescription">{lesson.description}</p>
-          </div>
-        </article>
-      ))}
-      <br />
-    </StyledSection>
+    <>
+      {singleCardView ? (
+        <StyledSingleCardView>
+          <article className="lessonCard" key={filteredLessons[0].id}>
+            <button
+              onClick={() => handleRemoveLesson(filteredLessons[0].id)}
+              className="deleteButton"
+            >
+              <img src={trashBin} alt="delete" />
+            </button>
+            <div className="lessonContent">
+              <header>
+                <h2 className="lessonCardTitle">{filteredLessons[0].title}</h2>
+              </header>
+              <p className="lessonCardDescription">
+                {filteredLessons[0].description}
+              </p>
+            </div>
+          </article>
+        </StyledSingleCardView>
+      ) : (
+        <StyledSection>
+          {visibleLessons.map((lesson) => (
+            <article className="lessonCard" key={lesson.id}>
+              <button
+                onClick={() => handleRemoveLesson(lesson.id)}
+                className="deleteButton"
+              >
+                <img src={trashBin} alt="delete" />
+              </button>
+              <div className="lessonContent">
+                <header>
+                  <h2 className="lessonCardTitle">{lesson.title}</h2>
+                </header>
+                <p className="lessonCardDescription">{lesson.description}</p>
+              </div>
+            </article>
+          ))}
+          <br />
+        </StyledSection>
+      )}
+    </>
   );
 }
+
+const StyledSingleCardView = styled.div`
+  .lessonCard {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+    max-height: 100vh;
+    overflow-y: scroll;
+  }
+`;
 
 const StyledSection = styled.section`
   display: grid;

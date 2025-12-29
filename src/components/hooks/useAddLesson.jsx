@@ -1,12 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import { useCallback } from "react";
 import { atomWithStorage } from "jotai/utils";
-import {
-  selectedCategoryAtom,
-  lessonValidationTextAtom,
-  maxCharAtom,
-} from "../../store";
+import { selectedCategoryAtom, lessonValidationTextAtom } from "../../store";
 
 const lessonsAtom = atomWithStorage("lessons", []);
 

@@ -35,11 +35,13 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         CARDS_PER_PAGE={CARDS_PER_PAGE}
         handleRemoveLesson={handleRemoveLesson}
       />
-      <CarouselSection
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {!singleCardView && (
+        <CarouselSection
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </StyledMain>
   );
 }
