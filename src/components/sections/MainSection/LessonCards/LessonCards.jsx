@@ -201,7 +201,7 @@ const StyledSection = styled.section`
     height: 20vh;
 
     @media (min-width: 600px) {
-      height: auto;
+      height: 30vh;
     }
 
     button {
@@ -228,11 +228,11 @@ const StyledSection = styled.section`
     }
 
     p {
-      flex-grow: 1;
+      flex: 1;
       min-height: 0;
-      overflow-y: scroll;
-      word-break: break-all;
-      max-height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      word-break: break-word;
 
       padding: 0 1rem 0 0.75rem;
 

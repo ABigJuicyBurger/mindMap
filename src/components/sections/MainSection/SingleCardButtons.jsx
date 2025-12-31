@@ -34,22 +34,34 @@ export function SingleCardButtons({
 
   return (
     <>
-      {tempMessage ? (
-        <p style={{ color: "red", textAlign: "center" }}>{tempMessage}</p>
-      ) : null}
+      <StyledMessage>
+        {tempMessage ? (
+          <p style={{ color: "red", textAlign: "center" }}>{tempMessage}</p>
+        ) : null}
+      </StyledMessage>
       <StyledButtons>
         <StyledButton onClick={goBackward}>Back</StyledButton>
+        <p>
+          {singleCardIndex + 1}/{totalLessons}
+        </p>
         <StyledButton onClick={goForward}>Forward</StyledButton>
       </StyledButtons>
     </>
   );
 }
 
+const StyledMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
 const StyledButtons = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 1rem;
+  gap: 2rem;
 `;
 
 const StyledButton = styled.button`
