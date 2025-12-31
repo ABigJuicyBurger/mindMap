@@ -8,33 +8,39 @@ export function LessonCards({
   currentPage,
   CARDS_PER_PAGE,
   singleCardView,
+  singleCardIndex,
 }) {
   const start = currentPage * CARDS_PER_PAGE;
   const end = start + CARDS_PER_PAGE;
 
   const visibleLessons = filteredLessons.slice(start, end);
 
-  const [singleCardIndex, setSingleCardIndex] = useState(0);
-
-  console.log(filteredLessons[0]);
+  console.log(singleCardIndex);
 
   return (
     <>
       {singleCardView ? (
         <StyledSingleCardView>
-          <article className="singlelessonCard" key={filteredLessons[0].id}>
+          <article
+            className="singlelessonCard"
+            key={filteredLessons[singleCardIndex].id}
+          >
             <button
-              onClick={() => handleRemoveLesson(filteredLessons[0].id)}
+              onClick={() =>
+                handleRemoveLesson(filteredLessons[singleCardIndex].id)
+              }
               className="deleteButton"
             >
               <img src={trashBin} alt="delete" />
             </button>
             <div className="lessonContent">
               <header>
-                <h2 className="lessonCardTitle">{filteredLessons[0].title}</h2>
+                <h2 className="lessonCardTitle">
+                  {filteredLessons[singleCardIndex].title}
+                </h2>
               </header>
               <p className="lessonCardDescription">
-                {filteredLessons[0].description}
+                {filteredLessons[singleCardIndex].description}
               </p>
             </div>
           </article>
@@ -107,6 +113,7 @@ const StyledSingleCardView = styled.div`
       flex-direction: column;
       flex: 1;
       min-height: 0;
+      height: 100%;
     }
 
     header {
@@ -122,6 +129,7 @@ const StyledSingleCardView = styled.div`
       overflow-y: scroll;
       word-wrap: break-word;
       max-height: 100vh;
+      overflow-wrap: anywhere;
 
       padding: 0 1rem 0 0.75rem;
 
@@ -196,6 +204,7 @@ const StyledSection = styled.section`
       flex-direction: column;
       flex: 1;
       min-height: 0;
+      height: 100%;
     }
 
     header {

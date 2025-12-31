@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-export function SingleCardButtons() {
+export function SingleCardButtons({ setSingleCardIndex, singleCardIndex }) {
   return (
     <StyledButtons>
-      <StyledButton>Back</StyledButton>
-      <StyledButton>Forward</StyledButton>
+      <StyledButton onClick={() => setSingleCardIndex(singleCardIndex - 1)}>
+        Back
+      </StyledButton>
+      <StyledButton onClick={() => setSingleCardIndex(singleCardIndex + 1)}>
+        Forward
+      </StyledButton>
     </StyledButtons>
   );
 }
