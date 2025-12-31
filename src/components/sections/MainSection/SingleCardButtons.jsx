@@ -1,15 +1,47 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export function SingleCardButtons({ setSingleCardIndex, singleCardIndex }) {
+export function SingleCardButtons({
+  setSingleCardIndex,
+  singleCardIndex,
+  totalLessons,
+}) {
+  const [tempMessage, setTempMessage] = useState("");
+
+  function goBackward() {
+    if (singleCardIndex > 0) {
+      setTempMessage("");
+      setSingleCardIndex(singleCardIndex - 1);
+    } else {
+      setTempMessage("At first lesson!");
+      setTimeout(() => {
+        setTempMessage("");
+      }, 2000);
+    }
+  }
+
+  function goForward() {
+    if (singleCardIndex < totalLessons - 1) {
+      setTempMessage("");
+      setSingleCardIndex(singleCardIndex + 1);
+    } else {
+      setTempMessage("At last lesson!");
+      setTimeout(() => {
+        setTempMessage("");
+      }, 2000);
+    }
+  }
+
   return (
-    <StyledButtons>
-      <StyledButton onClick={() => setSingleCardIndex(singleCardIndex - 1)}>
-        Back
-      </StyledButton>
-      <StyledButton onClick={() => setSingleCardIndex(singleCardIndex + 1)}>
-        Forward
-      </StyledButton>
-    </StyledButtons>
+    <>
+      {tempMessage ? (
+        <p style={{ color: "red", textAlign: "center" }}>{tempMessage}</p>
+      ) : null}
+      <StyledButtons>
+        <StyledButton onClick={goBackward}>Back</StyledButton>
+        <StyledButton onClick={goForward}>Forward</StyledButton>
+      </StyledButtons>
+    </>
   );
 }
 

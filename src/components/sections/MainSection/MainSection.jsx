@@ -18,6 +18,7 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
   const filteredLessons = lessonEntries.filter(
     (lesson) => lesson.category === selectedCategory
   );
+  const totalLessons = filteredLessons.length;
 
   const totalPages = Math.ceil(filteredLessons.length / CARDS_PER_PAGE);
   const [singleCardView, setSingleCardView] = useState(false);
@@ -42,6 +43,7 @@ export function MainSection({ lessonEntries, handleRemoveLesson }) {
         <SingleCardButtons
           setSingleCardIndex={setSingleCardIndex}
           singleCardIndex={singleCardIndex}
+          totalLessons={totalLessons}
         />
       ) : (
         <CarouselSection

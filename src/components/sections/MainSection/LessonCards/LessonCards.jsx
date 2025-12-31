@@ -86,18 +86,21 @@ const StyledSingleCardView = styled.div`
     flex-direction: row;
     align-items: baseline;
 
-    overflow-y: hidden;
+    overflow-y: auto;
     max-height: 50vh;
     min-height: 0;
 
-    height: auto;
+    height: 50vh;
     flex: 1;
 
     @media (min-width: 600px) {
+      height: 70vh;
+      max-height: 70vh;
     }
 
     @media (min-width: 1024px) {
-      height: auto;
+      height: 60vh;
+      max-height: 60vh;
     }
 
     button {
@@ -112,7 +115,7 @@ const StyledSingleCardView = styled.div`
       display: flex;
       flex-direction: column;
       flex: 1;
-      min-height: 0;
+      min-height: 25vh;
       height: 100%;
     }
 
@@ -127,9 +130,19 @@ const StyledSingleCardView = styled.div`
       flex-grow: 1;
       min-height: 0;
       overflow-y: scroll;
+      overflow-x: hidden;
       word-wrap: break-word;
-      max-height: 100vh;
-      overflow-wrap: anywhere;
+      word-break: break-word;
+      max-height: calc(50vh - 3rem);
+
+      @media (min-width: 600px) {
+        min-height: 50vh;
+        max-height: calc(70vh - 3rem);
+      }
+
+      @media (min-width: 1024px) {
+        max-height: calc(60vh - 3rem);
+      }
 
       padding: 0 1rem 0 0.75rem;
 
@@ -218,7 +231,7 @@ const StyledSection = styled.section`
       flex-grow: 1;
       min-height: 0;
       overflow-y: scroll;
-      word-wrap: break-word;
+      word-break: break-all;
       max-height: 100vh;
 
       padding: 0 1rem 0 0.75rem;
