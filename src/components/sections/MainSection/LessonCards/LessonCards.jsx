@@ -169,20 +169,17 @@ const StyledSingleCardView = styled.div`
 const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, 1fr);
   gap: 1rem;
+  align-content: start;
 
   @media (min-width: 600px) {
     /* small tablets: 2 columns */
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    grid-template-rows: repeat(3, 1fr);
   }
 
   @media (min-width: 1024px) {
     /* laptops/desktops: 3 columns */
     grid-template-columns: repeat(3, minmax(12.5rem, 1fr));
-    grid-template-rows: repeat(2, 1fr);
   }
 
   .lessonCard {
