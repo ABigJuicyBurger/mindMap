@@ -77,14 +77,15 @@ const StyledSection = styled.section`
   flex-grow: unset;
 
   width: 15rem;
-  color: papayawhip;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
 `;
 
 const StyledForm = styled.form`
-  border: 1px dotted papayawhip;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -94,19 +95,24 @@ const StyledForm = styled.form`
 const StyledLabel = styled.label`
   width: 100%;
   ::placeholder {
-    color: black;
+    color: var(--text-secondary);
   }
 
   input {
     width: 100%;
     background: none;
-    border: none;
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--text-secondary);
     border-radius: 0.25rem;
-    padding: 1rem 0.1rem;
+    padding: 1rem 0.5rem;
+    color: var(--text-primary);
+    transition: all 0.2s;
   }
 
   input:focus {
-    background-color: lightsteelblue;
+    background-color: var(--bg-color);
+    border-bottom-color: var(--accent-purple);
+    outline: none;
   }
 `;
 

@@ -28,13 +28,15 @@ const StyledDiv = styled.div`
     width: 0.625rem;
     height: 0.625rem;
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     margin: 0 0.625rem;
     cursor: pointer;
+    transition: background-color 0.2s;
   }
 
   .carousel__button--selected {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--accent-purple);
+    transform: scale(1.2);
   }
 `;

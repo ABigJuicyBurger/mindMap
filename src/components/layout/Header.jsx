@@ -9,12 +9,16 @@ export function Header() {
 }
 
 const StyledHeader = styled.header`
-  padding: 1rem 2rem;
+  padding: 1rem;
   width: 100%;
   /* border-bottom: 1px dotted lightsteelblue; */
 
   .title {
-    color: papayawhip;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: serif; /* Matches the 'Home' font style in the image */
+    font-style: italic;
   }
 `;
 

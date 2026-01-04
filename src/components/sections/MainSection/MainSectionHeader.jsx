@@ -32,18 +32,27 @@ export function MainSectionHeader({ setSingleCardView, singleCardView }) {
 const Header = styled.header`
   display: flex;
   align-items: center;
+  padding: 0 1rem;
+  
   h1 {
     flex: 1;
+    font-size: 1.5rem;
+    color: var(--text-primary);
   }
   img {
     height: 36px;
     width: 36px;
-    margin: 0 1rem;
+    padding: 6px;
+    margin: 0 0.25rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
   img:hover {
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 0.05);
   }
   img.active {
-    background-color: lightsteelblue;
+    background-color: rgba(94, 96, 206, 0.2); /* Low opacity accent purple */
+    border: 1px solid var(--accent-purple);
   }
 `;

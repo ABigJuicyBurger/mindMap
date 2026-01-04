@@ -42,7 +42,7 @@ const StyledSection = styled.section`
   gap: 1rem;
 
   h2 {
-    color: papayawhip;
+    color: var(--text-primary);
   }
 `;
 
@@ -50,5 +50,7 @@ const CategoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 0 1rem;
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden; /* Ensure the container itself doesn't scroll, but lets children scroll if they handle it */
 `;

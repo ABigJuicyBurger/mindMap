@@ -1,17 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Header } from "./components/layout/Header.jsx";
 import { Footer } from "./components/layout/Footer.jsx";
-import { MainContent } from "./components/layout/MainContent.jsx";
+import { LandingPage } from "./pages/LandingPage.jsx";
+import { LessonsPage } from "./pages/LessonsPage.jsx";
+import { BottomNavigation } from "./components/layout/BottomNavigation.jsx";
 
 // make app small and tidy and easy to read and less scroll
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <MainContent />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/lessons/:category" element={<LessonsPage />} />
+        </Routes>
+        <Footer />
+        <BottomNavigation />
+      </div>
+    </Router>
   );
 }
 

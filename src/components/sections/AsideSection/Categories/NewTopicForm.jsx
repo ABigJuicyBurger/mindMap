@@ -32,7 +32,6 @@ export function NewTopicForm({
       setTopicFormValidationText("Topic name is required");
       setTimeout(() => setTopicFormValidationText(null), 3000);
     } else if (inputValues.topicName.length > maxChar) {
-      // make validation text shake
       setChangeTextAnimation(true);
       setTimeout(() => setChangeTextAnimation(false), 3000);
     } else {
@@ -51,31 +50,41 @@ export function NewTopicForm({
 
   return (
     <StyledSection>
-      <StyledHeader>
-        New Topic {maxChar - inputValues.topicName.length} / {maxChar}{" "}
-      </StyledHeader>
       <StyledForm>
-        <StyledLabel htmlFor="topicName">
-          <input
-            type="text" // what is being inputted
-            id="topicName" // styling
-            placeholder={`Title (max ${maxChar} characters)`} // placeholder
-            name="topicName" // html attribute
-            value={inputValues.topicName} // what is inputted
-            onChange={handleInputChange}
-            maxLength={maxChar}
-          />
-        </StyledLabel>
-        <StyledButton onClick={(event) => handleAddTopic(event)}>
-          Add Topic
-        </StyledButton>
+        <HeaderRow>
+            <FormTitle>New Topic</FormTitle>
+            <CharCount>{inputValues.topicName.length} / {maxChar}</CharCount>
+        </HeaderRow>
+        
+        <InputGroup>
+            <StyledInput
+                type="text"
+                id="topicName"
+                placeholder="e.g. Biology"
+                name="topicName"
+                value={inputValues.topicName}
+                onChange={handleInputChange}
+                maxLength={maxChar}
+                autoFocus
+            />
+            <InputUnderline />
+        </InputGroup>
+
+        <ActionRow>
+             <CancelButton onClick={() => setShowCategoriesPopup(false)} type="button">
+                Cancel
+             </CancelButton>
+            <SubmitButton onClick={(event) => handleAddTopic(event)}>
+            Add Topic
+            </SubmitButton>
+        </ActionRow>
+
         {topicFormValidationText ? (
-          <p
-            className={changeTextAnimation === true ? "validationText" : "none"}
-            style={{ color: "red" }}
+          <ValidationMessage
+            className={changeTextAnimation ? "shake" : ""}
           >
             {topicFormValidationText}
-          </p>
+          </ValidationMessage>
         ) : null}
       </StyledForm>
     </StyledSection>
@@ -83,71 +92,139 @@ export function NewTopicForm({
 }
 
 const StyledSection = styled.section`
-  width: 15rem;
-  color: papayawhip;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-`;
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.3s ease-out;
 
-const StyledHeader = styled.h1`
-  color: papayawhip;
-  font-size: 1.5rem;
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 `;
 
 const StyledForm = styled.form`
-  border: 1px dotted papayawhip;
+  background-color: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  width: 15rem;
-
-  .validationText {
-    // make text shake to alert user
-
-    @keyframes shake {
-      from,
-      to {
-        transform: translate(0, 0);
-      }
-      20% {
-        transform: translate(2px, 0);
-      }
-      40% {
-        transform: translate(0, 2px);
-      }
-      60% {
-        transform: translate(-2px, 0);
-      }
-      80% {
-        transform: translate(0, -2px);
-      }
-    }
-
-    animation: shake 0.5s infinite alternate;
-  }
+  padding: 1.5rem;
+  width: 100%;
 `;
 
-const StyledLabel = styled.label`
-  width: 100%;
-  ::placeholder {
-    color: black;
-  }
+const HeaderRow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+`;
 
-  input {
+const FormTitle = styled.h3`
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+`;
+
+const CharCount = styled.span`
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+`;
+
+const InputGroup = styled.div`
+    position: relative;
+    margin-bottom: 2rem;
+`;
+
+const StyledInput = styled.input`
     width: 100%;
     background: none;
     border: none;
-    border-radius: 0.25rem;
-    padding: 1rem 0.1rem;
-  }
-
-  input:focus {
-    background-color: lightsteelblue;
-  }
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    outline: none;
+    
+    &::placeholder {
+        color: #ccc;
+    }
+    
+    &:focus + div {
+        transform: scaleX(1);
+        background-color: var(--accent-purple);
+    }
 `;
 
-const StyledButton = styled.button`
-  width: 9rem;
-  margin: 1rem 0;
+const InputUnderline = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #eee;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+`;
+
+const ActionRow = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+`;
+
+const ButtonBase = styled.button`
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    
+    &:active {
+        transform: scale(0.95);
+    }
+`;
+
+const CancelButton = styled(ButtonBase)`
+    background: transparent;
+    color: var(--text-secondary);
+    
+    &:hover {
+        background: rgba(0,0,0,0.05);
+        color: var(--text-primary);
+    }
+`;
+
+const SubmitButton = styled(ButtonBase)`
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    &:hover {
+        background-color: var(--accent-purple);
+        box-shadow: 0 6px 15px rgba(94, 96, 206, 0.3);
+    }
+`;
+
+const ValidationMessage = styled.p`
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: center;
+    
+    &.shake {
+        animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
 `;

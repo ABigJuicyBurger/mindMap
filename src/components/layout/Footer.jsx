@@ -9,11 +9,11 @@ export function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  color: papayawhip;
+  color: var(--text-secondary);
   display: flex;
   padding: 1.5rem;
   width: 100%;
-  /* border-top: 1px dotted lightsteelblue; */
+  justify-content: center; /* Center the footer text */
 
   a {
     text-decoration: none;
@@ -22,7 +22,7 @@ const StyledFooter = styled.footer`
   }
 
   a:hover {
-    color: lightsteelblue;
+    color: var(--accent-purple);
     text-decoration: underline;
   }
 `;

@@ -77,10 +77,12 @@ const StyledSingleCardView = styled.div`
   flex: 1;
 
   .singlelessonCard {
-    border: 1px dotted papayawhip;
+    background-color: var(--card-bg);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 2rem;
     margin: 0.5rem 0;
-    padding: 0 0.25rem;
+    padding: 1rem;
 
     display: flex;
     flex-direction: row;
@@ -107,7 +109,7 @@ const StyledSingleCardView = styled.div`
       margin: 0.5rem;
       img {
         width: 24px;
-        mix-blend-mode: darken;
+        /* mix-blend-mode: darken; */
       }
     }
 
@@ -134,6 +136,7 @@ const StyledSingleCardView = styled.div`
       word-wrap: break-word;
       word-break: break-word;
       max-height: calc(50vh - 3rem);
+      color: var(--text-secondary);
 
       @media (min-width: 600px) {
         min-height: 50vh;
@@ -150,15 +153,14 @@ const StyledSingleCardView = styled.div`
         /* Chrome / Edge / Safari */
         &::-webkit-scrollbar {
           width: 0.5rem;
-          // push scrollbar away from box
         }
 
         &::-webkit-scrollbar-track {
-          background: #9b9cc9;
+          background: transparent;
         }
 
         &::-webkit-scrollbar-thumb {
-          background-color: lightsteelblue;
+          background-color: var(--bg-color);
           border-radius: 1rem;
         }
       }
@@ -183,10 +185,12 @@ const StyledSection = styled.section`
   }
 
   .lessonCard {
-    border: 1px dotted papayawhip;
+    background-color: var(--card-bg);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 2rem;
     margin: 0.5rem 0;
-    padding: 0 0.25rem;
+    padding: 1rem;
 
     display: flex;
     flex-direction: row;
@@ -205,7 +209,7 @@ const StyledSection = styled.section`
       margin: 0.5rem;
       img {
         width: 24px;
-        mix-blend-mode: darken;
+        /* mix-blend-mode: darken; */
       }
     }
 
@@ -230,6 +234,7 @@ const StyledSection = styled.section`
       overflow-y: auto;
       overflow-x: hidden;
       word-break: break-word;
+      color: var(--text-secondary);
 
       padding: 0 1rem 0 0.75rem;
 
@@ -237,15 +242,14 @@ const StyledSection = styled.section`
         /* Chrome / Edge / Safari */
         &::-webkit-scrollbar {
           width: 0.5rem;
-          // push scrollbar away from box
         }
 
         &::-webkit-scrollbar-track {
-          background: #9b9cc9;
+          background: transparent;
         }
 
         &::-webkit-scrollbar-thumb {
-          background-color: lightsteelblue;
+          background-color: var(--bg-color);
           border-radius: 1rem;
         }
       }
