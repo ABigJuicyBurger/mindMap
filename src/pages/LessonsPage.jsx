@@ -5,8 +5,8 @@ import { useAtom } from "jotai";
 import { selectedCategoryAtom } from "../store";
 import { useLessons } from "../components/hooks/useAddLesson";
 import { MainSection } from "../components/sections/MainSection/MainSection";
-import { AddLessonSection } from "../components/sections/AsideSection/AddLessonSection/AddLessonSection";
 import { NewLessonForm } from "../components/sections/AsideSection/AddLessonSection/NewLessonForm/NewLessonForm";
+import { RiArrowLeftLine, RiAddLine, RiCloseLine } from "react-icons/ri";
 
 export function LessonsPage() {
   const { category } = useParams();
@@ -23,29 +23,43 @@ export function LessonsPage() {
 
   return (
     <PageContainer>
-      <HeaderActions>
-        <BackButton onClick={() => navigate("/")}>
-          ← Back to Categories
-        </BackButton>
-        <AddLessonWrapper>
-          <AddLessonSection
-            setShowPopup={setShowPopup}
-            shouldShowPopup={shouldShowPopup}
-          >
-            {shouldShowPopup && (
-              <NewLessonForm
-                handleNewLesson={handleNewLesson}
-                setShowPopup={setShowPopup}
-              />
-            )}
-          </AddLessonSection>
-        </AddLessonWrapper>
-      </HeaderActions>
+      <StyledHeader>
+        {!shouldShowPopup ? (
+           <IconButton onClick={() => navigate("/")} aria-label="Back">
+             <RiArrowLeftLine size={24} />
+           </IconButton>
+        ) : (
+           <div style={{ width: '2.75rem' }} /> /* Spacer for alignment */
+        )}
+        
+        <PageTitle>
+            {shouldShowPopup ? "New Lesson" : selectedCategory}
+        </PageTitle>
+        
+        <IconButton 
+            $primary={!shouldShowPopup}
+            onClick={() => setShowPopup(!shouldShowPopup)}
+            aria-label={shouldShowPopup ? "Close" : "Add Lesson"}
+        >
+          {shouldShowPopup ? <RiCloseLine size={24} /> : <RiAddLine size={24} />}
+        </IconButton>
+      </StyledHeader>
 
-      <MainSection
-        lessonEntries={lessonEntries}
-        handleRemoveLesson={handleRemoveLesson}
-      />
+      <ContentArea>
+          {shouldShowPopup ? (
+            <FormContainer>
+                <NewLessonForm
+                  handleNewLesson={handleNewLesson}
+                  setShowPopup={setShowPopup}
+                />
+            </FormContainer>
+          ) : (
+            <MainSection
+                lessonEntries={lessonEntries}
+                handleRemoveLesson={handleRemoveLesson}
+            />
+          )}
+      </ContentArea>
     </PageContainer>
   );
 }
@@ -56,39 +70,71 @@ const PageContainer = styled.div`
   width: 100%;
   flex: 1;
   padding: 1rem;
+  padding-bottom: 8rem; /* Ensure space for bottom nav and scroll */
 `;
 
-const HeaderActions = styled.div`
+const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
 `;
 
-const BackButton = styled.button`
-  background: transparent;
-  color: var(--text-primary);
-  box-shadow: none;
-  padding: 0;
+const PageTitle = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
-  font-size: 1rem;
+  text-align: center;
+  color: var(--text-primary);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+`;
+
+const IconButton = styled.button`
+  background-color: ${props => props.$primary ? 'var(--button-bg)' : 'var(--card-bg)'};
+  color: ${props => props.$primary ? 'var(--button-text)' : 'var(--text-primary)'};
   border: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 
   &:hover {
-    text-decoration: underline;
-    transform: none;
-    box-shadow: none;
-    background: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background-color: ${props => props.$primary ? 'var(--accent-purple)' : 'white'};
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
-const AddLessonWrapper = styled.div`
-  /* Override styles if necessary to make AddLessonSection fit nicely */
-  .addLessonSection {
-    height: auto;
-    margin: 0;
-  }
+const ContentArea = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease-out;
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+
+const FormContainer = styled.div`
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 `;

@@ -1,58 +1,61 @@
 import styled from "styled-components";
-import squareLogo from "../../../assets/singleCardLogo.png";
-import gridLogo from "../../../assets/gridLogo.png";
-import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "../../../store";
+import { RiLayoutGridFill, RiRectangleLine } from "react-icons/ri";
 
 export function MainSectionHeader({ setSingleCardView, singleCardView }) {
-  const [selectedCategory] = useAtom(selectedCategoryAtom);
   return (
     <Header>
-      <h1 className="lessonsSectionTitle">
-        {selectedCategory || "All"} lessons so far...
-      </h1>
-      <img
-        src={squareLogo}
-        alt="singleCard"
-        onClick={() => {
-          setSingleCardView(true);
-        }}
-        className={singleCardView === true ? "active" : ""}
-      />
-      <img
-        src={gridLogo}
-        alt="gridCard"
-        onClick={() => setSingleCardView(false)}
-        className={singleCardView === false ? "active" : ""}
-      />
+      <ViewToggle>
+          <ToggleButton 
+            $active={!singleCardView} 
+            onClick={() => setSingleCardView(false)}
+            aria-label="Grid View"
+          >
+            <RiLayoutGridFill size={20} />
+          </ToggleButton>
+          <ToggleButton 
+            $active={singleCardView} 
+            onClick={() => setSingleCardView(true)}
+            aria-label="Single Card View"
+          >
+            <RiRectangleLine size={20} />
+          </ToggleButton>
+      </ViewToggle>
     </Header>
   );
 }
 
 const Header = styled.header`
   display: flex;
+  justify-content: flex-end; /* Align toggles to right */
   align-items: center;
-  padding: 0 1rem;
-  
-  h1 {
-    flex: 1;
-    font-size: 1.5rem;
-    color: var(--text-primary);
-  }
-  img {
-    height: 36px;
-    width: 36px;
-    padding: 6px;
-    margin: 0 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+`;
+
+const ViewToggle = styled.div`
+    display: flex;
+    background-color: var(--card-bg);
+    padding: 0.25rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+`;
+
+const ToggleButton = styled.button`
+    background-color: ${props => props.$active ? 'var(--button-bg)' : 'transparent'};
+    color: ${props => props.$active ? 'white' : 'var(--text-secondary)'};
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    border-radius: 8px;
+    box-shadow: none;
+    margin: 0;
     transition: all 0.2s ease;
-  }
-  img:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  img.active {
-    background-color: rgba(94, 96, 206, 0.2); /* Low opacity accent purple */
-    border: 1px solid var(--accent-purple);
-  }
+    
+    &:hover {
+        color: ${props => props.$active ? 'white' : 'var(--text-primary)'};
+        background-color: ${props => props.$active ? 'var(--button-bg)' : 'rgba(0,0,0,0.05)'};
+    }
 `;
