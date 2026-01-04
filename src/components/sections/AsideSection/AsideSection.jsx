@@ -33,4 +33,6 @@ const StyledAside = styled.aside`
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
+  flex-grow: 1;
+  justify-content: space-between;
 `;

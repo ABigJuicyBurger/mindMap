@@ -129,10 +129,7 @@ main {
   .mainContent {
     flex-direction: row; /* side-by-side */
     min-height: 100vh;
-  }
-
-  aside {
-    flex-basis: 40%;
+    align-items: flex-start;
   }
 
   main {
@@ -145,10 +142,7 @@ main {
 @media (min-width: 1025px) {
   .mainContent {
     flex-direction: row;
-  }
-
-  aside {
-    flex-basis: 35%; /* your original intent */
+    align-items: flex-start;
   }
 
   main {
