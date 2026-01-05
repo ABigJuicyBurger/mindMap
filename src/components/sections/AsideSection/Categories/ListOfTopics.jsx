@@ -115,19 +115,25 @@ const Container = styled.div`
 const Card = styled.div`
   position: relative;
   width: 100%;
-  height: 14rem; /* Slightly taller for better spacing */
-  border-radius: 2rem;
+  height: 14rem;
+  border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(94, 96, 206, 0.25);
-  background-color: var(--accent-purple);
-  color: white;
+  box-shadow: 6px 6px 0px #000000;
+  border: 3px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
   margin-bottom: 1rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(94, 96, 206, 0.35);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000000;
+  }
+  
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000000;
   }
 `;
 
@@ -137,32 +143,8 @@ const CardBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  background-color: #ffffff;
   z-index: 0;
-
-  .shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: 0.4;
-  }
-
-  .shape-1 {
-    width: 180px;
-    height: 180px;
-    background: #818cf8;
-    top: -40px;
-    right: -40px;
-  }
-
-  .shape-2 {
-    width: 120px;
-    height: 120px;
-    background: #c084fc;
-    bottom: 20px;
-    left: -30px;
-    opacity: 0.3;
-  }
 `;
 
 const CardContent = styled.div`
@@ -173,7 +155,7 @@ const CardContent = styled.div`
   height: 100%;
   padding: 1.5rem;
   justify-content: space-between;
-  color: white; /* Ensure all children inherit white by default */
+  color: #000000;
 `;
 
 const CardTopRow = styled.div`
@@ -186,15 +168,15 @@ const CategoryLabel = styled.span`
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  opacity: 0.9;
-  font-weight: 600;
-  color: white;
+  opacity: 0.7;
+  font-weight: 700;
+  color: #000000;
 `;
 
 const DeleteButton = styled.button`
-  margin: 0 0 0.5rem 0;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
+  margin: 0;
+  background: transparent;
+  border: 2px solid #000000;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -203,15 +185,19 @@ const DeleteButton = styled.button`
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  transition: background 0.2s;
-  backdrop-filter: blur(4px);
-
+  transition: all 0.2s;
+  
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: #000000;
+    color: white;
   }
-
+  
+  &:hover img {
+    filter: invert(1);
+  }
+  
   img {
-    width: 30px;
+    width: 18px;
     height: 18px;
   }
 `;
@@ -219,7 +205,7 @@ const DeleteButton = styled.button`
 const MainInfo = styled.div`
   margin-top: auto;
   margin-bottom: 1.5rem;
-  color: white;
+  color: #000000;
 `;
 
 const CategoryTitle = styled.h2`
@@ -227,9 +213,10 @@ const CategoryTitle = styled.h2`
   margin: 0 0 0.5rem 0;
   font-family: serif;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  text-shadow: none;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -247,9 +234,9 @@ const ViewButton = styled.span`
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  font-weight: 500;
-  opacity: 0.9;
-
+  font-weight: 600;
+  color: #000000;
+  
   svg {
     transition: transform 0.2s;
   }
@@ -260,20 +247,20 @@ const ViewButton = styled.span`
 `;
 
 const StatsPill = styled.div`
-  background: rgba(255, 255, 255, 0.95);
+  background: #000000;
   border-radius: 1rem;
   padding: 0.75rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-
+  color: white;
+  box-shadow: none;
+  border: 2px solid #000000;
+  
   .label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: #cccccc;
   }
 
   .count {
@@ -281,7 +268,7 @@ const StatsPill = styled.div`
     font-family: serif;
     font-style: italic;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ffffff;
   }
 `;
 

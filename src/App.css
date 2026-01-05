@@ -5,13 +5,13 @@
   font-weight: 400;
 
   /* New Palette */
-  --bg-color: #DDE5FD;
-  --card-bg: #FFFFFF;
-  --text-primary: #1A1A1A;
+  --bg-color: #dde5fd;
+  --card-bg: #ffffff;
+  --text-primary: #1a1a1a;
   --text-secondary: #666666;
-  --button-bg: #1F2029;
-  --button-text: #FFFFFF;
-  --accent-purple: #5E60CE;
+  --button-bg: #1f2029;
+  --button-text: #ffffff;
+  --accent-purple: #5e60ce;
 
   color-scheme: light;
   color: var(--text-primary);
@@ -77,6 +77,14 @@ body {
   flex-direction: column;
   align-items: center;
   padding-bottom: 6rem; /* Make space for BottomNavigation */
+
+  /* New Gradient Background */
+  background: linear-gradient(135deg, #c491f4 0%, #8ec5fc 100%);
+  /* A softer, pastel purple-blue gradient to be easy on the eyes as a full background */
+  /* Or if we want the deep vibe: */
+  /* background: linear-gradient(135deg, #480ca8 0%, #5E60CE 100%); */
+  /* But that might be too dark for black text. Let's try a rich but lighter purple gradient */
+  background: linear-gradient(135deg, #d5b5ff 0%, #d2defb 100%);
 }
 
 section {

@@ -25,40 +25,44 @@ export function LessonsPage() {
     <PageContainer>
       <StyledHeader>
         {!shouldShowPopup ? (
-           <IconButton onClick={() => navigate("/")} aria-label="Back">
-             <RiArrowLeftLine size={24} />
-           </IconButton>
+          <IconButton onClick={() => navigate("/")} aria-label="Back">
+            <RiArrowLeftLine size={24} />
+          </IconButton>
         ) : (
-           <div style={{ width: '2.75rem' }} /> /* Spacer for alignment */
+          <div style={{ width: "2.75rem" }} /> /* Spacer for alignment */
         )}
-        
+
         <PageTitle>
-            {shouldShowPopup ? "New Lesson" : selectedCategory}
+          {shouldShowPopup ? "New Lesson" : selectedCategory}
         </PageTitle>
-        
-        <IconButton 
-            $primary={!shouldShowPopup}
-            onClick={() => setShowPopup(!shouldShowPopup)}
-            aria-label={shouldShowPopup ? "Close" : "Add Lesson"}
+
+        <IconButton
+          $primary={!shouldShowPopup}
+          onClick={() => setShowPopup(!shouldShowPopup)}
+          aria-label={shouldShowPopup ? "Close" : "Add Lesson"}
         >
-          {shouldShowPopup ? <RiCloseLine size={24} /> : <RiAddLine size={24} />}
+          {shouldShowPopup ? (
+            <RiCloseLine size={24} />
+          ) : (
+            <RiAddLine size={24} />
+          )}
         </IconButton>
       </StyledHeader>
 
       <ContentArea>
-          {shouldShowPopup ? (
-            <FormContainer>
-                <NewLessonForm
-                  handleNewLesson={handleNewLesson}
-                  setShowPopup={setShowPopup}
-                />
-            </FormContainer>
-          ) : (
-            <MainSection
-                lessonEntries={lessonEntries}
-                handleRemoveLesson={handleRemoveLesson}
+        {shouldShowPopup ? (
+          <FormContainer>
+            <NewLessonForm
+              handleNewLesson={handleNewLesson}
+              setShowPopup={setShowPopup}
             />
-          )}
+          </FormContainer>
+        ) : (
+          <MainSection
+            lessonEntries={lessonEntries}
+            handleRemoveLesson={handleRemoveLesson}
+          />
+        )}
       </ContentArea>
     </PageContainer>
   );
@@ -95,8 +99,11 @@ const PageTitle = styled.h1`
 `;
 
 const IconButton = styled.button`
-  background-color: ${props => props.$primary ? 'var(--button-bg)' : 'var(--card-bg)'};
-  color: ${props => props.$primary ? 'var(--button-text)' : 'var(--text-primary)'};
+  padding: 0;
+  background-color: ${(props) =>
+    props.$primary ? "var(--button-bg)" : "var(--card-bg)"};
+  color: ${(props) =>
+    props.$primary ? "var(--button-text)" : "var(--text-primary)"};
   border: none;
   width: 2.75rem;
   height: 2.75rem;
@@ -106,14 +113,15 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   flex-shrink: 0;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    background-color: ${props => props.$primary ? 'var(--accent-purple)' : 'white'};
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background-color: ${(props) =>
+      props.$primary ? "var(--accent-purple)" : "white"};
   }
 
   &:active {
@@ -122,20 +130,26 @@ const IconButton = styled.button`
 `;
 
 const ContentArea = styled.div`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    animation: fadeIn 0.3s ease-out;
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(5px); }
-        to { opacity: 1; transform: translateY(0); }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const FormContainer = styled.div`
-    width: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
