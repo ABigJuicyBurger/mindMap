@@ -100,6 +100,7 @@ const IconButton = styled.button`
   border: none;
   width: 2.75rem;
   height: 2.75rem;
+  padding: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
