@@ -25,7 +25,7 @@ const StyledDiv = styled.div`
   text-align: center;
 
   .carousel__button {
-    width: 0.625rem;
+    width: 6.625rem;
     height: 0.625rem;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.2);

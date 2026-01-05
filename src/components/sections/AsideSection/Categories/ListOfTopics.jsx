@@ -120,7 +120,7 @@ const Card = styled.div`
   overflow: hidden;
   box-shadow: 6px 6px 0px #000000;
   border: 3px solid #000000;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #000000;
   margin-bottom: 1rem;
   transition: all 0.2s ease;
@@ -130,7 +130,7 @@ const Card = styled.div`
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px #000000;
   }
-  
+
   &:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px #000000;
@@ -186,16 +186,16 @@ const DeleteButton = styled.button`
   cursor: pointer;
   padding: 0;
   transition: all 0.2s;
-  
+
   &:hover {
     background: #000000;
     color: white;
   }
-  
+
   &:hover img {
     filter: invert(1);
   }
-  
+
   img {
     width: 18px;
     height: 18px;
@@ -236,7 +236,7 @@ const ViewButton = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
   color: #000000;
-  
+
   svg {
     transition: transform 0.2s;
   }
@@ -256,7 +256,7 @@ const StatsPill = styled.div`
   color: white;
   box-shadow: none;
   border: 2px solid #000000;
-  
+
   .label {
     font-size: 0.9rem;
     font-weight: 600;
@@ -273,6 +273,8 @@ const StatsPill = styled.div`
 `;
 
 const DotsContainer = styled.div`
+  background-color: black;
+  border-radius: 1rem;
   display: flex;
   gap: 0.6rem;
   justify-content: center;
