@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { RiEditLine } from "react-icons/ri";
 
 export function LessonCards({
   filteredLessons,
@@ -24,17 +25,20 @@ export function LessonCards({
             key={filteredLessons[singleCardIndex].id}
           >
             <CardHeader>
-                <h2 className="lessonCardTitle">
-                  {filteredLessons[singleCardIndex].title}
-                </h2>
-                <DeleteButton
-                  onClick={() =>
-                    handleRemoveLesson(filteredLessons[singleCardIndex].id)
-                  }
-                  aria-label="Delete Lesson"
-                >
-                  <RiDeleteBinLine size={20} />
-                </DeleteButton>
+              <h2 className="lessonCardTitle">
+                {filteredLessons[singleCardIndex].title}
+              </h2>
+              <EditButton>
+                <RiEditLine size={18} />
+              </EditButton>
+              <DeleteButton
+                onClick={() =>
+                  handleRemoveLesson(filteredLessons[singleCardIndex].id)
+                }
+                aria-label="Delete Lesson"
+              >
+                <RiDeleteBinLine size={20} />
+              </DeleteButton>
             </CardHeader>
             <div className="scroll-content">
               <p className="lessonCardDescription">
@@ -47,18 +51,21 @@ export function LessonCards({
         <StyledSection>
           {visibleLessons.map((lesson) => (
             <article className="lessonCard" key={lesson.id}>
-               <CardHeader>
-                  <h2 className="lessonCardTitle">{lesson.title}</h2>
-                  <DeleteButton
-                    onClick={() => handleRemoveLesson(lesson.id)}
-                    aria-label="Delete Lesson"
-                  >
-                    <RiDeleteBinLine size={18} />
-                  </DeleteButton>
-               </CardHeader>
-               <div className="scroll-content">
+              <CardHeader>
+                <h2 className="lessonCardTitle">{lesson.title}</h2>
+                <EditButton>
+                  <RiEditLine size={18} />
+                </EditButton>
+                <DeleteButton
+                  onClick={() => handleRemoveLesson(lesson.id)}
+                  aria-label="Delete Lesson"
+                >
+                  <RiDeleteBinLine size={18} />
+                </DeleteButton>
+              </CardHeader>
+              <div className="scroll-content">
                 <p className="lessonCardDescription">{lesson.description}</p>
-               </div>
+              </div>
             </article>
           ))}
           <br />
@@ -68,46 +75,61 @@ export function LessonCards({
   );
 }
 
+const EditButton = styled.button`
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: none;
+  margin: 0;
+`;
+
 const DeleteButton = styled.button`
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: none;
+  margin: 0;
+
+  &:hover {
+    background-color: rgba(230, 57, 70, 0.1);
+    color: #e63946;
+    transform: none;
     box-shadow: none;
-    margin: 0;
-    
-    &:hover {
-        background-color: rgba(230, 57, 70, 0.1);
-        color: #e63946;
-        transform: none;
-        box-shadow: none;
-    }
+  }
 `;
 
 const CardHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    
-    .lessonCardTitle {
-        margin: 0;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        line-height: 1.3;
-        word-break: break-word;
-        flex: 1;
-        padding-right: 0.5rem;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  .lessonCardTitle {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    word-break: break-word;
+    flex: 1;
+    padding-right: 0.5rem;
+  }
 `;
 
 const StyledSingleCardView = styled.div`
@@ -129,22 +151,22 @@ const StyledSingleCardView = styled.div`
     transition: transform 0.2s;
 
     .scroll-content {
-        flex: 1;
-        overflow-y: auto;
-        min-height: 0;
-        margin-top: 0.5rem;
-        
-        /* Clean Scrollbar */
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-        &::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-          background-color: rgba(0,0,0,0.1);
-          border-radius: 3px;
-        }
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+      margin-top: 0.5rem;
+
+      /* Clean Scrollbar */
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+      }
     }
 
     p {
@@ -181,29 +203,29 @@ const StyledSection = styled.section`
     flex-direction: column;
     height: 18rem;
     transition: transform 0.2s, box-shadow 0.2s;
-    
+
     &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
-    
+
     .scroll-content {
-        flex: 1;
-        overflow-y: auto;
-        min-height: 0;
-        margin-top: 0.5rem;
-        
-         /* Clean Scrollbar */
-        &::-webkit-scrollbar {
-          width: 4px;
-        }
-        &::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-          background-color: rgba(0,0,0,0.1);
-          border-radius: 3px;
-        }
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+      margin-top: 0.5rem;
+
+      /* Clean Scrollbar */
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+      }
     }
 
     p {
