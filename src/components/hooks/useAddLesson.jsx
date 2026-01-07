@@ -65,10 +65,17 @@ export function useLessons() {
   );
 
   const handleEditLesson = useCallback(
-    (id) => {
-      const nextState = lessonEntries.filter(
-        (lesson) => lesson && lesson.id !== id
-      );
+    (id, inputValue) => {
+      const nextState = lessonEntries.map((lesson) => {
+        if (lesson && lesson.id === id) {
+          return {
+            ...lesson,
+            title: inputValue.lessonTitle,
+            description: inputValue.lessonDescription,
+          };
+        }
+        return lesson;
+      });
       setLessonEntries(nextState);
     },
     [lessonEntries]
@@ -90,6 +97,7 @@ export function useLessons() {
     lessonEntries,
     handleNewLesson,
     handleRemoveLesson,
+    handleEditLesson,
     handleRemoveCategory,
     lessonValidationText,
   };

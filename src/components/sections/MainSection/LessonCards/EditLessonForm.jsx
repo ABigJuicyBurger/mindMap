@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { maxCharAtom, lessonValidationTextAtom } from "../../../../store";
+import { useLessons } from "../../../hooks/useAddLesson";
 
 export function EditLessonForm({ lesson, setEditLesson }) {
+  const { handleEditLesson } = useLessons();
   console.log(lesson);
   const maxChar = useAtom(maxCharAtom)[0];
   const [lessonValidationText, setLessonValidationText] = useAtom(
@@ -23,22 +25,15 @@ export function EditLessonForm({ lesson, setEditLesson }) {
     }));
   };
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // // const success = handleNewLesson(inputValues);
-    // // if (success) {
-    //   setShowPopup(false);
-    //   setInputValues({
-    //     lessonTitle: "",
-    //     lessonDescription: "",
-    //   });
-    // // }
+  const handleEdit = (e) => {
+    e.preventDefault();
+    handleEditLesson(lesson.id, inputValues);
     console.log("Form editted");
     setEditLesson(false);
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleEdit}>
       <HeaderRow>
         <FormTitle>Edit Lesson</FormTitle>
         <CharCount>
