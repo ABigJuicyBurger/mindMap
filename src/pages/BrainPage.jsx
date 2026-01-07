@@ -3,10 +3,12 @@ import styled from "styled-components";
 export function BrainPage() {
   return (
     <PageContainer>
-      <Title>Brain Mode</Title>
-      <BrainContainer>
-        <PlaceholderText>Brain Animation Coming Soon...</PlaceholderText>
-      </BrainContainer>
+      <ContentArea>
+        <Title>Brain Mode</Title>
+        <BrainContainer>
+          <PlaceholderText>Brain Animation Coming Soon...</PlaceholderText>
+        </BrainContainer>
+      </ContentArea>
     </PageContainer>
   );
 }
@@ -17,6 +19,25 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 2rem;
   flex: 1;
+`;
+
+const ContentArea = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Title = styled.h1`

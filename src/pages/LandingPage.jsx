@@ -26,4 +26,16 @@ const ContentWrapper = styled.div`
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  animation: fadeIn 0.3s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
