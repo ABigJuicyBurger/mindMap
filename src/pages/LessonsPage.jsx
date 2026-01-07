@@ -13,6 +13,8 @@ export function LessonsPage() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
   const { lessonEntries, handleRemoveLesson, handleNewLesson } = useLessons();
+  const [singleCardView, setSingleCardView] = useState(false);
+
   const [shouldShowPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,14 @@ export function LessonsPage() {
     <PageContainer>
       <StyledHeader>
         {!shouldShowPopup ? (
-          <IconButton onClick={() => navigate("/")} aria-label="Back">
+          <IconButton
+            onClick={
+              singleCardView
+                ? () => setSingleCardView(false)
+                : () => navigate("/")
+            }
+            aria-label="Back"
+          >
             <RiArrowLeftLine size={24} />
           </IconButton>
         ) : (
@@ -61,6 +70,8 @@ export function LessonsPage() {
           <MainSection
             lessonEntries={lessonEntries}
             handleRemoveLesson={handleRemoveLesson}
+            singleCardView={singleCardView}
+            setSingleCardView={setSingleCardView}
           />
         )}
       </ContentArea>

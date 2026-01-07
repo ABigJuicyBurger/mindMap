@@ -10,18 +10,22 @@ import { LessonCards } from "./LessonCards/LessonCards";
 import { CarouselSection } from "./CarouselSection/CarouselSection";
 import { SingleCardButtons } from "./SingleCardButtons";
 
-export function MainSection({ lessonEntries, handleRemoveLesson }) {
+export function MainSection({
+  lessonEntries,
+  handleRemoveLesson,
+  singleCardView,
+  setSingleCardView,
+}) {
   const [currentPage, setCurrentPage] = useState(0);
   const CARDS_PER_PAGE = 6;
 
   const [selectedCategory] = useAtom(selectedCategoryAtom);
   const filteredLessons = lessonEntries.filter(
-    (lesson) => lesson.category === selectedCategory
+    (lesson) => lesson && lesson.category === selectedCategory
   );
   const totalLessons = filteredLessons.length;
 
   const totalPages = Math.ceil(filteredLessons.length / CARDS_PER_PAGE);
-  const [singleCardView, setSingleCardView] = useState(false);
 
   const [singleCardIndex, setSingleCardIndex] = useState(0);
 

@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { useEffect } from "react";
-import trashBin from "../../../../assets/trashBin.png";
 import { useAtom } from "jotai";
 import { selectedCategoryAtom, topicListAtom } from "../../../../store";
 import { useLessons } from "../../../hooks/useAddLesson";
 import { useNavigate } from "react-router-dom";
-import { RiArrowRightLine } from "react-icons/ri";
+import { RiArrowRightLine, RiDeleteBinLine } from "react-icons/ri";
 
 export function ListOfTopics() {
   const [topicsList, setTopicsList] = useAtom(topicListAtom);
@@ -38,8 +37,9 @@ export function ListOfTopics() {
   if (!selectedCategory) return null; // Wait for effect to select one
 
   // Calculate lesson count for current category
+  // check if lesson entries it 0
   const currentLessonCount = lessonEntries.filter(
-    (l) => l.category === selectedCategory
+    (l) => l && l.category === selectedCategory
   ).length;
 
   return (
@@ -61,7 +61,7 @@ export function ListOfTopics() {
               }}
               title="Delete Category"
             >
-              <img src={trashBin} alt="Delete" />
+              <RiDeleteBinLine />
             </DeleteButton>
           </CardTopRow>
 
@@ -187,9 +187,17 @@ const DeleteButton = styled.button`
   padding: 0;
   transition: all 0.2s;
 
+  > * {
+    fill: black;
+  }
+
   &:hover {
     background: #000000;
     color: white;
+
+    > * {
+      fill: white;
+    }
   }
 
   &:hover img {
