@@ -3,15 +3,16 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { maxCharAtom, lessonValidationTextAtom } from "../../../../store";
 
-export function EditLessonForm({ setEditLesson }) {
+export function EditLessonForm({ lesson, setEditLesson }) {
+  console.log(lesson);
   const maxChar = useAtom(maxCharAtom)[0];
   const [lessonValidationText, setLessonValidationText] = useAtom(
     lessonValidationTextAtom
   );
 
   const [inputValues, setInputValues] = useState({
-    lessonTitle: "",
-    lessonDescription: "",
+    lessonTitle: lesson?.title || "",
+    lessonDescription: lesson?.description || "",
   });
 
   const handleInputChange = (e) => {
@@ -49,7 +50,7 @@ export function EditLessonForm({ setEditLesson }) {
         <StyledInput
           type="text"
           name="lessonTitle"
-          value={inputValues.lessonTitle}
+          value={inputValues.lessonTitle || ""}
           onChange={handleInputChange}
           maxLength={maxChar}
           placeholder="Lesson Title"
@@ -61,7 +62,7 @@ export function EditLessonForm({ setEditLesson }) {
       <InputGroup>
         <StyledTextArea
           name="lessonDescription"
-          value={inputValues.lessonDescription}
+          value={inputValues.lessonDescription || ""}
           onChange={handleInputChange}
           placeholder="What did you learn today?"
           rows={3}
