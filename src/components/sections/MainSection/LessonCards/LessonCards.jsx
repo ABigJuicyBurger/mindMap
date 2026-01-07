@@ -29,11 +29,9 @@ export function LessonCards({
               <h2 className="lessonCardTitle">
                 {filteredLessons[singleCardIndex].title}
               </h2>
-              {/* do an edit button  wih react icons*/}
-              <button>
-                <RiEditLine size={20} />
-              </button>
-
+              <EditButton>
+                <RiEditLine size={18} />
+              </EditButton>
               <DeleteButton
                 onClick={() =>
                   handleRemoveLesson(filteredLessons[singleCardIndex].id)
@@ -84,6 +82,21 @@ export function LessonCards({
     </>
   );
 }
+
+const EditButton = styled.button`
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: none;
+  margin: 0;
+`;
 
 const DeleteButton = styled.button`
   background: transparent;
