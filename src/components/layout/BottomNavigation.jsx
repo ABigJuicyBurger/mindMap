@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { selectedCategoryAtom, topicListAtom } from "../../store";
-import { RiLayoutGridFill } from "react-icons/ri";
+import { RiLayoutGridFill, RiBrainLine } from "react-icons/ri";
 import { TbCardsFilled } from "react-icons/tb";
 
 export function BottomNavigation() {
@@ -14,6 +14,7 @@ export function BottomNavigation() {
   const isHome = location.pathname === "/";
   // Check if we are on a lessons page.
   const isLessons = location.pathname.includes("/lessons");
+  const isBrain = location.pathname === "/brain";
 
   const handleCardsClick = () => {
     if (selectedCategory) {
@@ -30,6 +31,10 @@ export function BottomNavigation() {
         <NavButton $active={isHome} onClick={() => navigate("/")}>
           <RiLayoutGridFill size={24} />
           <span>Category</span>
+        </NavButton>
+        <NavButton $active={isBrain} onClick={() => navigate("/brain")}>
+          <RiBrainLine size={24} />
+          <span>Brain</span>
         </NavButton>
         <NavButton $active={isLessons} onClick={handleCardsClick}>
           <TbCardsFilled size={24} />
@@ -66,6 +71,7 @@ const NavContainer = styled.nav`
 `;
 
 const NavButton = styled.button`
+  flex: 1;
   background: none;
   border: none;
   display: flex;
