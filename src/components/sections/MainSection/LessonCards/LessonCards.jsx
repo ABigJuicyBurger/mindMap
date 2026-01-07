@@ -8,6 +8,8 @@ export function LessonCards({
   currentPage,
   CARDS_PER_PAGE,
   singleCardView,
+  setSingleCardView,
+  setSingleCardIndex,
   singleCardIndex,
 }) {
   const start = currentPage * CARDS_PER_PAGE;
@@ -18,14 +20,7 @@ export function LessonCards({
   return (
     <>
       {singleCardView ? (
-        // go to that card when clicked
-        <StyledSingleCardView
-          onClick={() => {
-            // navigate to that card
-            // TODO: implement navigation
-            console.log("navigate to card", filteredLessons[singleCardIndex]);
-          }}
-        >
+        <StyledSingleCardView>
           <article
             className="singlelessonCard"
             key={filteredLessons[singleCardIndex].id}
@@ -58,9 +53,19 @@ export function LessonCards({
       ) : (
         <StyledSection>
           {visibleLessons.map((lesson) => (
-            <article className="lessonCard" key={lesson.id}>
+            <article
+              className="lessonCard"
+              key={lesson.id}
+              onClick={() => {
+                setSingleCardView(true);
+                setSingleCardIndex(filteredLessons.indexOf(lesson));
+              }}
+            >
               <CardHeader>
                 <h2 className="lessonCardTitle">{lesson.title}</h2>
+                <button>
+                  <RiEditLine size={20} />
+                </button>
                 <DeleteButton
                   onClick={() => handleRemoveLesson(lesson.id)}
                   aria-label="Delete Lesson"

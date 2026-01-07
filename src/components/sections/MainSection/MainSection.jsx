@@ -42,6 +42,8 @@ export function MainSection({
         CARDS_PER_PAGE={CARDS_PER_PAGE}
         handleRemoveLesson={handleRemoveLesson}
         singleCardIndex={singleCardIndex}
+        setSingleCardIndex={setSingleCardIndex}
+        setSingleCardView={setSingleCardView}
       />
       {singleCardView ? (
         <SingleCardButtons
