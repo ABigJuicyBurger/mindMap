@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 import { useState } from "react";
 import { MultiCardView } from "./MultiCardView";
+import { EditLessonForm } from "./EditLessonForm";
 
 export function LessonCards({
   filteredLessons,
@@ -51,6 +52,11 @@ export function LessonCards({
             </div>
           </article>
         </StyledSingleCardView>
+      ) : editLesson ? (
+        <EditLessonForm
+          lesson={filteredLessons[singleCardIndex]}
+          setEditLesson={setEditLesson}
+        />
       ) : (
         <MultiCardView
           visibleLessons={visibleLessons}

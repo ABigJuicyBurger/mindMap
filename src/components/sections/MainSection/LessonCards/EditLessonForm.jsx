@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { maxCharAtom, lessonValidationTextAtom } from "../../../../../store";
+import { maxCharAtom, lessonValidationTextAtom } from "../../../../store";
 
 export function EditLessonForm({ setEditLesson }) {
   const maxChar = useAtom(maxCharAtom)[0];
