@@ -56,7 +56,9 @@ export function useLessons() {
 
   const handleRemoveLesson = useCallback(
     (id) => {
-      const nextState = lessonEntries.filter((lesson) => lesson.id !== id);
+      const nextState = lessonEntries.filter(
+        (lesson) => lesson && lesson.id !== id
+      );
       setLessonEntries(nextState);
     },
     [lessonEntries]
@@ -67,7 +69,7 @@ export function useLessons() {
   const handleRemoveCategory = useCallback(
     (category) => {
       const nextState = lessonEntries.filter(
-        (lesson) => lesson.category !== category
+        (lesson) => lesson && lesson.category !== category
       );
       setLessonEntries(nextState);
     },

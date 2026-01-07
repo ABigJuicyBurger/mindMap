@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 
 export function LessonCards({
@@ -33,9 +32,10 @@ export function LessonCards({
                 <RiEditLine size={18} />
               </EditButton>
               <DeleteButton
-                onClick={() =>
-                  handleRemoveLesson(filteredLessons[singleCardIndex].id)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRemoveLesson(filteredLessons[singleCardIndex].id);
+                }}
                 aria-label="Delete Lesson"
               >
                 <RiDeleteBinLine size={20} />
@@ -62,10 +62,18 @@ export function LessonCards({
               <CardHeader>
                 <h2 className="lessonCardTitle">{lesson.title}</h2>
                 <button>
-                  <RiEditLine size={20} />
+                  <RiEditLine
+                    size={20}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  />
                 </button>
                 <DeleteButton
-                  onClick={() => handleRemoveLesson(lesson.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveLesson(lesson.id);
+                  }}
                   aria-label="Delete Lesson"
                 >
                   <RiDeleteBinLine size={18} />
