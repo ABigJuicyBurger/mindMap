@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
+import { useState } from "react";
+import { MultiCardView } from "./MultiCardView";
 
 export function LessonCards({
   filteredLessons,
@@ -15,6 +17,7 @@ export function LessonCards({
   const end = start + CARDS_PER_PAGE;
 
   const visibleLessons = filteredLessons.slice(start, end);
+  const [editLesson, setEditLesson] = useState(false);
 
   return (
     <>
@@ -38,7 +41,7 @@ export function LessonCards({
                 }}
                 aria-label="Delete Lesson"
               >
-                <RiDeleteBinLine size={20} />
+                <RiDeleteBinLine size={18} />
               </DeleteButton>
             </CardHeader>
             <div className="scroll-content">
@@ -49,43 +52,14 @@ export function LessonCards({
           </article>
         </StyledSingleCardView>
       ) : (
-        <StyledSection>
-          {visibleLessons.map((lesson) => (
-            <article
-              className="lessonCard"
-              key={lesson.id}
-              onClick={() => {
-                setSingleCardView(true);
-                setSingleCardIndex(filteredLessons.indexOf(lesson));
-              }}
-            >
-              <CardHeader>
-                <h2 className="lessonCardTitle">{lesson.title}</h2>
-                <button>
-                  <RiEditLine
-                    size={20}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  />
-                </button>
-                <DeleteButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemoveLesson(lesson.id);
-                  }}
-                  aria-label="Delete Lesson"
-                >
-                  <RiDeleteBinLine size={18} />
-                </DeleteButton>
-              </CardHeader>
-              <div className="scroll-content">
-                <p className="lessonCardDescription">{lesson.description}</p>
-              </div>
-            </article>
-          ))}
-          <br />
-        </StyledSection>
+        <MultiCardView
+          visibleLessons={visibleLessons}
+          filteredLessons={filteredLessons}
+          setSingleCardView={setSingleCardView}
+          setSingleCardIndex={setSingleCardIndex}
+          setEditLesson={setEditLesson}
+          handleRemoveLesson={handleRemoveLesson}
+        />
       )}
     </>
   );

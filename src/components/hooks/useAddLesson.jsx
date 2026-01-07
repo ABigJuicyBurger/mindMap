@@ -64,6 +64,16 @@ export function useLessons() {
     [lessonEntries]
   );
 
+  const handleEditLesson = useCallback(
+    (id) => {
+      const nextState = lessonEntries.filter(
+        (lesson) => lesson && lesson.id !== id
+      );
+      setLessonEntries(nextState);
+    },
+    [lessonEntries]
+  );
+
   // add new category later
 
   const handleRemoveCategory = useCallback(
