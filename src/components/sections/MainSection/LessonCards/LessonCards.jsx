@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useAtom } from "jotai";
+import { handleEditAtom } from "../../../../store";
 import { MultiCardView } from "./MultiCardView";
 import { EditLessonForm } from "./EditLessonForm";
 import { SingleCardView } from "./SingleCardView";
@@ -17,7 +18,7 @@ export function LessonCards({
   const end = start + CARDS_PER_PAGE;
 
   const visibleLessons = filteredLessons.slice(start, end);
-  const [editLesson, setEditLesson] = useState(false);
+  const [editLesson, setEditLesson] = useAtom(handleEditAtom);
 
   if (editLesson) {
     return (

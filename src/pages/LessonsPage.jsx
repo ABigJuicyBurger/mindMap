@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom } from "../store";
+import { selectedCategoryAtom, handleEditAtom } from "../store";
 import { useLessons } from "../components/hooks/useAddLesson";
 import { MainSection } from "../components/sections/MainSection/MainSection";
 import { NewLessonForm } from "../components/sections/AsideSection/AddLessonSection/NewLessonForm/NewLessonForm";
@@ -16,6 +16,7 @@ export function LessonsPage() {
   const [singleCardView, setSingleCardView] = useState(false);
 
   const [shouldShowPopup, setShowPopup] = useState(false);
+  const [editLesson, setEditLesson] = useAtom(handleEditAtom);
 
   useEffect(() => {
     if (category) {
@@ -28,11 +29,15 @@ export function LessonsPage() {
       <StyledHeader>
         {!shouldShowPopup ? (
           <IconButton
-            onClick={
-              singleCardView
-                ? () => setSingleCardView(false)
-                : () => navigate("/")
-            }
+            onClick={() => {
+              if (editLesson) {
+                setEditLesson(false);
+              } else if (singleCardView) {
+                setSingleCardView(false);
+              } else {
+                navigate("/");
+              }
+            }}
             aria-label="Back"
           >
             <RiArrowLeftLine size={24} />
