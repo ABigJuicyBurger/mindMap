@@ -1,54 +1,48 @@
 import styled from "styled-components";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 
-export function MultiCardView({
-  visibleLessons,
+export function SingleCardView({
   filteredLessons,
-  setSingleCardView,
-  setSingleCardIndex,
-  setEditLesson,
+  singleCardIndex,
   handleRemoveLesson,
+  setEditLesson,
 }) {
   return (
-    <StyledSection>
-      {visibleLessons.map((lesson) => (
-        <article
-          className="lessonCard"
-          key={lesson.id}
-          onClick={() => {
-            setSingleCardView(true);
-            setSingleCardIndex(filteredLessons.indexOf(lesson));
-          }}
-        >
-          <CardHeader>
-            <h2 className="lessonCardTitle">{lesson.title}</h2>
-            <EditButton>
-              <RiEditLine
-                size={18}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSingleCardIndex(filteredLessons.indexOf(lesson));
-                  setEditLesson(true);
-                }}
-              />
-            </EditButton>
-            <DeleteButton
+    <StyledSingleCardView>
+      <article
+        className="singlelessonCard"
+        key={filteredLessons[singleCardIndex].id}
+      >
+        <CardHeader>
+          <h2 className="lessonCardTitle">
+            {filteredLessons[singleCardIndex].title}
+          </h2>
+          <EditButton>
+            <RiEditLine
+              size={18}
               onClick={(e) => {
                 e.stopPropagation();
-                handleRemoveLesson(lesson.id);
+                setEditLesson(true);
               }}
-              aria-label="Delete Lesson"
-            >
-              <RiDeleteBinLine size={18} />
-            </DeleteButton>
-          </CardHeader>
-          <div className="scroll-content">
-            <p className="lessonCardDescription">{lesson.description}</p>
-          </div>
-        </article>
-      ))}
-      <br />
-    </StyledSection>
+            />
+          </EditButton>
+          <DeleteButton
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemoveLesson(filteredLessons[singleCardIndex].id);
+            }}
+            aria-label="Delete Lesson"
+          >
+            <RiDeleteBinLine size={18} />
+          </DeleteButton>
+        </CardHeader>
+        <div className="scroll-content">
+          <p className="lessonCardDescription">
+            {filteredLessons[singleCardIndex].description}
+          </p>
+        </div>
+      </article>
+    </StyledSingleCardView>
   );
 }
 
