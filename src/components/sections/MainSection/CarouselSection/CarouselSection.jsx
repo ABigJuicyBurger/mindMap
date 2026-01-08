@@ -2,41 +2,45 @@ import styled from "styled-components";
 
 export function CarouselSection({ totalPages, currentPage, setCurrentPage }) {
   return (
-    <StyledDiv>
+    <DotsContainer>
       {Array.from({ length: totalPages }).map((_, index) => (
-        <span
+        <Dot
           key={index}
-          className={
-            index === currentPage
-              ? "carousel__button carousel__button--selected"
-              : "carousel__button"
-          }
+          $active={index === currentPage}
           onClick={() => setCurrentPage(index)}
+          aria-label={`Select page ${index + 1}`}
         />
       ))}
-    </StyledDiv>
+    </DotsContainer>
   );
 }
 
-const StyledDiv = styled.div`
-  width: 100%;
-  padding: 1.25rem 0;
-  /* background-colsor: red; */
-  text-align: center;
+const DotsContainer = styled.div`
+  width: 6.625rem;
+  align-self: center;
+  background-color: black;
+  border-radius: 1rem;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 0.75rem;
+`;
 
-  .carousel__button {
-    width: 6.625rem;
-    height: 0.625rem;
-    display: inline-block;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    margin: 0 0.625rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
+const Dot = styled.button`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.$active ? "var(--accent-purple)" : "#D1D1D6"};
+  transition: all 0.3s ease;
+  transform: ${(props) => (props.$active ? "scale(1.25)" : "scale(1)")};
 
-  .carousel__button--selected {
+  &:hover {
     background-color: var(--accent-purple);
-    transform: scale(1.2);
+    opacity: 0.7;
   }
 `;
