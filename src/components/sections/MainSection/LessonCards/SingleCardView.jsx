@@ -11,11 +11,11 @@ export function SingleCardView({
     <StyledSingleCardView>
       <article
         className="singlelessonCard"
-        key={filteredLessons[singleCardIndex].id}
+        key={filteredLessons[singleCardIndex]?.id}
       >
         <CardHeader>
           <h2 className="lessonCardTitle">
-            {filteredLessons[singleCardIndex].title}
+            {filteredLessons[singleCardIndex]?.title}
           </h2>
           <EditButton>
             <RiEditLine
@@ -29,7 +29,7 @@ export function SingleCardView({
           <DeleteButton
             onClick={(e) => {
               e.stopPropagation();
-              handleRemoveLesson(filteredLessons[singleCardIndex].id);
+              handleRemoveLesson(filteredLessons[singleCardIndex]?.id);
             }}
             aria-label="Delete Lesson"
           >
@@ -38,7 +38,7 @@ export function SingleCardView({
         </CardHeader>
         <div className="scroll-content">
           <p className="lessonCardDescription">
-            {filteredLessons[singleCardIndex].description}
+            {filteredLessons[singleCardIndex]?.description}
           </p>
         </div>
       </article>
