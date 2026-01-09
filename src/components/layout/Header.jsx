@@ -19,6 +19,7 @@ const StyledHeader = styled.header`
     font-weight: 700;
     font-family: serif; /* Matches the 'Home' font style in the image */
     font-style: italic;
+    margin: 0;
   }
 `;
 

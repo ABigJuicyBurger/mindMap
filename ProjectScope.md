@@ -18,6 +18,10 @@ For users who learn better visually because they forget the words. It's quizlet 
 - As a guest, I want to view and categorize learning cards as well as delete cards
 - AS a guest, I want to input my own categories and remove categories up to a limit of 5 per user
 
+Future
+
+- Game to press play to play a flashcard game with the lessons in the category \*
+
   # Stretch Goal
 
   - Brain animation with nodes for each lesson point
