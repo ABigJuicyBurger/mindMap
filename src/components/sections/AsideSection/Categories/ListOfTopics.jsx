@@ -254,7 +254,7 @@ export function ListOfTopics() {
           },
         }}
       >
-        <DialogTitle id="alert-dialog-title" style={{ fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.8rem' }}>
+        <DialogTitle id="alert-dialog-title" style={{ fontSize: '1.8rem', fontWeight: 700 }}>
           {"Delete Category?"}
         </DialogTitle>
         <DialogContent>
@@ -426,8 +426,8 @@ const MainInfo = styled.div`
 const CategoryTitle = styled.h2`
   font-size: 2.5rem;
   margin: 0 0 0.5rem 0;
-  font-family: serif;
-  font-style: italic;
+  /* font-family: serif; Removed */
+  /* font-style: italic; Removed */
   font-weight: 800;
   line-height: 1.1;
   color: #000000;
@@ -485,8 +485,8 @@ const StatsPill = styled.div`
 
   .count {
     font-size: 1.1rem;
-    font-family: serif;
-    font-style: italic;
+    /* font-family: serif; Removed */
+    /* font-style: italic; Removed */
     font-weight: 700;
     color: #ffffff;
   }

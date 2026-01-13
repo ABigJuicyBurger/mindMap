@@ -12,6 +12,8 @@ Why is this app needed? What's the pain point?
 
 For users who learn better visually because they forget the words. It's quizlet but gamified
 
+- Memory Palace
+
 ## Features
 
 - As a guest, I want to add a new lesson so that I can log what I've learned

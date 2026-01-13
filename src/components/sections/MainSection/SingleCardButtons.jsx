@@ -120,7 +120,7 @@ const Counter = styled.div`
   display: flex;
   align-items: baseline;
   gap: 0.25rem;
-  font-family: monospace; /* or tabular-nums */
+  font-variant-numeric: tabular-nums;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
