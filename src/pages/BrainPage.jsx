@@ -1,14 +1,14 @@
 import React, { useState, useMemo, Suspense } from "react";
 import styled from "styled-components";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Html } from "@react-three/drei";
+import { useGLTF, OrbitControls, Html, Environment } from "@react-three/drei";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { topicListAtom } from "../store";
 
 const MODEL_PATH = "/models/brain_project.glb";
 
-function Model({ topics, navigate }) {
+function Model({ topics, navigate, position }) {
   const { scene } = useGLTF(MODEL_PATH);
 
   // Clone the scene
@@ -27,10 +27,10 @@ function Model({ topics, navigate }) {
   }, [clonedScene]);
 
   return (
-    <group>
+    <group position={position}>
       <primitive
         object={clonedScene}
-        scale={2}
+        scale={4}
         onClick={(e) => {
           e.stopPropagation();
           const index = meshes.indexOf(e.object);
@@ -98,10 +98,16 @@ export function BrainPage() {
                 </Html>
               }
             >
-              <ambientLight intensity={1} />
-              <directionalLight position={[5, 5, 5]} intensity={1} />
-              <Model topics={topics} navigate={navigate} />
-              <OrbitControls enableZoom={true} makeDefault />
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[5, 5, 5]} intensity={0.2} />
+              <directionalLight position={[-5, -5, -5]} intensity={0.2} />
+              <Environment preset="apartment" />
+              <Model
+                position={[0, -2.2, 0]}
+                topics={topics}
+                navigate={navigate}
+              />
+              <OrbitControls enableZoom={false} makeDefault />
             </Suspense>
           </Canvas>
         </BrainContainer>
@@ -147,8 +153,8 @@ const Title = styled.h1`
 `;
 
 const BrainContainer = styled.div`
-  width: 100%;
-  height: 600px;
+  width: 80vw;
+  height: 80vw;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   display: flex;
