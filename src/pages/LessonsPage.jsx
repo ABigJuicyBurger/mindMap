@@ -14,6 +14,7 @@ export function LessonsPage() {
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
   const { lessonEntries, handleRemoveLesson, handleNewLesson } = useLessons();
   const [singleCardView, setSingleCardView] = useState(false);
+  const [lessonCards, setLessonCards] = useState(1);
 
   const [shouldShowPopup, setShowPopup] = useState(false);
   const [editLesson, setEditLesson] = useAtom(handleEditAtom);
@@ -47,7 +48,7 @@ export function LessonsPage() {
         )}
 
         <PageTitle>
-          {shouldShowPopup ? "New Lesson" : selectedCategory}
+          {shouldShowPopup ? "New Lesson Set" : selectedCategory}
         </PageTitle>
 
         <IconButton
@@ -69,6 +70,7 @@ export function LessonsPage() {
             <NewLessonForm
               handleNewLesson={handleNewLesson}
               setShowPopup={setShowPopup}
+              lessonCards={lessonCards}
             />
           </FormContainer>
         ) : (
@@ -80,6 +82,14 @@ export function LessonsPage() {
           />
         )}
       </ContentArea>
+      {shouldShowPopup ? (
+        <IconButton
+          aria-label="Add New Lesson"
+          onClick={() => setLessonCards(lessonCards + 1)}
+        >
+          <RiAddLine size={24} />
+        </IconButton>
+      ) : null}
     </PageContainer>
   );
 }
