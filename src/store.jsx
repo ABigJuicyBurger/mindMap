@@ -7,4 +7,5 @@ export const lessonValidationTextAtom = atom(null);
 export const selectedCategoryAtom = atom(null);
 export const maxCharAtom = atom(30);
 export const topicListAtom = atomWithStorage("topicsList", ["Coding"]);
+export const topicPositionsAtom = atomWithStorage("topicPositions", {});
 export const handleEditAtom = atom(null);
