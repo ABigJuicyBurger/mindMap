@@ -18,14 +18,14 @@ export function CategoriesHeader({
       return;
     }
 
-    if (isSpaceAvailable) {
-      setShowCategoriesPopup(true);
-    } else {
-      setTempMessage(
-        "Maximum categories reached - please remove some categories first"
-      );
-      setTimeout(() => setTempMessage(null), 3000);
-    }
+    // if (isSpaceAvailable) {
+    //   setShowCategoriesPopup(true);
+    // } else {
+    //   setTempMessage(
+    //     "Maximum categories reached - please remove some categories first"
+    //   );
+    //   setTimeout(() => setTempMessage(null), 3000);
+    // }
   }
 
   return (
@@ -37,17 +37,20 @@ export function CategoriesHeader({
             {topicsList.length}/{maxTopics}
           </CountBadge>
         </TitleGroup>
-        
-        <IconButton onClick={toggleForm} aria-label={shouldShowCategoriesPopup ? "Close" : "Add Category"}>
-          {shouldShowCategoriesPopup ? <RiCloseLine size={24} /> : <RiAddLine size={24} />}
+
+        <IconButton
+          onClick={toggleForm}
+          aria-label={shouldShowCategoriesPopup ? "Close" : "Add Category"}
+        >
+          {shouldShowCategoriesPopup ? (
+            <RiCloseLine size={24} />
+          ) : (
+            <RiAddLine size={24} />
+          )}
         </IconButton>
       </StyledHeader>
-      
-      {tempMessage && (
-        <ValidationMessage>
-          {tempMessage}
-        </ValidationMessage>
-      )}
+
+      {tempMessage && <ValidationMessage>{tempMessage}</ValidationMessage>}
     </>
   );
 }
@@ -94,15 +97,15 @@ const IconButton = styled.button`
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, background-color 0.2s;
-  margin: 0; 
+  margin: 0;
 
   &:hover {
     transform: scale(1.05);
     background-color: var(--accent-purple);
   }
-  
+
   &:active {
     transform: scale(0.95);
   }
