@@ -10,45 +10,52 @@ export function MultiCardView({
   handleRemoveLesson,
 }) {
   return (
-    <StyledSection>
-      {visibleLessons.map((lesson) => (
-        <article
-          className="lessonCard"
-          key={lesson.id}
-          onClick={() => {
-            setSingleCardView(true);
-            setSingleCardIndex(filteredLessons.indexOf(lesson));
-          }}
-        >
-          <CardHeader>
-            <h2 className="lessonCardTitle">{lesson.title}</h2>
-            <EditButton>
-              <RiEditLine
-                size={18}
+    <>
+      {visibleLessons.length === 0 && (
+        <h3 style={{ textAlign: "center" }}>
+          No lessons found. Click the + button to add a new lesson.
+        </h3>
+      )}
+      <StyledSection>
+        {visibleLessons.map((lesson) => (
+          <article
+            className="lessonCard"
+            key={lesson.id}
+            onClick={() => {
+              setSingleCardView(true);
+              setSingleCardIndex(filteredLessons.indexOf(lesson));
+            }}
+          >
+            <CardHeader>
+              <h2 className="lessonCardTitle">{lesson.title}</h2>
+              <EditButton>
+                <RiEditLine
+                  size={18}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSingleCardIndex(filteredLessons.indexOf(lesson));
+                    setEditLesson(true);
+                  }}
+                />
+              </EditButton>
+              <DeleteButton
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSingleCardIndex(filteredLessons.indexOf(lesson));
-                  setEditLesson(true);
+                  handleRemoveLesson(lesson.id);
                 }}
-              />
-            </EditButton>
-            <DeleteButton
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRemoveLesson(lesson.id);
-              }}
-              aria-label="Delete Lesson"
-            >
-              <RiDeleteBinLine size={18} />
-            </DeleteButton>
-          </CardHeader>
-          <div className="scroll-content">
-            <p className="lessonCardDescription">{lesson.description}</p>
-          </div>
-        </article>
-      ))}
-      <br />
-    </StyledSection>
+                aria-label="Delete Lesson"
+              >
+                <RiDeleteBinLine size={18} />
+              </DeleteButton>
+            </CardHeader>
+            <div className="scroll-content">
+              <p className="lessonCardDescription">{lesson.description}</p>
+            </div>
+          </article>
+        ))}
+        <br />
+      </StyledSection>
+    </>
   );
 }
 
@@ -179,7 +186,9 @@ const StyledSection = styled.section`
     display: flex;
     flex-direction: column;
     height: 18rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       transform: translateY(-2px);
