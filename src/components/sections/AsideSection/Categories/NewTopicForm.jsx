@@ -31,6 +31,9 @@ export function NewTopicForm({
     if (inputValues.topicName.length === 0) {
       setTopicFormValidationText("Topic name is required");
       setTimeout(() => setTopicFormValidationText(null), 3000);
+    } else if (topicsList.includes(inputValues.topicName)) {
+      setTopicFormValidationText("Topic name already exists");
+      setTimeout(() => setTopicFormValidationText(null), 3000);
     } else {
       setTopicsList([...topicsList, inputValues.topicName]);
       setTopicFormValidationText("");
