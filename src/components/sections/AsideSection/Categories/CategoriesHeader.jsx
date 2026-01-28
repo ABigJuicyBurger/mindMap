@@ -13,19 +13,20 @@ export function CategoriesHeader({
   const isSpaceAvailable = topicsList.length <= maxTopics - 1;
 
   function toggleForm() {
+    console.log(shouldShowCategoriesPopup);
     if (shouldShowCategoriesPopup) {
-      setShowCategoriesPopup(false);
+      setShowCategoriesPopup(!shouldShowCategoriesPopup);
       return;
     }
 
-    // if (isSpaceAvailable) {
-    //   setShowCategoriesPopup(true);
-    // } else {
-    //   setTempMessage(
-    //     "Maximum categories reached - please remove some categories first"
-    //   );
-    //   setTimeout(() => setTempMessage(null), 3000);
-    // }
+    if (isSpaceAvailable) {
+      setShowCategoriesPopup(true);
+    } else {
+      setTempMessage(
+        "Maximum categories reached - please remove some categories first",
+      );
+      setTimeout(() => setTempMessage(null), 3000);
+    }
   }
 
   return (
@@ -61,6 +62,7 @@ const StyledHeader = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   width: 100%;
+  padding: 0.1rem;
 `;
 
 const TitleGroup = styled.div`
@@ -98,7 +100,9 @@ const IconButton = styled.button`
   cursor: pointer;
   padding: 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background-color 0.2s;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s;
   margin: 0;
 
   &:hover {
