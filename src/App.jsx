@@ -16,8 +16,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/lessons/:category" element={<LessonsPage />} />
           <Route path="/brain" element={<BrainPage />} />
+          <Route path="/lessons/:category" element={<LessonsPage />} />
         </Routes>
         <Footer />
         <BottomNavigation />

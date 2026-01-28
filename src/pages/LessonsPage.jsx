@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
-import { selectedCategoryAtom, handleEditAtom } from "../store";
+import { selectedCategoryAtom, handleEditAtom, showPopupAtom } from "../store";
 import { useLessons } from "../components/hooks/useAddLesson";
 import { MainSection } from "../components/sections/MainSection/MainSection";
 import { NewLessonForm } from "../components/sections/AsideSection/AddLessonSection/NewLessonForm/NewLessonForm";
@@ -16,7 +16,7 @@ export function LessonsPage() {
   const [singleCardView, setSingleCardView] = useState(false);
   const [lessonCards, setLessonCards] = useState(1);
 
-  const [shouldShowPopup, setShowPopup] = useState(false);
+  const [shouldShowPopup, setShowPopup] = useAtom(showPopupAtom);
   const [editLesson, setEditLesson] = useAtom(handleEditAtom);
 
   useEffect(() => {

@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
+import {
+  RiDeleteBinLine,
+  RiEditLine,
+  RiCloseLine,
+  RiAddLine,
+} from "react-icons/ri";
+import { useAtom } from "jotai";
+import { showPopupAtom } from "../../../../store";
 
 export function MultiCardView({
   visibleLessons,
@@ -9,6 +16,10 @@ export function MultiCardView({
   setEditLesson,
   handleRemoveLesson,
 }) {
+  const [shouldShowPopup, setShowPopup] = useAtom(showPopupAtom);
+  console.log(visibleLessons.length);
+
+  const lastLesson = visibleLessons.length - 1;
   return (
     <>
       {visibleLessons.length === 0 && (
@@ -53,6 +64,20 @@ export function MultiCardView({
             </div>
           </article>
         ))}
+        {visibleLessons.length > 0 && (
+          <IconButton
+            $primary={!shouldShowPopup}
+            onClick={() => setShowPopup(!shouldShowPopup)}
+            aria-label={shouldShowPopup ? "Close" : "Add Lesson"}
+          >
+            {shouldShowPopup ? (
+              <RiCloseLine size={24} />
+            ) : (
+              <RiAddLine size={24} />
+            )}
+          </IconButton>
+        )}
+        <br />
         <br />
       </StyledSection>
     </>
@@ -113,6 +138,39 @@ const CardHeader = styled.div`
     word-break: break-word;
     flex: 1;
     padding-right: 0.5rem;
+  }
+`;
+
+const IconButton = styled.button`
+  padding: 0;
+  background-color: ${(props) =>
+    props.$primary ? "var(--button-bg)" : "var(--card-bg)"};
+  color: ${(props) =>
+    props.$primary ? "var(--button-text)" : "var(--text-primary)"};
+  border: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-self: center;
+  cursor: pointer;
+  grid-column: 2/3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background-color: ${(props) =>
+      props.$primary ? "var(--accent-purple)" : "white"};
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
