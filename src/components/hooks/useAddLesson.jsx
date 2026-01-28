@@ -20,12 +20,20 @@ export function useLessons() {
   const [lessonEntries, setLessonEntries] = useAtom(lessonsAtom);
   const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
   const [lessonValidationText, setLessonValidationText] = useAtom(
-    lessonValidationTextAtom
+    lessonValidationTextAtom,
   );
 
   // put in useCallback
   const addLesson = useCallback(
     (inputValue) => {
+      const findDuplicateEntry = lessonEntries.find(
+        (lesson) => lesson.title === inputValue.lessonTitle,
+      );
+      if (findDuplicateEntry) {
+        setLessonValidationText("Lesson name already exists");
+        setTimeout(() => setLessonValidationText(null), 3000);
+        return;
+      }
       const nextState = [
         ...lessonEntries,
         {
@@ -37,13 +45,20 @@ export function useLessons() {
       ];
       setLessonEntries(nextState);
     },
-    [lessonEntries]
+    [lessonEntries],
   );
 
   const handleNewLesson = useCallback(
     (inputValue) => {
+      const findDuplicateEntry = lessonEntries.find(
+        (lesson) => lesson.title === inputValue.lessonTitle,
+      );
       if (!inputValue.lessonTitle || inputValue.lessonTitle.length === 0) {
         setLessonValidationText("Lesson name is required");
+        setTimeout(() => setLessonValidationText(null), 3000);
+        return false;
+      } else if (findDuplicateEntry) {
+        setLessonValidationText("Lesson name already exists");
         setTimeout(() => setLessonValidationText(null), 3000);
         return false;
       } else {
@@ -51,17 +66,17 @@ export function useLessons() {
         return true;
       }
     },
-    [addLesson]
+    [addLesson, lessonEntries],
   );
 
   const handleRemoveLesson = useCallback(
     (id) => {
       const nextState = lessonEntries.filter(
-        (lesson) => lesson && lesson.id !== id
+        (lesson) => lesson && lesson.id !== id,
       );
       setLessonEntries(nextState);
     },
-    [lessonEntries]
+    [lessonEntries],
   );
 
   const handleEditLesson = useCallback(
@@ -78,7 +93,7 @@ export function useLessons() {
       });
       setLessonEntries(nextState);
     },
-    [lessonEntries]
+    [lessonEntries],
   );
 
   // add new category later
@@ -86,11 +101,11 @@ export function useLessons() {
   const handleRemoveCategory = useCallback(
     (category) => {
       const nextState = lessonEntries.filter(
-        (lesson) => lesson && lesson.category !== category
+        (lesson) => lesson && lesson.category !== category,
       );
       setLessonEntries(nextState);
     },
-    [lessonEntries]
+    [lessonEntries],
   );
 
   return {
