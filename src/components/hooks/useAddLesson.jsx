@@ -3,7 +3,6 @@ import { useAtom } from "jotai";
 import { useCallback } from "react";
 import { atomWithStorage } from "jotai/utils";
 import { selectedCategoryAtom, lessonValidationTextAtom } from "../../store";
-import { useParams } from "react-router-dom";
 
 const lessonsAtom = atomWithStorage("lessons", []);
 
@@ -19,17 +18,18 @@ const lessonsAtom = atomWithStorage("lessons", []);
 export function useLessons() {
   // may need to abstract away but for now...
   const [lessonEntries, setLessonEntries] = useAtom(lessonsAtom);
-  const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
+  const [selectedCategory] = useAtom(selectedCategoryAtom);
   const [lessonValidationText, setLessonValidationText] = useAtom(
     lessonValidationTextAtom,
   );
-  const { category } = useParams();
 
   // put in useCallback
   const addLesson = useCallback(
     (inputValue) => {
       const findDuplicateEntry = lessonEntries.find(
-        (lesson) => lesson.title === inputValue.lessonTitle,
+        (lesson) =>
+          lesson.title === inputValue.lessonTitle &&
+          lesson.category === selectedCategory,
       );
       if (findDuplicateEntry) {
         setLessonValidationText("Lesson name already exists");
@@ -47,17 +47,20 @@ export function useLessons() {
       ];
       setLessonEntries(nextState);
     },
-    [lessonEntries],
+    [
+      lessonEntries,
+      selectedCategory,
+      setLessonValidationText,
+      setLessonEntries,
+    ],
   );
 
   const handleNewLesson = useCallback(
     (inputValue) => {
-      // only handle based on current category
-      const filteredLessons = lessonEntries.filter(
-        (lesson) => lesson.category === category,
-      );
-      const findDuplicateEntry = filteredLessons.find(
-        (lesson) => lesson.title === inputValue.lessonTitle,
+      const findDuplicateEntry = lessonEntries.find(
+        (lesson) =>
+          lesson.title === inputValue.lessonTitle &&
+          lesson.category === selectedCategory,
       );
       if (!inputValue.lessonTitle || inputValue.lessonTitle.length === 0) {
         setLessonValidationText("Lesson name is required");
@@ -72,7 +75,7 @@ export function useLessons() {
         return true;
       }
     },
-    [addLesson, lessonEntries, category],
+    [addLesson, lessonEntries, selectedCategory, setLessonValidationText],
   );
 
   const handleRemoveLesson = useCallback(

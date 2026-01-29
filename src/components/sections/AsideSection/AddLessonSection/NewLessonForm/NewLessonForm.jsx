@@ -23,13 +23,16 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
   };
 
   const handleSubmit = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
+    // if (e.key === "Enter") {
+    //   e.preventDefault();
+    // }
     e.preventDefault();
+
     const success = handleNewLesson(inputValues);
-    if (!success) {
-      return false;
+
+    // check if success returns false
+    if (success === false) {
+      return;
     }
     if (success) {
       setShowPopup(false);
