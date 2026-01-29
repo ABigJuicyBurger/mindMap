@@ -82,14 +82,17 @@ export function LessonsPage() {
           />
         )}
       </ContentArea>
-      {shouldShowPopup ? (
+      {/* {shouldShowPopup && !singleCardView ? (
         <IconButton
           aria-label="Add New Lesson"
-          onClick={() => setLessonCards(lessonCards + 1)}
+          onClick={() => {
+            console.log(lessonCards);
+            setLessonCards(lessonCards + 1);
+          }}
         >
           <RiAddLine size={24} />
         </IconButton>
-      ) : null}
+      ) : null} */}
     </PageContainer>
   );
 }
@@ -174,7 +177,9 @@ const ContentArea = styled.div`
 `;
 
 const FormContainer = styled.div`
-  width: 100%;
+  /* width: 100%;
+   */
+  margin: 0 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;

@@ -15,6 +15,7 @@ export function MultiCardView({
   setSingleCardIndex,
   setEditLesson,
   handleRemoveLesson,
+  singleCardView,
 }) {
   const [shouldShowPopup, setShowPopup] = useAtom(showPopupAtom);
   console.log(visibleLessons.length);

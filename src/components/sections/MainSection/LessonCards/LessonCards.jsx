@@ -45,6 +45,7 @@ export function LessonCards({
       visibleLessons={visibleLessons}
       filteredLessons={filteredLessons}
       setSingleCardView={setSingleCardView}
+      singleCardView={singleCardView}
       setSingleCardIndex={setSingleCardIndex}
       setEditLesson={setEditLesson}
       handleRemoveLesson={handleRemoveLesson}
