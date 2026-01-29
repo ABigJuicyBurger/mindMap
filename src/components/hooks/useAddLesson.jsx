@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import { useCallback } from "react";
 import { atomWithStorage } from "jotai/utils";
 import { selectedCategoryAtom, lessonValidationTextAtom } from "../../store";
+import { useParams } from "react-router-dom";
 
 const lessonsAtom = atomWithStorage("lessons", []);
 
@@ -22,6 +23,7 @@ export function useLessons() {
   const [lessonValidationText, setLessonValidationText] = useAtom(
     lessonValidationTextAtom,
   );
+  const { category } = useParams();
 
   // put in useCallback
   const addLesson = useCallback(
@@ -50,7 +52,11 @@ export function useLessons() {
 
   const handleNewLesson = useCallback(
     (inputValue) => {
-      const findDuplicateEntry = lessonEntries.find(
+      // only handle based on current category
+      const filteredLessons = lessonEntries.filter(
+        (lesson) => lesson.category === category,
+      );
+      const findDuplicateEntry = filteredLessons.find(
         (lesson) => lesson.title === inputValue.lessonTitle,
       );
       if (!inputValue.lessonTitle || inputValue.lessonTitle.length === 0) {
@@ -66,7 +72,7 @@ export function useLessons() {
         return true;
       }
     },
-    [addLesson, lessonEntries],
+    [addLesson, lessonEntries, category],
   );
 
   const handleRemoveLesson = useCallback(

@@ -6,7 +6,7 @@ import { maxCharAtom, lessonValidationTextAtom } from "../../../../../store";
 export function NewLessonForm({ handleNewLesson, setShowPopup }) {
   const maxChar = useAtom(maxCharAtom)[0];
   const [lessonValidationText, setLessonValidationText] = useAtom(
-    lessonValidationTextAtom
+    lessonValidationTextAtom,
   );
 
   const [inputValues, setInputValues] = useState({
@@ -25,6 +25,9 @@ export function NewLessonForm({ handleNewLesson, setShowPopup }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const success = handleNewLesson(inputValues);
+    if (!success) {
+      return false;
+    }
     if (success) {
       setShowPopup(false);
       setInputValues({
@@ -167,7 +170,9 @@ const InputUnderline = styled.div`
   transform: scaleX(0); /* Hidden by default or scaleX(1) if preferred */
   transform: scaleX(1);
   transform-origin: left;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
 `;
 
 const ActionRow = styled.div`
