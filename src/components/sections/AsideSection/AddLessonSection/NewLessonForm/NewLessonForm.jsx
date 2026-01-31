@@ -153,7 +153,8 @@ const StyledTextArea = styled.textarea`
   font-size: 1rem;
   color: var(--text-primary);
   outline: none;
-  resize: none;
+  resize: both; /* Enables resizing: both, horizontal, vertical, or none */
+  overflow: auto; /* Required for resize to work */
   font-family: inherit;
 
   &::placeholder {

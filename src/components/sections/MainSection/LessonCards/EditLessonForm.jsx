@@ -9,7 +9,7 @@ export function EditLessonForm({ lesson, setEditLesson }) {
   console.log(lesson);
   const maxChar = useAtom(maxCharAtom)[0];
   const [lessonValidationText, setLessonValidationText] = useAtom(
-    lessonValidationTextAtom
+    lessonValidationTextAtom,
   );
 
   const [inputValues, setInputValues] = useState({
@@ -123,6 +123,8 @@ const StyledInput = styled.input`
   font-size: 1.1rem;
   color: var(--text-primary);
   outline: none;
+  resize: both; /* Enables resizing: both, horizontal, vertical, or none */
+  overflow: auto; /* Required for resize to work */
 
   &::placeholder {
     color: #ccc;
@@ -165,7 +167,9 @@ const InputUnderline = styled.div`
   transform: scaleX(0); /* Hidden by default or scaleX(1) if preferred */
   transform: scaleX(1);
   transform-origin: left;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
 `;
 
 const ActionRow = styled.div`
